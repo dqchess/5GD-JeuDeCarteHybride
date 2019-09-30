@@ -23,7 +23,6 @@ public class PlayerManager : MonoBehaviour
     private float DEFPlayer2 = 0f;
 
 
-
     void Start()
     {
 

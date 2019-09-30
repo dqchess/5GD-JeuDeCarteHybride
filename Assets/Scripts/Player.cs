@@ -76,6 +76,7 @@ public class Player : MonoBehaviour
 
     public void TakeDamagePlayer(int damage)
     {
+        Debug.Log(damage);
         if (damage <= playerDEF)
         {
             playerDEF -= damage;
