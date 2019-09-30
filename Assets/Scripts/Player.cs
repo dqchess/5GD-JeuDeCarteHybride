@@ -17,6 +17,8 @@ public class Player : MonoBehaviour
     public TMP_Text ATKSummaryPlayerFight;
     public TMP_Text DEFSummaryPlayerFight;
 
+    [Header("Other")]
+    public GameObject model;
 
     [HideInInspector] public int playerATK = 0;
     [HideInInspector] public int playerDEF = 0;
@@ -59,6 +61,11 @@ public class Player : MonoBehaviour
     public void StartFight()
     {
         //UpdateStatsUIPlayer();
+    }
+
+    public void Die()
+    {
+        Destroy(model);
     }
 
     public void UpdateStatsUIPlayer()

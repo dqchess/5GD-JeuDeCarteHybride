@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -27,10 +28,27 @@ public class GameManager : MonoBehaviour
 
     public GameObject panelStats;
     public GameObject panelFight;
+    public GameObject panelVictory;
+    public TMP_Text textVictory;
 
     private void Start()
     {
         DisplayStats();
+    }
+
+    public void DisplayVictory(string player)
+    {
+        panelStats.SetActive(false);
+        panelFight.SetActive(false);
+        panelVictory.SetActive(true);
+        if (player.Contains("1"))
+        {
+            textVictory.text = "Player 2 win !";
+        }
+        else if (player.Contains("2"))
+        {
+            textVictory.text = "Player 1 win !";
+        }
     }
 
     public void DisplayStats()
