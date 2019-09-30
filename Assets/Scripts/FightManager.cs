@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +7,8 @@ public class FightManager : MonoBehaviour
 {
     [HideInInspector] public GameObject monster1;
     [HideInInspector] public GameObject monster2;
+
+    public GameObject fightParticle;
 
     public GameObject player1;
     public GameObject player2;
@@ -37,34 +40,49 @@ public class FightManager : MonoBehaviour
 
     IEnumerator Fight1v1(GameObject player, GameObject monster)
     {
+        bool boolBreak = false;
         Vector3 playerPos = player.transform.position;
         Vector3 monsterPos = monster.transform.position;
         Vector3 collisionPoint = (player.transform.position + monster.transform.position) / 2;
         while (true)
         {
-            yield return new WaitForSeconds(3);
-            //1s :
-            //player to collisionPoint
-            //monster to collisionPoint //continue whith particlesystem
-            //1s :
-            //player to playerPos
-            //monster to monsterPos
+            yield return new WaitForSeconds(1);
+            //SetLoops(2, LoopType.Yoyo).
+            player.transform.DOMove(collisionPoint, 1f).SetEase(Ease.InQuart).OnComplete(() => {
+                Instantiate(fightParticle, collisionPoint, Quaternion.identity);
+                player.GetComponent<Player>().TakeDamagePlayer(monster.GetComponent<Monster>().monsterATK);
+                if (player.GetComponent<Player>().playerHP <= 0)
+                {
+                    //player.GetComponent<Player>().Die();
+                    boolBreak = true;
+                }
+            });
+            
+            monster.transform.DOMove(collisionPoint, 1f).SetEase(Ease.InQuart).OnComplete(() => {
+                monster.GetComponent<Monster>().TakeDamageMonster(player.GetComponent<Player>().playerATK);
+                if (monster.GetComponent<Monster>().monsterHP <= 0)
+                {
+                    monster.GetComponent<Monster>().Die();
+                    cptMonstersDead++;
+                    boolBreak = true;
+                }
+            }); 
 
-            player.GetComponent<Player>().TakeDamagePlayer(monster.GetComponent<Monster>().monsterATK);
-            monster.GetComponent<Monster>().TakeDamageMonster(player.GetComponent<Player>().playerATK);
-           
-            if (player.GetComponent<Player>().playerHP <= 0)
+            monster.transform.DOMove(monsterPos, 1f).SetEase(Ease.InQuart).SetDelay(1);
+            player.transform.DOMove(playerPos, 1f).SetEase(Ease.InQuart).SetDelay(1);
+
+            yield return new WaitForSeconds(2);
+
+            if (boolBreak)
             {
-                //GameManager.Instance.DisplayStats();
                 yield break;
             }
-            else if (monster.GetComponent<Monster>().monsterHP <= 0)
-            {
-                monster.GetComponent<Monster>().Die();
-                cptMonstersDead++;
-                yield return new WaitForSeconds(2);
-                yield break;
-            }                       
+                         
         }       
+    }
+
+    private void OnCollisionPoint(Vector3 collisionPoint)
+    {
+        
     }
 }

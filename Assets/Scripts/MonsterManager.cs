@@ -11,8 +11,6 @@ public class MonsterManager : MonoBehaviour
     public TMP_Text ATKSummaryMonster;
     public TMP_Text DEFSummaryMonster;
     public TMP_Text monsterName;
-    private int ATKMonster = 0;
-    private int DEFMonster = 0;
 
     public GameObject[] monsters;
     public GameObject monster1;
