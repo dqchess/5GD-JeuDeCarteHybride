@@ -10,7 +10,7 @@ public class Monster : MonoBehaviour
     public int monsterATK = 0;
     public int monsterHP = 0;
 
-    public GameObject model;
+    [HideInInspector] public GameObject model;
 
     void Start()
     {

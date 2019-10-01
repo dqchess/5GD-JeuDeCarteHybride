@@ -21,7 +21,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public Player[] players;
+    public Player player1;
+    public Player player2;
 
     [HideInInspector] public enum State { STATS, FIGHT };
     [HideInInspector] public State state;
@@ -49,16 +50,26 @@ public class GameManager : MonoBehaviour
         {
             textVictory.text = "Player 1 win !";
         }
+
+        player1.gameObject.SetActive(false);
+        player2.gameObject.SetActive(false);
+        
+        monsterManager.monster1.SetActive(false);
+        monsterManager.monster2.SetActive(false);
     }
 
     public void DisplayStats()
     {
         state = State.STATS;
-        monsterManager.InstantiateMonsters();
-        foreach(Player p in players)
-        {
-            p.ResetStats();
-        }
+
+        monsterManager.InstantiateMonsterStats();
+
+        player1.ResetStats();
+        player2.ResetStats();
+
+        player1.gameObject.SetActive(false);
+        player2.gameObject.SetActive(false);
+
         panelStats.SetActive(true);
         panelFight.SetActive(false);
     }
@@ -66,10 +77,13 @@ public class GameManager : MonoBehaviour
     public void DisplayFight()
     {
         state = State.FIGHT;
-        foreach (Player p in players)
-        {
-            p.StartFight();
-        }
+
+        player1.StartFight();
+        player2.StartFight();
+
+        player1.gameObject.SetActive(true);
+        player2.gameObject.SetActive(true);
+
         panelStats.SetActive(false);
         panelFight.SetActive(true);
         monsterManager.StartFight();

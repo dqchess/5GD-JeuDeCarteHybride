@@ -11,34 +11,49 @@ public class MonsterManager : MonoBehaviour
     public TMP_Text ATKSummaryMonster;
     public TMP_Text DEFSummaryMonster;
     public TMP_Text monsterName;
+    public TMP_Text monster1Name;
+    public TMP_Text monster2Name;
 
     public GameObject[] monsters;
     public GameObject monster1;
     public GameObject monster2;
+    public GameObject monsterPreview;
+
+    private int randomMonster;
+    private int atk;
+    private int hp;
 
     [Header("Stuff")]
     public FightManager fightManager;
 
 
+    public void InstantiateMonsterStats()
+    {
+        ResetMonsters();
+        randomMonster = Random.Range(0, monsters.Length);
+        GameObject m = Instantiate(monsters[randomMonster], monsterPreview.transform);
+
+        monsterName.text = m.GetComponent<MonsterStats>().monsterName;
+        monster1Name.text = m.GetComponent<MonsterStats>().monsterName;
+        monster2Name.text = m.GetComponent<MonsterStats>().monsterName;
+
+        atk = m.GetComponent<MonsterStats>().monsterATK;
+        hp = m.GetComponent<MonsterStats>().monsterHP;
+        ATKSummaryMonster.text = atk.ToString();
+        DEFSummaryMonster.text = hp.ToString();
+    }
+
     public void InstantiateMonsters()
     {
         ResetMonsters();
-        int r = Random.Range(0, monsters.Length);
-        monster1.GetComponent<Monster>().model = Instantiate(monsters[r], monster1.transform);
-        monster2.GetComponent<Monster>().model = Instantiate(monsters[r], monster2.transform);
-
-        GameObject m = monster1.GetComponent<Monster>().model;
-        monsterName.text = m.GetComponent<MonsterStats>().monsterName;
-        int atk = m.GetComponent<MonsterStats>().monsterATK;
-        int def = m.GetComponent<MonsterStats>().monsterHP;
-
-        ATKSummaryMonster.text = atk.ToString();
-        DEFSummaryMonster.text = def.ToString();
+        Destroy(monsterPreview.transform.GetChild(0).gameObject);
+        monster1.GetComponent<Monster>().model = Instantiate(monsters[randomMonster], monster1.transform);
+        monster2.GetComponent<Monster>().model = Instantiate(monsters[randomMonster], monster2.transform);
 
         monster1.GetComponent<Monster>().monsterATK = atk;
-        monster1.GetComponent<Monster>().monsterHP = def;
+        monster1.GetComponent<Monster>().monsterHP = hp;
         monster2.GetComponent<Monster>().monsterATK = atk;
-        monster2.GetComponent<Monster>().monsterHP = def;  
+        monster2.GetComponent<Monster>().monsterHP = hp;
     }
 
     public void ResetMonsters()
@@ -60,6 +75,7 @@ public class MonsterManager : MonoBehaviour
 
     public void StartFight()
     {
+        InstantiateMonsters();
         monster1.GetComponent<Monster>().StartFight();
         monster2.GetComponent<Monster>().StartFight();
         fightManager.monster1 = monster1;
