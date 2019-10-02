@@ -21,7 +21,7 @@ namespace DigitsNFCToolkit.Samples
 
         private void Update()
         {
-            
+            //NativeNFCManager.AddNDEFPushFinishedListener(OnNDEFPushFinished)
         }
         public void SendValue(string textToSend)
         {
