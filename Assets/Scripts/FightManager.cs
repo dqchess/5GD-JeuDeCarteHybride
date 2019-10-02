@@ -27,7 +27,7 @@ public class FightManager : MonoBehaviour
         if (cptMonstersDead == 2) //all monsters are dead 
         {
             cptMonstersDead = 0;
-            StartCoroutine(EndFights());
+            GameManager.Instance.EndFight();
         }
     }
 
@@ -36,13 +36,6 @@ public class FightManager : MonoBehaviour
         cptMonstersDead = 0;
         StartCoroutine(Fight1v1(player1, monster1));
         StartCoroutine(Fight1v1(player2, monster2));
-    }
-
-    IEnumerator EndFights()
-    {
-        yield return new WaitForSeconds(2);
-        GameManager.Instance.DisplayStats();
-        yield break;
     }
 
     IEnumerator EndGame(string player)

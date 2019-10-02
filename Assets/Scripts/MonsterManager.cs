@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -34,8 +35,13 @@ public class MonsterManager : MonoBehaviour
     public void InstantiateMonsterStats()
     {
         ResetMonsters();
+        monsterPreview.SetActive(true);
+        monsterPreview.transform.localScale = Vector3.one;
         randomMonster = Random.Range(0, monsters.Length);
-        GameObject m = Instantiate(monsters[randomMonster], monsterPreview.transform);
+        monsterPreview.GetComponent<MonsterPreview>().model = Instantiate(monsters[randomMonster], monsterPreview.transform);
+
+        GameObject m = monsterPreview.GetComponent<MonsterPreview>().model;
+        DOTween.To(() => m.transform.localScale, x => m.transform.localScale = x, Vector3.zero, 0.5f).From();
 
         textMonsterName.text = m.GetComponent<MonsterStats>().monsterName;
         textMonster1Name.text = m.GetComponent<MonsterStats>().monsterName;
@@ -49,12 +55,20 @@ public class MonsterManager : MonoBehaviour
         textHpMonsterStats.text = hp.ToString();
     }
 
-    public void InstantiateMonsters()
+    public void InstantiateMonstersFight()
     {
         ResetMonsters();
-        Destroy(monsterPreview.transform.GetChild(0).gameObject);
-        monster1.GetComponent<Monster>().model = Instantiate(monsters[randomMonster], monster1.transform);
-        monster2.GetComponent<Monster>().model = Instantiate(monsters[randomMonster], monster2.transform);
+        GameObject m = monsterPreview.GetComponent<MonsterPreview>().model;
+        DOTween.To(() => m.transform.localScale, x => m.transform.localScale = x, Vector3.zero, 0.5f).OnComplete(() => {
+            Destroy(monsterPreview.GetComponent<MonsterPreview>().model);
+            monsterPreview.SetActive(false);
+        });
+        
+        
+        GameObject m1 = monster1.GetComponent<Monster>().model = Instantiate(monsters[randomMonster], monster1.transform);
+        GameObject m2 = monster2.GetComponent<Monster>().model = Instantiate(monsters[randomMonster], monster2.transform);
+        DOTween.To(() => m1.transform.localScale, x => m1.transform.localScale = x, Vector3.zero, 0.5f).From().SetDelay(0.5f);
+        DOTween.To(() => m2.transform.localScale, x => m2.transform.localScale = x, Vector3.zero, 0.5f).From().SetDelay(0.5f);
 
         monster1.GetComponent<Monster>().monsterMinATK = minAtk;
         monster1.GetComponent<Monster>().monsterMaxATK = maxAtk;
@@ -86,7 +100,6 @@ public class MonsterManager : MonoBehaviour
 
     public void StartFight()
     {
-        InstantiateMonsters();
         monster1.GetComponent<Monster>().StartFight();
         monster2.GetComponent<Monster>().StartFight();
         fightManager.monster1 = monster1;
