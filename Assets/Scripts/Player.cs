@@ -8,14 +8,14 @@ public class Player : MonoBehaviour
     [Header("Stats")]
     public TMP_InputField ATKInputPlayer;
     public TMP_InputField DEFInputPlayer;
-    public TMP_Text HPSummaryPlayer;
-    public TMP_Text ATKSummaryPlayer;
-    public TMP_Text DEFSummaryPlayer;
+    public TMP_Text textHpPlayerStats;
+    public TMP_Text textAtkPlayerStats;
+    public TMP_Text textDefPlayerStats;
 
     [Header("Fight")]
-    public TMP_Text HPSummaryPlayerFight;
-    public TMP_Text ATKSummaryPlayerFight;
-    public TMP_Text DEFSummaryPlayerFight;
+    public TMP_Text textHpPlayerFight;
+    public TMP_Text textAtkPlayerFight;
+    public TMP_Text textDefPlayerFight;
 
     [Header("Other")]
     public GameObject model;
@@ -52,10 +52,10 @@ public class Player : MonoBehaviour
     public void AddStatsPlayer(int atk, int def)
     {
         playerATK += atk;
-        ATKSummaryPlayer.text = playerATK.ToString();
+        textAtkPlayerStats.text = playerATK.ToString();
 
         playerDEF += def;
-        DEFSummaryPlayer.text = playerDEF.ToString();
+        textDefPlayerStats.text = playerDEF.ToString();
     }
 
     public void StartFight()
@@ -71,14 +71,14 @@ public class Player : MonoBehaviour
     public void UpdateStatsUIPlayer()
     {
         //STATS
-        ATKSummaryPlayer.text = playerATK.ToString();
-        DEFSummaryPlayer.text = playerDEF.ToString();
-        HPSummaryPlayer.text = playerHP.ToString();
+        textAtkPlayerStats.text = playerATK.ToString();
+        textDefPlayerStats.text = playerDEF.ToString();
+        textHpPlayerStats.text = playerHP.ToString();
 
         //FIGHT
-        ATKSummaryPlayerFight.text = playerATK.ToString();
-        DEFSummaryPlayerFight.text = playerDEF.ToString();
-        HPSummaryPlayerFight.text = playerHP.ToString();
+        textAtkPlayerFight.text = playerATK.ToString();
+        textDefPlayerFight.text = playerDEF.ToString();
+        textHpPlayerFight.text = playerHP.ToString();
     }
 
     public void TakeDamagePlayer(int damage)

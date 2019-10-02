@@ -105,5 +105,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterName: Velocilaser
-  monsterATK: 9
+  monsterMinATK: 2
+  monsterMaxATK: 5
   monsterHP: 6

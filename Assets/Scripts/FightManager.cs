@@ -64,7 +64,8 @@ public class FightManager : MonoBehaviour
             //SetLoops(2, LoopType.Yoyo).
             player.transform.DOMove(collisionPoint, 1f).SetEase(Ease.InQuart).OnComplete(() => {
                 Instantiate(fightParticle, collisionPoint, Quaternion.identity);
-                player.GetComponent<Player>().TakeDamagePlayer(monster.GetComponent<Monster>().monsterATK);
+                int randomAtk = Random.Range(monster.GetComponent<Monster>().monsterMinATK, monster.GetComponent<Monster>().monsterMaxATK);
+                player.GetComponent<Player>().TakeDamagePlayer(randomAtk);
                 if (player.GetComponent<Player>().playerHP <= 0)
                 {
                     player.GetComponent<Player>().Die();

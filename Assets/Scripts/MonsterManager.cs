@@ -7,23 +7,27 @@ using Random = UnityEngine.Random;
 
 public class MonsterManager : MonoBehaviour
 {
-    [Header("Monster")]
-    public TMP_Text ATKSummaryMonster;
-    public TMP_Text DEFSummaryMonster;
-    public TMP_Text monsterName;
-    public TMP_Text monster1Name;
-    public TMP_Text monster2Name;
+    [Header("Monster Stats")]
+    public TMP_Text textMinAtkMonsterStats;
+    public TMP_Text textMaxAtkMonsterStats;
+    public TMP_Text textHpMonsterStats;
+    public TMP_Text textMonsterName;
 
+    [Header("Monster Fight")]
+    public TMP_Text textMonster1Name;
+    public TMP_Text textMonster2Name;
+
+    [Header("Stuff")]
     public GameObject[] monsters;
     public GameObject monster1;
     public GameObject monster2;
     public GameObject monsterPreview;
 
     private int randomMonster;
-    private int atk;
+    private int minAtk;
+    private int maxAtk;
     private int hp;
 
-    [Header("Stuff")]
     public FightManager fightManager;
 
 
@@ -33,14 +37,16 @@ public class MonsterManager : MonoBehaviour
         randomMonster = Random.Range(0, monsters.Length);
         GameObject m = Instantiate(monsters[randomMonster], monsterPreview.transform);
 
-        monsterName.text = m.GetComponent<MonsterStats>().monsterName;
-        monster1Name.text = m.GetComponent<MonsterStats>().monsterName;
-        monster2Name.text = m.GetComponent<MonsterStats>().monsterName;
+        textMonsterName.text = m.GetComponent<MonsterStats>().monsterName;
+        textMonster1Name.text = m.GetComponent<MonsterStats>().monsterName;
+        textMonster2Name.text = m.GetComponent<MonsterStats>().monsterName;
 
-        atk = m.GetComponent<MonsterStats>().monsterATK;
+        minAtk = m.GetComponent<MonsterStats>().monsterMinATK;
+        maxAtk = m.GetComponent<MonsterStats>().monsterMaxATK;
         hp = m.GetComponent<MonsterStats>().monsterHP;
-        ATKSummaryMonster.text = atk.ToString();
-        DEFSummaryMonster.text = hp.ToString();
+        textMinAtkMonsterStats.text = minAtk.ToString();
+        textMaxAtkMonsterStats.text = maxAtk.ToString();
+        textHpMonsterStats.text = hp.ToString();
     }
 
     public void InstantiateMonsters()
@@ -50,9 +56,12 @@ public class MonsterManager : MonoBehaviour
         monster1.GetComponent<Monster>().model = Instantiate(monsters[randomMonster], monster1.transform);
         monster2.GetComponent<Monster>().model = Instantiate(monsters[randomMonster], monster2.transform);
 
-        monster1.GetComponent<Monster>().monsterATK = atk;
+        monster1.GetComponent<Monster>().monsterMinATK = minAtk;
+        monster1.GetComponent<Monster>().monsterMaxATK = maxAtk;
         monster1.GetComponent<Monster>().monsterHP = hp;
-        monster2.GetComponent<Monster>().monsterATK = atk;
+
+        monster2.GetComponent<Monster>().monsterMinATK = minAtk;
+        monster2.GetComponent<Monster>().monsterMaxATK = maxAtk;
         monster2.GetComponent<Monster>().monsterHP = hp;
     }
 
@@ -66,9 +75,11 @@ public class MonsterManager : MonoBehaviour
         {
             Destroy(monster2.GetComponent<Monster>().model);
         }
-        monster1.GetComponent<Monster>().monsterATK = 0;
+        monster1.GetComponent<Monster>().monsterMinATK = 0;
+        monster1.GetComponent<Monster>().monsterMaxATK = 0;
         monster1.GetComponent<Monster>().monsterHP = 0;
-        monster2.GetComponent<Monster>().monsterATK = 0;
+        monster2.GetComponent<Monster>().monsterMinATK = 0;
+        monster2.GetComponent<Monster>().monsterMaxATK = 0;
         monster2.GetComponent<Monster>().monsterHP = 0;
     }
 
