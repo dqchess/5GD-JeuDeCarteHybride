@@ -13,6 +13,16 @@ namespace DigitsNFCToolkit.Samples
         public Text iDReceiveText;
         DigitsNFCToolkit.TextRecord textRecord;
 
+        private void Start()
+        {
+            NativeNFCManager.Enable();
+            //NativeNFCManager.AddNDEFReadFinishedListener();
+        }
+
+        private void Update()
+        {
+            
+        }
         public void SendValue(string textToSend)
         {
             iDReceiveText.text = textToSend;

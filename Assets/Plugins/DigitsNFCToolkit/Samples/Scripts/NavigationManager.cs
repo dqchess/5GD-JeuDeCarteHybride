@@ -8,7 +8,7 @@ namespace DigitsNFCToolkit.Samples
 		private ReadScreenControl readScreenControl;
 
 		[SerializeField]
-		private WriteScreenControl writeScreenContrqwxxol;
+		private WriteScreenControl writeScreenControl;
 
 		private void Start()
 		{

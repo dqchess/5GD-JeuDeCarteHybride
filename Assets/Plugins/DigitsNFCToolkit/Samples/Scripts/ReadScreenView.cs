@@ -37,6 +37,7 @@ namespace DigitsNFCToolkit.Samples
 		private ScrollRect ndefMessageScrollRect;
 
         public Sender senderController;
+        public Text infosSenderText;
 
 		private void Awake()
 		{
@@ -105,7 +106,8 @@ namespace DigitsNFCToolkit.Samples
 						TextRecord textRecord = (TextRecord)record;
 						recordItem.UpdateLabel(string.Format(TEXT_RECORD_FORMAT, NDEFRecordType.TEXT, textRecord.text, textRecord.languageCode, textRecord.textEncoding));
                         tagInfoContentLabel.text = string.Format(TEXT_RECORD_FORMAT, NDEFRecordType.TEXT, textRecord.text, textRecord.languageCode, textRecord.textEncoding);
-                        senderController.SendValue(string.Format(TEXT_RECORD_FORMAT, NDEFRecordType.TEXT, textRecord.text, textRecord.languageCode, textRecord.textEncoding));
+                        infosSenderText.text = tagInfoContentLabel.text;
+                        senderController.SendValue(tagInfoContentLabel.text);
                         break;
 					case NDEFRecordType.URI:
 						recordItem = CreateRecordItem(uriRecordItemPrefab);
