@@ -51,18 +51,27 @@ public class Lecteur_Excel : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.A))
         {
-            GetInfosOfTheCard(idFictif);
+            GetInfosOfTheCard(idFictif, 1);
         }
     }
 
-    public void GetInfosOfTheCard (string idOfTheScannedCard)
+    public void GetInfosOfTheCard (string idOfTheScannedCard, int player)
     {
         for (int i =0; i<cardsInfos.Count -1; i++)
         {
             if (idOfTheScannedCard == cardsInfos[i].id)
             {
+                if (player == 1)
+                {
+                    //player1.AddData(cardsInfos[i]);
+                }
+                else if (player == 2)
+                {
+                    //player2.AddData(cardsInfos[i]);
+                }
                 print("ID : " + cardsInfos[i].id + "; Name : " + cardsInfos[i].name + "; Damage : " + cardsInfos[i].damage + "; Armor : " + cardsInfos[i].armor + ";");
                 return;
+
             }
         }
         print("There is no card with this ID: " + idOfTheScannedCard);
