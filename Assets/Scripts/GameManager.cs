@@ -179,5 +179,7 @@ public class GameManager : MonoBehaviour
 
         monsterManager.monster1.SetActive(false);
         monsterManager.monster2.SetActive(false);
+
+        yield return null;
     }
 }
