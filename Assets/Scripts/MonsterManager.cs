@@ -25,9 +25,9 @@ public class MonsterManager : MonoBehaviour
     public GameObject monsterPreview;
 
     private int randomMonster;
-    private int minAtk;
-    private int maxAtk;
-    private int hp;
+    [HideInInspector] public int minAtk;
+    [HideInInspector] public int maxAtk;
+    [HideInInspector] public int hp;
 
     public FightManager fightManager;
 

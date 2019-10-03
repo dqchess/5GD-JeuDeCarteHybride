@@ -7,6 +7,9 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    [HideInInspector] public enum State { STATS, FIGHT };
+    [HideInInspector] public State state;
+
     private static GameManager _instance;
     public static GameManager Instance
     {
@@ -48,8 +51,19 @@ public class GameManager : MonoBehaviour
     [Header("Environment")]
     public GameObject plane;
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Keypad5))
+        {
+            player1.AddStatsPlayer(5, 5);
+            player2.AddStatsPlayer(5, 5);
+        }
+    }
+
     private void Start()
     {
+        state = State.STATS;
+
         cameraPositionFight = new Vector3(0, 7, -11);
         cameraRotationFight = new Vector3(32, 0, 0);
 
@@ -86,6 +100,7 @@ public class GameManager : MonoBehaviour
     private IEnumerator Stats()
     {
         monsterManager.InstantiateMonsterStats();
+        state = State.STATS;
 
         player1.ResetStats();
         player2.ResetStats();
@@ -101,9 +116,8 @@ public class GameManager : MonoBehaviour
         DOTween.To(() => Camera.main.transform.position, x => Camera.main.transform.position = x, cameraPositionStats, 2);
         DOTween.To(() => Camera.main.transform.rotation, x => Camera.main.transform.rotation = x, cameraRotationStats, 2);
 
-        yield return new WaitForSeconds(2);
-
-        yield return null;
+        yield return new WaitForEndOfFrame();
+    
     }
 
     public void DisplayFight()
@@ -113,6 +127,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator Fight()
     {
+        state = State.FIGHT;
         //particles
         Instantiate(despawnMonster, monsterManager.monsterPreview.transform.position, Quaternion.identity);
         Instantiate(spawnMonster, monsterManager.monster1.transform.position, Quaternion.identity);
@@ -149,8 +164,6 @@ public class GameManager : MonoBehaviour
         panelFight.SetActive(true);
         monsterManager.StartFight();
 
-        //Camera.main.transform.position = cameraPositionFight;
-        //Camera.main.transform.rotation = Quaternion.Euler(cameraRotationFight);
         yield return null;
     }
 
@@ -179,7 +192,6 @@ public class GameManager : MonoBehaviour
         else if (player.Contains("1"))
         {
             textVictory.text = "Player 2 win !";
-            print("Merci Audrey !");
         }
         else if (player.Contains("2"))
         {

@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     public TMP_Text textHpPlayerStats;
     public TMP_Text textAtkPlayerStats;
     public TMP_Text textDefPlayerStats;
+    public TMP_Text textDmgReceivePlayerStats;
 
     [Header("Fight")]
     public TMP_Text textHpPlayerFight;
@@ -27,6 +28,11 @@ public class Player : MonoBehaviour
     private void Start()
     {
         UpdateStatsUIPlayer();
+    }
+
+    private void Update()
+    {
+        
     }
 
     public void AddStatsPlayer()
@@ -51,16 +57,41 @@ public class Player : MonoBehaviour
 
     public void AddStatsPlayer(int atk, int def)
     {
-        playerATK += atk;
-        textAtkPlayerStats.text = playerATK.ToString();
+        if (GameManager.Instance.state == GameManager.State.STATS)
+        {
+            playerATK += atk;
+            playerDEF += def;
 
-        playerDEF += def;
-        textDefPlayerStats.text = playerDEF.ToString();
+            UpdateStatsDmgReceivePlayer();
+            UpdateStatsUIPlayer();
+        }       
     }
 
     public void StartFight()
     {
         //UpdateStatsUIPlayer();
+    }
+
+    public void UpdateStatsDmgReceivePlayer()
+    {
+        int playerDMGReceiveMin = 0;
+        int playerDMGReceiveMax = 0;
+
+        int minAtkMonster = GameManager.Instance.monsterManager.minAtk;
+        int maxAtkMonster = GameManager.Instance.monsterManager.maxAtk;
+        int hpMonster = GameManager.Instance.monsterManager.hp;
+
+        int nbAtk = Mathf.CeilToInt(hpMonster / playerATK) +1;
+
+        playerDMGReceiveMin = (nbAtk * minAtkMonster) - playerDEF;
+        playerDMGReceiveMax = (nbAtk * maxAtkMonster) - playerDEF;
+
+        if (playerDMGReceiveMin < 0)
+            playerDMGReceiveMin = 0;
+        if (playerDMGReceiveMax < 0)
+            playerDMGReceiveMax = 0;
+
+        textDmgReceivePlayerStats.text = playerDMGReceiveMin.ToString() + "  /  " + playerDMGReceiveMax.ToString();
     }
 
     public void Die()
@@ -83,7 +114,6 @@ public class Player : MonoBehaviour
 
     public void TakeDamagePlayer(int damage)
     {
-        Debug.Log(damage);
         if (damage <= playerDEF)
         {
             playerDEF -= damage;
