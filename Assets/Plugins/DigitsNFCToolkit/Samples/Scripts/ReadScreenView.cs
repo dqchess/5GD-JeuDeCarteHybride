@@ -106,8 +106,8 @@ namespace DigitsNFCToolkit.Samples
 						TextRecord textRecord = (TextRecord)record;
 						recordItem.UpdateLabel(string.Format(TEXT_RECORD_FORMAT, NDEFRecordType.TEXT, textRecord.text, textRecord.languageCode, textRecord.textEncoding));
                         tagInfoContentLabel.text = string.Format(TEXT_RECORD_FORMAT, NDEFRecordType.TEXT, textRecord.text, textRecord.languageCode, textRecord.textEncoding);
-                        infosSenderText.text = tagInfoContentLabel.text;
-                        senderController.SendValue(tagInfoContentLabel.text);
+                        //infosSenderText.text = textRecord.text;
+                        senderController.SendValue(textRecord.text);
                         break;
 					case NDEFRecordType.URI:
 						recordItem = CreateRecordItem(uriRecordItemPrefab);

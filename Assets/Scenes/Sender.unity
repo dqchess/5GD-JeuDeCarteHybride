@@ -413,12 +413,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f33f1dd8195dbcb4f9664fcde774cc46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tagID: 
-  nbScan: {fileID: 0}
-  nbscanint: 0
-  tag_output_text: {fileID: 1362577598}
-  tagFound: 0
-  sAction: 
 --- !u!114 &2029263152 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6912523055336758992, guid: 13cce2b07c9234541b412718edb36534,
@@ -438,6 +432,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 343648945898611310, guid: 983065327e281474e853f80cec3226af,
+        type: 3}
+      propertyPath: m_Name
+      value: Sender
+      objectReference: {fileID: 0}
     - target: {fileID: 343648945898611305, guid: 983065327e281474e853f80cec3226af,
         type: 3}
       propertyPath: Transmitter
@@ -448,11 +447,6 @@ PrefabInstance:
       propertyPath: iDReceiveText
       value: 
       objectReference: {fileID: 1362577598}
-    - target: {fileID: 343648945898611310, guid: 983065327e281474e853f80cec3226af,
-        type: 3}
-      propertyPath: m_Name
-      value: Sender
-      objectReference: {fileID: 0}
     - target: {fileID: 343648945898611304, guid: 983065327e281474e853f80cec3226af,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -789,6 +783,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: OSC Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 6912523055336758992, guid: 13cce2b07c9234541b412718edb36534,
+        type: 3}
+      propertyPath: localPortMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6912523055336758992, guid: 13cce2b07c9234541b412718edb36534,
+        type: 3}
+      propertyPath: localReceiver
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6912523055336758992, guid: 13cce2b07c9234541b412718edb36534,
+        type: 3}
+      propertyPath: workInEditor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6912523055336758992, guid: 13cce2b07c9234541b412718edb36534,
+        type: 3}
+      propertyPath: autoConnect
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6912523055336758992, guid: 13cce2b07c9234541b412718edb36534,
+        type: 3}
+      propertyPath: remotePort
+      value: 7050
+      objectReference: {fileID: 0}
+    - target: {fileID: 6912523055336758992, guid: 13cce2b07c9234541b412718edb36534,
+        type: 3}
+      propertyPath: remoteHost
+      value: 10.66.126.152
       objectReference: {fileID: 0}
     - target: {fileID: 6912523055336758994, guid: 13cce2b07c9234541b412718edb36534,
         type: 3}

@@ -11,17 +11,18 @@ namespace DigitsNFCToolkit.Samples
         [Header("OSC Settings")]
         public OSCTransmitter Transmitter;
         public Text iDReceiveText;
-        DigitsNFCToolkit.TextRecord textRecord;
+        //DigitsNFCToolkit.TextRecord textRecord;
 
         private void Start()
         {
-            NativeNFCManager.Enable();
+            //NativeNFCManager.Enable();
             //NativeNFCManager.AddNDEFReadFinishedListener();
         }
 
         private void Update()
         {
             //NativeNFCManager.AddNDEFPushFinishedListener(OnNDEFPushFinished)
+            //SendValue("YOLO");
         }
         public void SendValue(string textToSend)
         {
@@ -32,7 +33,10 @@ namespace DigitsNFCToolkit.Samples
         private void Send(string address, OSCValue value)
         {
             if (Transmitter != null)
+            {
                 Transmitter.Send(address, value);
+                Debug.Log("ok");
+            }
         }
     }
 }
