@@ -162,12 +162,24 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator EndGame(string player)
     {
-        panelStats.SetActive(false);
-        panelFight.SetActive(false);
+
+        DOTween.To(() => panelFight.transform.localScale, x => panelFight.transform.localScale = x, new Vector3(5, 5, 5), 0.5f).OnComplete(() => panelFight.SetActive(false));
+        //DOTween.To(() => textEndFight.fontSize, x => textEndFight.fontSize = x, 93, 0.7f).SetEase(Ease.OutBounce);
+        //DOTween.To(() => textEndFight.fontSize, x => textEndFight.fontSize = x, 0, 0.7f).SetDelay(0.6f);
+
+        yield return new WaitForSeconds(3f);
+
         panelVictory.SetActive(true);
-        if (player.Contains("1"))
+        DOTween.To(() => panelVictory.transform.localScale, x => panelVictory.transform.localScale = x, new Vector3(5,5,5), 0.7f).SetEase(Ease.OutBounce).From();
+
+        if (player.Contains("1") && player.Contains("2"))
+        {
+            textVictory.text = "You're both dead !";
+        }
+        else if (player.Contains("1"))
         {
             textVictory.text = "Player 2 win !";
+            print("Merci Audrey !");
         }
         else if (player.Contains("2"))
         {

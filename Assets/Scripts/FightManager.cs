@@ -22,7 +22,7 @@ public class FightManager : MonoBehaviour
         if (playerDead)
         {
             playerDead = false;
-           GameManager.Instance.DisplayEndGame(playerDeadName);
+            GameManager.Instance.DisplayEndGame(playerDeadName);
         }
         if (cptMonstersDead == 2) //all monsters are dead 
         {
@@ -56,7 +56,7 @@ public class FightManager : MonoBehaviour
                 {
                     player.GetComponent<Player>().Die();
                     playerDead = true;
-                    playerDeadName = player.GetComponent<Player>().gameObject.name;
+                    playerDeadName += player.GetComponent<Player>().gameObject.name;
                     boolBreak = true;
                 }
             });

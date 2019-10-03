@@ -53,6 +53,8 @@ public class MonsterManager : MonoBehaviour
         textMinAtkMonsterStats.text = minAtk.ToString();
         textMaxAtkMonsterStats.text = maxAtk.ToString();
         textHpMonsterStats.text = hp.ToString();
+
+        print("Joyeux anniversaire PAUL !!");
     }
 
     public void InstantiateMonstersFight()
