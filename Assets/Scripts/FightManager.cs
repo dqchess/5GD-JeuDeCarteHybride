@@ -14,13 +14,20 @@ public class FightManager : MonoBehaviour
     public GameObject player2;
 
     private int cptMonstersDead = 0;
+    private string playerDeadName;
+    private bool playerDead;
 
     private void Update()
     {
+        if (playerDead)
+        {
+            playerDead = false;
+           GameManager.Instance.DisplayEndGame(playerDeadName);
+        }
         if (cptMonstersDead == 2) //all monsters are dead 
         {
             cptMonstersDead = 0;
-            StartCoroutine(EndFights());
+            GameManager.Instance.EndFight();
         }
     }
 
@@ -29,13 +36,6 @@ public class FightManager : MonoBehaviour
         cptMonstersDead = 0;
         StartCoroutine(Fight1v1(player1, monster1));
         StartCoroutine(Fight1v1(player2, monster2));
-    }
-
-    IEnumerator EndFights()
-    {
-        yield return new WaitForSeconds(2);
-        GameManager.Instance.DisplayStats();
-        yield break;
     }
 
     IEnumerator Fight1v1(GameObject player, GameObject monster)
@@ -50,10 +50,13 @@ public class FightManager : MonoBehaviour
             //SetLoops(2, LoopType.Yoyo).
             player.transform.DOMove(collisionPoint, 1f).SetEase(Ease.InQuart).OnComplete(() => {
                 Instantiate(fightParticle, collisionPoint, Quaternion.identity);
-                player.GetComponent<Player>().TakeDamagePlayer(monster.GetComponent<Monster>().monsterATK);
+                int randomAtk = Random.Range(monster.GetComponent<Monster>().monsterMinATK, monster.GetComponent<Monster>().monsterMaxATK);
+                player.GetComponent<Player>().TakeDamagePlayer(randomAtk);
                 if (player.GetComponent<Player>().playerHP <= 0)
                 {
-                    //player.GetComponent<Player>().Die();
+                    player.GetComponent<Player>().Die();
+                    playerDead = true;
+                    playerDeadName = player.GetComponent<Player>().gameObject.name;
                     boolBreak = true;
                 }
             });
@@ -71,18 +74,12 @@ public class FightManager : MonoBehaviour
             monster.transform.DOMove(monsterPos, 1f).SetEase(Ease.InQuart).SetDelay(1);
             player.transform.DOMove(playerPos, 1f).SetEase(Ease.InQuart).SetDelay(1);
 
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(1);
 
             if (boolBreak)
             {
                 yield break;
-            }
-                         
+            }                        
         }       
-    }
-
-    private void OnCollisionPoint(Vector3 collisionPoint)
-    {
-        
     }
 }

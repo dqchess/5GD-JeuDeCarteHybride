@@ -2,21 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Lecteur_Excel : MonoBehaviour
+public class ExcelManager : MonoBehaviour
 {
-    [ExecuteInEditMode]
-    //Test Scanning
 
-    public string idFictif;
-
-
-    //
     int lengtOfTheArrayOfCard;
+
     public string[] data;
     string[] row;
     [SerializeField]
     public List<CardsInformations> cardsInfos = new List<CardsInformations>();
-    // Start is called before the first frame update
+
+    private static ExcelManager _instance;
+    public static ExcelManager Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = GameObject.FindObjectOfType<ExcelManager>();
+                DontDestroyOnLoad(_instance);
+            }
+            return _instance;
+        }
+    }
+
+
     void Start()
     {
         TextAsset cardsData = Resources.Load<TextAsset>("cardsdata");
@@ -42,30 +52,28 @@ public class Lecteur_Excel : MonoBehaviour
 
         foreach (CardsInformations q in cardsInfos)
         {
-            Debug.Log(q.name);
+            //Debug.Log(q.name);
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            GetInfosOfTheCard(idFictif);
-        }
+
     }
 
-    public void GetInfosOfTheCard (string idOfTheScannedCard)
+    public CardsInformations GetInfosOfTheCard (string idOfTheScannedCard)
     {
+        CardsInformations c = new CardsInformations();
         for (int i =0; i<cardsInfos.Count -1; i++)
         {
             if (idOfTheScannedCard == cardsInfos[i].id)
             {
-                print("ID : " + cardsInfos[i].id + "; Name : " + cardsInfos[i].name + "; Damage : " + cardsInfos[i].damage + "; Armor : " + cardsInfos[i].armor + ";");
-                return;
-            }
+                //Envoyer CardsInformation (CarsInfos[i])
+                //print("ID : " + cardsInfos[i].id + "; Name : " + cardsInfos[i].name + "; Damage : " + cardsInfos[i].damage + "; Armor : " + cardsInfos[i].armor + ";");
+                c = cardsInfos[i];
+                break;
+            }           
         }
-        print("There is no card with this ID: " + idOfTheScannedCard);
-       
+        return c;  
     }
 }

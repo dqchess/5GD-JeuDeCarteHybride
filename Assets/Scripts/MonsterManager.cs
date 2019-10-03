@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -7,38 +8,75 @@ using Random = UnityEngine.Random;
 
 public class MonsterManager : MonoBehaviour
 {
-    [Header("Monster")]
-    public TMP_Text ATKSummaryMonster;
-    public TMP_Text DEFSummaryMonster;
-    public TMP_Text monsterName;
+    [Header("Monster Stats")]
+    public TMP_Text textMinAtkMonsterStats;
+    public TMP_Text textMaxAtkMonsterStats;
+    public TMP_Text textHpMonsterStats;
+    public TMP_Text textMonsterName;
 
+    [Header("Monster Fight")]
+    public TMP_Text textMonster1Name;
+    public TMP_Text textMonster2Name;
+
+    [Header("Stuff")]
     public GameObject[] monsters;
     public GameObject monster1;
     public GameObject monster2;
+    public GameObject monsterPreview;
 
-    [Header("Stuff")]
+    private int randomMonster;
+    private int minAtk;
+    private int maxAtk;
+    private int hp;
+
     public FightManager fightManager;
 
 
-    public void InstantiateMonsters()
+    public void InstantiateMonsterStats()
     {
         ResetMonsters();
-        int r = Random.Range(0, monsters.Length);
-        monster1.GetComponent<Monster>().model = Instantiate(monsters[r], monster1.transform);
-        monster2.GetComponent<Monster>().model = Instantiate(monsters[r], monster2.transform);
+        monsterPreview.SetActive(true);
+        monsterPreview.transform.localScale = Vector3.one;
+        randomMonster = Random.Range(0, monsters.Length);
+        monsterPreview.GetComponent<MonsterPreview>().model = Instantiate(monsters[randomMonster], monsterPreview.transform);
 
-        GameObject m = monster1.GetComponent<Monster>().model;
-        monsterName.text = m.GetComponent<MonsterStats>().monsterName;
-        int atk = m.GetComponent<MonsterStats>().monsterATK;
-        int def = m.GetComponent<MonsterStats>().monsterHP;
+        GameObject m = monsterPreview.GetComponent<MonsterPreview>().model;
+        DOTween.To(() => m.transform.localScale, x => m.transform.localScale = x, Vector3.zero, 0.5f).From();
 
-        ATKSummaryMonster.text = atk.ToString();
-        DEFSummaryMonster.text = def.ToString();
+        textMonsterName.text = m.GetComponent<MonsterStats>().monsterName;
+        textMonster1Name.text = m.GetComponent<MonsterStats>().monsterName;
+        textMonster2Name.text = m.GetComponent<MonsterStats>().monsterName;
 
-        monster1.GetComponent<Monster>().monsterATK = atk;
-        monster1.GetComponent<Monster>().monsterHP = def;
-        monster2.GetComponent<Monster>().monsterATK = atk;
-        monster2.GetComponent<Monster>().monsterHP = def;  
+        minAtk = m.GetComponent<MonsterStats>().monsterMinATK;
+        maxAtk = m.GetComponent<MonsterStats>().monsterMaxATK;
+        hp = m.GetComponent<MonsterStats>().monsterHP;
+        textMinAtkMonsterStats.text = minAtk.ToString();
+        textMaxAtkMonsterStats.text = maxAtk.ToString();
+        textHpMonsterStats.text = hp.ToString();
+    }
+
+    public void InstantiateMonstersFight()
+    {
+        ResetMonsters();
+        GameObject m = monsterPreview.GetComponent<MonsterPreview>().model;
+        DOTween.To(() => m.transform.localScale, x => m.transform.localScale = x, Vector3.zero, 0.5f).OnComplete(() => {
+            Destroy(monsterPreview.GetComponent<MonsterPreview>().model);
+            monsterPreview.SetActive(false);
+        });
+        
+        
+        GameObject m1 = monster1.GetComponent<Monster>().model = Instantiate(monsters[randomMonster], monster1.transform);
+        GameObject m2 = monster2.GetComponent<Monster>().model = Instantiate(monsters[randomMonster], monster2.transform);
+        DOTween.To(() => m1.transform.localScale, x => m1.transform.localScale = x, Vector3.zero, 0.5f).From().SetDelay(0.5f);
+        DOTween.To(() => m2.transform.localScale, x => m2.transform.localScale = x, Vector3.zero, 0.5f).From().SetDelay(0.5f);
+
+        monster1.GetComponent<Monster>().monsterMinATK = minAtk;
+        monster1.GetComponent<Monster>().monsterMaxATK = maxAtk;
+        monster1.GetComponent<Monster>().monsterHP = hp;
+
+        monster2.GetComponent<Monster>().monsterMinATK = minAtk;
+        monster2.GetComponent<Monster>().monsterMaxATK = maxAtk;
+        monster2.GetComponent<Monster>().monsterHP = hp;
     }
 
     public void ResetMonsters()
@@ -51,9 +89,11 @@ public class MonsterManager : MonoBehaviour
         {
             Destroy(monster2.GetComponent<Monster>().model);
         }
-        monster1.GetComponent<Monster>().monsterATK = 0;
+        monster1.GetComponent<Monster>().monsterMinATK = 0;
+        monster1.GetComponent<Monster>().monsterMaxATK = 0;
         monster1.GetComponent<Monster>().monsterHP = 0;
-        monster2.GetComponent<Monster>().monsterATK = 0;
+        monster2.GetComponent<Monster>().monsterMinATK = 0;
+        monster2.GetComponent<Monster>().monsterMaxATK = 0;
         monster2.GetComponent<Monster>().monsterHP = 0;
     }
 
