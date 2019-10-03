@@ -21,8 +21,8 @@ public class FightManager : MonoBehaviour
     {
         if (playerDead)
         {
-            playerDead = false;           
-            StartCoroutine(EndGame(playerDeadName));
+            playerDead = false;
+           GameManager.Instance.DisplayEndGame(playerDeadName);
         }
         if (cptMonstersDead == 2) //all monsters are dead 
         {
@@ -36,13 +36,6 @@ public class FightManager : MonoBehaviour
         cptMonstersDead = 0;
         StartCoroutine(Fight1v1(player1, monster1));
         StartCoroutine(Fight1v1(player2, monster2));
-    }
-
-    IEnumerator EndGame(string player)
-    {
-        yield return new WaitForSeconds(4);
-        GameManager.Instance.DisplayVictory(player);
-        yield break;
     }
 
     IEnumerator Fight1v1(GameObject player, GameObject monster)

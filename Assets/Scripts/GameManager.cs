@@ -61,26 +61,6 @@ public class GameManager : MonoBehaviour
         DisplayStats();
     }
 
-    public void DisplayVictory(string player)
-    {
-        panelStats.SetActive(false);
-        panelFight.SetActive(false);
-        panelVictory.SetActive(true);
-        if (player.Contains("1"))
-        {
-            textVictory.text = "Player 2 win !";
-        }
-        else if (player.Contains("2"))
-        {
-            textVictory.text = "Player 1 win !";
-        }
-
-        player1.gameObject.SetActive(false);
-        player2.gameObject.SetActive(false);
-        
-        monsterManager.monster1.SetActive(false);
-        monsterManager.monster2.SetActive(false);
-    }
 
     public void EndFight()
     {
@@ -172,5 +152,32 @@ public class GameManager : MonoBehaviour
         //Camera.main.transform.position = cameraPositionFight;
         //Camera.main.transform.rotation = Quaternion.Euler(cameraRotationFight);
         yield return null;
+    }
+
+    public void DisplayEndGame(string player)
+    {
+        StopAllCoroutines();
+        StartCoroutine(EndGame(player));
+    }
+
+    private IEnumerator EndGame(string player)
+    {
+        panelStats.SetActive(false);
+        panelFight.SetActive(false);
+        panelVictory.SetActive(true);
+        if (player.Contains("1"))
+        {
+            textVictory.text = "Player 2 win !";
+        }
+        else if (player.Contains("2"))
+        {
+            textVictory.text = "Player 1 win !";
+        }
+
+        player1.gameObject.SetActive(false);
+        player2.gameObject.SetActive(false);
+
+        monsterManager.monster1.SetActive(false);
+        monsterManager.monster2.SetActive(false);
     }
 }
