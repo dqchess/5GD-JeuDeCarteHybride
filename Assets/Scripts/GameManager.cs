@@ -43,6 +43,10 @@ public class GameManager : MonoBehaviour
     public TMP_Text textVictory;
     public TMP_Text textFight;
     public TMP_Text textEndFight;
+    public TMP_Text textEndFightGold;
+    public GameObject cardAtkPrefab;
+    public GameObject cardDefPrefab;
+    public GameObject cardMixtPrefab;
 
     [Header("Particles")]
     public GameObject despawnMonster;
@@ -55,9 +59,15 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Keypad5))
         {
-            player1.AddStatsPlayer(5, 5);
-            player2.AddStatsPlayer(5, 5);
+            CardsInformations c = new CardsInformations("1.1","megaboubou","5","0","");
+            player1.AddStatsPlayer(c);
         }
+        if (Input.GetKeyDown(KeyCode.Keypad6))
+        {
+            CardsInformations c = new CardsInformations("1.1", "megaboubou", "5", "0", "");
+            player1.RemoveStatsPlayer(c);
+        }
+
     }
 
     private void Start()
@@ -83,10 +93,16 @@ public class GameManager : MonoBehaviour
     private IEnumerator EndFightCoroutine()
     {
         DOTween.To(() => panelFight.transform.localScale, x => panelFight.transform.localScale = x, new Vector3(5, 5, 5), 0.5f).OnComplete(()=> panelFight.SetActive(false));
+
+        textEndFightGold.text = " \r Get your " + monsterManager.loot + " golds !";
+
         DOTween.To(() => textEndFight.fontSize, x => textEndFight.fontSize = x, 93, 0.7f).SetEase(Ease.OutBounce);
-        DOTween.To(() => textEndFight.fontSize, x => textEndFight.fontSize = x, 0, 0.7f).SetDelay(0.6f);
-        
-        yield return new WaitForSeconds(2);
+        DOTween.To(() => textEndFight.fontSize, x => textEndFight.fontSize = x, 0, 0.7f).SetDelay(3f);
+
+        DOTween.To(() => textEndFightGold.fontSize, x => textEndFightGold.fontSize = x, 60, 0.7f).SetDelay(0.5f).SetEase(Ease.OutBounce);
+        DOTween.To(() => textEndFightGold.fontSize, x => textEndFightGold.fontSize = x, 0, 0.7f).SetDelay(3f);
+
+        yield return new WaitForSeconds(3);
         DisplayStats();
         panelFight.transform.localScale = Vector3.one;
     }
@@ -104,6 +120,9 @@ public class GameManager : MonoBehaviour
 
         player1.ResetStats();
         player2.ResetStats();
+
+        player1.UpdateStatsDmgReceivePlayer();
+        player2.UpdateStatsDmgReceivePlayer();
 
         player1.gameObject.SetActive(false);
         player2.gameObject.SetActive(false);

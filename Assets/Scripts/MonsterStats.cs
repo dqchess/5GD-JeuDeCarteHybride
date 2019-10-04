@@ -8,4 +8,5 @@ public class MonsterStats : MonoBehaviour
     public int monsterMinATK;
     public int monsterMaxATK;
     public int monsterHP;
+    public int monsterLoot;
 }

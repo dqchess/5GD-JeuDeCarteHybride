@@ -12,6 +12,7 @@ public class MonsterManager : MonoBehaviour
     public TMP_Text textMinAtkMonsterStats;
     public TMP_Text textMaxAtkMonsterStats;
     public TMP_Text textHpMonsterStats;
+    public TMP_Text textLootMonsterStats;
     public TMP_Text textMonsterName;
 
     [Header("Monster Fight")]
@@ -28,6 +29,7 @@ public class MonsterManager : MonoBehaviour
     [HideInInspector] public int minAtk;
     [HideInInspector] public int maxAtk;
     [HideInInspector] public int hp;
+    [HideInInspector] public int loot;
 
     public FightManager fightManager;
 
@@ -50,11 +52,11 @@ public class MonsterManager : MonoBehaviour
         minAtk = m.GetComponent<MonsterStats>().monsterMinATK;
         maxAtk = m.GetComponent<MonsterStats>().monsterMaxATK;
         hp = m.GetComponent<MonsterStats>().monsterHP;
+        loot = m.GetComponent<MonsterStats>().monsterLoot;
         textMinAtkMonsterStats.text = minAtk.ToString();
         textMaxAtkMonsterStats.text = maxAtk.ToString();
         textHpMonsterStats.text = hp.ToString();
-
-        print("Joyeux anniversaire PAUL !!");
+        textLootMonsterStats.text = loot.ToString();        
     }
 
     public void InstantiateMonstersFight()
