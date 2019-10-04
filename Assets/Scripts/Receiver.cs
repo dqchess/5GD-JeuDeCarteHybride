@@ -30,17 +30,38 @@ public class Receiver : MonoBehaviour
     public void ReceivePlayer1CardsInfos(OSCMessage message)
     {
         Debug.Log("Player One Scan : " + message.Values[0].StringValue);
+
+
         string id = message.Values[0].StringValue;
         CardsInformations c = ExcelManager.Instance.GetInfosOfTheCard(id);
-        GameManager.Instance.player1.AddStatsPlayer(int.Parse(c.damage), int.Parse(c.armor));
+        if (ExcelManager.Instance.IsMyCardScanned(id) == true)
+        {
+            //GameManager.Instance.player1.RemoveStatsPlayer(int.Parse(c.damage), int.Parse(c.armor));
+            Debug.Log("Player One Scan Remove : " + message.Values[0].StringValue);
+        }
+        else
+        {
+            GameManager.Instance.player1.AddStatsPlayer(int.Parse(c.damage), int.Parse(c.armor));
+            Debug.Log("Player One Scan Add : " + message.Values[0].StringValue);
+        }
     }
 
     public void ReceivePlayer2CardsInfos(OSCMessage message)
     {
         string id = message.Values[0].StringValue;
         CardsInformations c = ExcelManager.Instance.GetInfosOfTheCard(id);
-        GameManager.Instance.player2.AddStatsPlayer(int.Parse(c.damage), int.Parse(c.armor));
-        Debug.Log("Player Two Scan : " + message.Values[0].StringValue);
+        if (ExcelManager.Instance.IsMyCardScanned(id) == true)
+        {
+            //GameManager.Instance.player2.RemoveStatsPlayer(int.Parse(c.damage), int.Parse(c.armor));
+            Debug.Log("Player Two Scan Remove : " + message.Values[0].StringValue);
+        }
+        else
+        {
+            GameManager.Instance.player2.AddStatsPlayer(int.Parse(c.damage), int.Parse(c.armor));
+            Debug.Log("Player Two Scan Add : " + message.Values[0].StringValue);
+        }
+
+        
     }
 
     public void ReceivePlayer1NameInfos(OSCMessage message)

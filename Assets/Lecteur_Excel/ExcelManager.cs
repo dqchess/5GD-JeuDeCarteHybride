@@ -11,6 +11,8 @@ public class ExcelManager : MonoBehaviour
     string[] row;
     [SerializeField]
     public List<CardsInformations> cardsInfos = new List<CardsInformations>();
+    public List<CardsInformations> cardsScanned = new List<CardsInformations>();
+    public List<int> positionOfCardsScanned = new List<int>();
 
     private static ExcelManager _instance;
     public static ExcelManager Instance
@@ -61,18 +63,59 @@ public class ExcelManager : MonoBehaviour
 
     }
 
+    public bool IsMyCardScanned(string id)
+    {
+        bool foundInCardsInfos = false;
+
+        for (int i =0; i< cardsInfos.Count; i++)
+        {
+            if (id == cardsInfos[i].id)
+            {
+                foundInCardsInfos = true;
+                return foundInCardsInfos;
+            }
+        }
+
+        for (int i = 0; i < cardsScanned.Count; i++)
+        {
+            if (id == cardsScanned[i].id)
+            {
+                foundInCardsInfos = false;
+                return foundInCardsInfos;
+            }
+        }
+        return foundInCardsInfos;
+    }
+
     public CardsInformations GetInfosOfTheCard (string idOfTheScannedCard)
     {
         CardsInformations c = new CardsInformations();
-        for (int i =0; i<cardsInfos.Count -1; i++)
+        bool cardAlreadyFound = false;
+        for (int i =0; i<cardsInfos.Count; i++)
         {
             if (idOfTheScannedCard == cardsInfos[i].id)
             {
-                //Envoyer CardsInformation (CarsInfos[i])
-                //print("ID : " + cardsInfos[i].id + "; Name : " + cardsInfos[i].name + "; Damage : " + cardsInfos[i].damage + "; Armor : " + cardsInfos[i].armor + ";");
                 c = cardsInfos[i];
+                cardAlreadyFound = true;
+                cardsScanned.Add(c);
+                cardsInfos.RemoveAt(i);
+
                 break;
             }           
+        }
+
+        if (cardAlreadyFound == false)
+        {
+            for (int i = 0; i < cardsScanned.Count; i++)
+            {
+                if (idOfTheScannedCard == cardsScanned[i].id)
+                {
+                    c = cardsScanned[i];
+                    cardsInfos.Add(c);
+                    cardsScanned.RemoveAt(i);
+
+                }
+            }
         }
         return c;  
     }
