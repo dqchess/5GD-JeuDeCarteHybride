@@ -146,7 +146,6 @@ public class Player : MonoBehaviour
             {
                 if (grid.transform.GetChild(i).gameObject == g)
                 {
-                    Debug.Log("ui");
                     GameObject u = grid.transform.GetChild(i).gameObject;
                     u.transform.DOScale(Vector3.zero, 0.5f).SetEase(Ease.OutSine).OnComplete(() => Destroy(u.gameObject));                    
                 }                    
