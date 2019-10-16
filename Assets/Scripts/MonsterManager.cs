@@ -13,6 +13,7 @@ public class MonsterManager : MonoBehaviour
     public TMP_Text textMaxAtkMonsterStats;
     public TMP_Text textHpMonsterStats;
     public TMP_Text textLootMonsterStats;
+    public TMP_Text textHonorMonsterStats;
     public TMP_Text textMonsterName;
 
     [Header("Monster Fight")]
@@ -21,8 +22,6 @@ public class MonsterManager : MonoBehaviour
 
     [Header("Stuff")]
     public GameObject[] monsters;
-    public GameObject monster1;
-    public GameObject monster2;
     public GameObject monsterPreview;
 
     private int randomMonster;
@@ -30,13 +29,12 @@ public class MonsterManager : MonoBehaviour
     [HideInInspector] public int maxAtk;
     [HideInInspector] public int hp;
     [HideInInspector] public int loot;
+    [HideInInspector] public float honor;
 
     public FightManager fightManager;
 
-
     public void InstantiateMonsterStats()
     {
-        ResetMonsters();
         monsterPreview.SetActive(true);
         monsterPreview.transform.localScale = Vector3.one;
         randomMonster = Random.Range(0, monsters.Length);
@@ -46,68 +44,21 @@ public class MonsterManager : MonoBehaviour
         DOTween.To(() => m.transform.localScale, x => m.transform.localScale = x, Vector3.zero, 0.5f).From();
 
         textMonsterName.text = m.GetComponent<MonsterStats>().monsterName;
-        textMonster1Name.text = m.GetComponent<MonsterStats>().monsterName;
-        textMonster2Name.text = m.GetComponent<MonsterStats>().monsterName;
 
         minAtk = m.GetComponent<MonsterStats>().monsterMinATK;
         maxAtk = m.GetComponent<MonsterStats>().monsterMaxATK;
         hp = m.GetComponent<MonsterStats>().monsterHP;
         loot = m.GetComponent<MonsterStats>().monsterLoot;
+        honor = m.GetComponent<MonsterStats>().monsterHonor;
         textMinAtkMonsterStats.text = minAtk.ToString();
         textMaxAtkMonsterStats.text = maxAtk.ToString();
         textHpMonsterStats.text = hp.ToString();
         textLootMonsterStats.text = loot.ToString();        
+        textHonorMonsterStats.text = honor.ToString();        
     }
-
-    public void InstantiateMonstersFight()
-    {
-        ResetMonsters();
-        GameObject m = monsterPreview.GetComponent<MonsterPreview>().model;
-        DOTween.To(() => m.transform.localScale, x => m.transform.localScale = x, Vector3.zero, 0.5f).OnComplete(() => {
-            Destroy(monsterPreview.GetComponent<MonsterPreview>().model);
-            monsterPreview.SetActive(false);
-        });
-        
-        
-        GameObject m1 = monster1.GetComponent<Monster>().model = Instantiate(monsters[randomMonster], monster1.transform);
-        GameObject m2 = monster2.GetComponent<Monster>().model = Instantiate(monsters[randomMonster], monster2.transform);
-        DOTween.To(() => m1.transform.localScale, x => m1.transform.localScale = x, Vector3.zero, 0.5f).From().SetDelay(0.5f);
-        DOTween.To(() => m2.transform.localScale, x => m2.transform.localScale = x, Vector3.zero, 0.5f).From().SetDelay(0.5f);
-
-        monster1.GetComponent<Monster>().monsterMinATK = minAtk;
-        monster1.GetComponent<Monster>().monsterMaxATK = maxAtk;
-        monster1.GetComponent<Monster>().monsterHP = hp;
-
-        monster2.GetComponent<Monster>().monsterMinATK = minAtk;
-        monster2.GetComponent<Monster>().monsterMaxATK = maxAtk;
-        monster2.GetComponent<Monster>().monsterHP = hp;
-    }
-
-    public void ResetMonsters()
-    {
-        if (monster1.GetComponent<Monster>().model != null)
-        {
-            Destroy(monster1.GetComponent<Monster>().model);            
-        }
-        if (monster2.GetComponent<Monster>().model != null)
-        {
-            Destroy(monster2.GetComponent<Monster>().model);
-        }
-        monster1.GetComponent<Monster>().monsterMinATK = 0;
-        monster1.GetComponent<Monster>().monsterMaxATK = 0;
-        monster1.GetComponent<Monster>().monsterHP = 0;
-        monster2.GetComponent<Monster>().monsterMinATK = 0;
-        monster2.GetComponent<Monster>().monsterMaxATK = 0;
-        monster2.GetComponent<Monster>().monsterHP = 0;
-    }
-
 
     public void StartFight()
     {
-        monster1.GetComponent<Monster>().StartFight();
-        monster2.GetComponent<Monster>().StartFight();
-        fightManager.monster1 = monster1;
-        fightManager.monster2 = monster2;
         fightManager.StartFight();
     }
 }

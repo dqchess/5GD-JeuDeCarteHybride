@@ -9,4 +9,5 @@ public class MonsterStats : MonoBehaviour
     public int monsterMaxATK;
     public int monsterHP;
     public int monsterLoot;
+    public float monsterHonor;
 }
