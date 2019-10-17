@@ -44,7 +44,8 @@ public class ExcelManager : MonoBehaviour
                 ci.name = row[1];
                 ci.damage = row[2];
                 ci.armor = row[3];
-                ci.specialStat = row[4];
+                ci.damageElement = row[4];
+                ci.armorElement = row[5];
 
                 cardsInfos.Add(ci);
             }

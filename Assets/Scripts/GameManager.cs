@@ -24,20 +24,21 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    [Header("Stuff")]
+    [Header("Tweek This Bande de GD !")]
+    [Tooltip("chance to have Element on atk and def : 1 on ? ")]
+    public int randomElementMonster;
+
+    [Header("Prefabs")]
     public Player player1;
     public Player player2;
     public MonsterManager monsterManager;
     public FightManager fightManager;
-
-    [HideInInspector] public Vector3 cameraPositionStats;
-    [HideInInspector] public Vector3 cameraRotationStats; 
-
-    [HideInInspector] public Vector3 cameraPositionFight;
-    [HideInInspector] public Vector3 cameraRotationFight;
-
-
-    [Header("Panel / UI")]
+    public GameObject cardAtkPrefab;
+    public GameObject cardDefPrefab;
+    public GameObject cardMixtPrefab;
+    public GameObject adventurer;
+    
+    [Header("UI")]
     public GameObject panelStats;
     public GameObject panelFight;
     public GameObject panelVictory;
@@ -45,10 +46,12 @@ public class GameManager : MonoBehaviour
     public TMP_Text textFight;
     public TMP_Text textEndFight;
     public TMP_Text textEndFightGold;
-    public GameObject cardAtkPrefab;
-    public GameObject cardDefPrefab;
-    public GameObject cardMixtPrefab;
-    public GameObject adventurer;
+
+    [Header("Element")]
+    public Sprite fireSprite;
+    public Sprite iceSprite;
+    public Sprite electricSprite;
+
 
     [Header("Particles")]
     public GameObject despawnMonster;
@@ -57,35 +60,43 @@ public class GameManager : MonoBehaviour
     [Header("Environment")]
     public GameObject plane;
 
+    [HideInInspector] public Vector3 cameraPositionStats;
+    [HideInInspector] public Vector3 cameraRotationStats;
+
+    [HideInInspector] public Vector3 cameraPositionFight;
+    [HideInInspector] public Vector3 cameraRotationFight;
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Keypad5))
         {
-            CardsInformations c = new CardsInformations("1.1","megaboubou","5","0","");
-            player1.AddStatsPlayer(c);
+            CardsInformations c = new CardsInformations("1.1","megamassue","5","0","electric", "");
+            player1.AddEquipment(c);
         }
         if (Input.GetKeyDown(KeyCode.Keypad6))
         {
-            CardsInformations c = new CardsInformations("1.1", "megaboubou", "5", "0", "");
-            player1.RemoveStatsPlayer(c);
+            CardsInformations c = new CardsInformations("1.1", "megamassue", "5", "0", "electric", "");
+            player1.RemoveEquipment(c);
         }
         if (Input.GetKeyDown(KeyCode.Keypad8))
         {
-            CardsInformations c = new CardsInformations("1.2", "megaboubou", "0", "5", "");
-            player1.AddStatsPlayer(c);
+            CardsInformations c = new CardsInformations("1.2", "megaboubou", "0", "5", "", "electric");
+            player1.AddEquipment(c);
         }
         if (Input.GetKeyDown(KeyCode.Keypad9))
         {
-            CardsInformations c = new CardsInformations("1.2", "megaboubou", "0", "5", "");
-            player1.RemoveStatsPlayer(c);
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad1))
-        {
-            player1.ScanAdventurer("1");
+            CardsInformations c = new CardsInformations("1.2", "megaboubou", "0", "5", "", "electric");
+            player1.RemoveEquipment(c);
         }
         if (Input.GetKeyDown(KeyCode.Keypad2))
         {
-            player1.ScanAdventurer("2");
+            CardsInformations c = new CardsInformations("1.3", "megaboubou", "8", "8", "ice", "electric");
+            player1.AddEquipment(c);
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad3))
+        {
+            CardsInformations c = new CardsInformations("1.3", "megaboubou", "8", "8", "ice", "electric");
+            player1.RemoveEquipment(c);
         }
 
     }
@@ -122,7 +133,7 @@ public class GameManager : MonoBehaviour
     {
         DisplayUIStats();
 
-        monsterManager.InstantiateMonsterStats();
+        monsterManager.InstantiateMonster();
         state = State.STATS;
 
         player1.ResetStats();
@@ -191,40 +202,15 @@ public class GameManager : MonoBehaviour
     {
 
         DisplayUIEndFight();
-
         yield return new WaitForSeconds(3);
         DisplayStats();
     }
+}
 
-    public void DisplayEndGame(string player)
-    {
-        StopAllCoroutines();
-        StartCoroutine(EndGame(player));
-    }
-
-    private IEnumerator EndGame(string player)
-    {
-
-        //DOTween.To(() => panelFight.transform.localScale, x => panelFight.transform.localScale = x, new Vector3(5, 5, 5), 0.5f).OnComplete(() => panelFight.SetActive(false));
-
-        yield return new WaitForSeconds(3f);
-
-        panelVictory.SetActive(true);
-        DOTween.To(() => panelVictory.transform.localScale, x => panelVictory.transform.localScale = x, new Vector3(5,5,5), 0.7f).SetEase(Ease.OutBounce).From();
-
-        if (player.Contains("1") && player.Contains("2"))
-        {
-            textVictory.text = "You're both dead !";
-        }
-        else if (player.Contains("1"))
-        {
-            textVictory.text = "Player 2 win !";
-        }
-        else if (player.Contains("2"))
-        {
-            textVictory.text = "Player 1 win !";
-        }
-
-        yield return null;
-    }
+public enum Element
+{
+    FIRE,
+    ICE,
+    ELECTRIC,
+    NULL,
 }

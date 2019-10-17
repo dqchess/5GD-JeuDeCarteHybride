@@ -1,39 +1,39 @@
-ÔªøID;NAME;DAMAGE;ARMOR;SPECIALSTAT
-1.1;Saggaie;2;0;
-2.1;Gourdin;2;0;
-3.1;Baton affut√©;2;0;
-4.1;Marteau en silex;2;0;
-5.1;√©pee primitive;2;0;
-6.1;Lance sauvage;2;0;
-7.1;Sarbacane;2;0;
-8.1;Lance pierre;2;0;
-9.1;Fouet en liane;2;0;
-10.1;Arc simple;4;0;
-11.1;Gourdin Ionique;4;0;
-12.1;Arc laser;4;0;
-13.1;Bazoolex/Pistolex;4;0;
-14.1;Fusarbal√®te;6;0;
-15.1;Lance foreuse;6;0;
-16.1;Double Uzi;10;0;
-17.1;AK-4000;?;0;
-18.1;Tazer;?;0;
-19.1;Gatling Maxell;?;0;
-20.1;Tenue de cuir tann√©e;0;2;
-21.1;Armure en cuir clout√©;0;2;
-22.1;Cage en fer;0;2;
-23.1;Protection en fer rouill√©;0;2;
-24.1;Cuirasse en bois et liane;0;2;
-25.1;Protection en fourrure;0;2;
-26.1;Tenue en sac de terre;0;2;
-27.1;Plaque de m√©tal;0;2;
-28.1;Plastron en peaux;0;2;
-29.1;Tenue en os de monstre;0;2;
-30.1;Cotte de maille;0;2;
-31.1;Armure de m√©tal poli;0;2;
-32.1;Protection en pneu;0;2;
-33.1;Tenue en cuir de monstre;0;2;
-34.1;Uniforme avec √©cailles;0;2;
-35.1;Gilet pare balle;0;2;
-36.1;Tenue anti √©meute;0;2;
-37.1;Armure de combat;0;2;
-38.1;Super armure √©nerg√©tique;0;2;
+ID;NAME;DAMAGE;ARMOR;DAMAGE ELEMENT;ARMOR ELEMENT
+1.1;Saggaie;2;0;fire;ice
+2.1;Gourdin;2;0;fire;ice
+3.1;Baton affutÇ;2;0;fire;ice
+4.1;Marteau en silex;2;0;fire;ice
+5.1;Çpee primitive;2;0;fire;ice
+6.1;Lance sauvage;2;0;fire;ice
+7.1;Sarbacane;2;0;fire;ice
+8.1;Lance pierre;2;0;fire;ice
+9.1;Fouet en liane;2;0;fire;ice
+10.1;Arc simple;4;0;fire;ice
+11.1;Gourdin Ionique;4;0;fire;ice
+12.1;Arc laser;4;0;fire;ice
+13.1;Bazoolex/Pistolex;4;0;fire;ice
+14.1;Fusarbaläte;6;0;fire;ice
+15.1;Lance foreuse;6;0;fire;ice
+16.1;Double Uzi;10;0;fire;ice
+17.1;AK-4000;?;0;fire;ice
+18.1;Tazer;?;0;fire;ice
+19.1;Gatling Maxell;?;0;fire;ice
+20.1;Tenue de cuir tannÇe;0;2;fire;electric
+21.1;Armure en cuir cloutÇ;0;2;fire;electric
+22.1;Cage en fer;0;2;fire;electric
+23.1;Protection en fer rouillÇ;0;2;fire;electric
+24.1;Cuirasse en bois et liane;0;2;fire;electric
+25.1;Protection en fourrure;0;2;fire;electric
+26.1;Tenue en sac de terre;0;2;fire;electric
+27.1;Plaque de mÇtal;0;2;fire;electric
+28.1;Plastron en peaux;0;2;fire;electric
+29.1;Tenue en os de monstre;0;2;fire;electric
+30.1;Cotte de maille;0;2;fire;electric
+31.1;Armure de mÇtal poli;0;2;fire;electric
+32.1;Protection en pneu;0;2;fire;electric
+33.1;Tenue en cuir de monstre;0;2;fire;electric
+34.1;Uniforme avec Çcailles;0;2;fire;electric
+35.1;Gilet pare balle;0;2;fire;electric
+36.1;Tenue anti Çmeute;0;2;fire;electric
+37.1;Armure de combat;0;2;fire;electric
+38.1;Super armure ÇnergÇtique;0;2;fire;electric

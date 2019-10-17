@@ -9,15 +9,17 @@ public class CardsInformations
     public string name;
     public string damage;
     public string armor;
-    public string specialStat;
+    public string damageElement;
+    public string armorElement;
 
-    public CardsInformations(string id, string name, string damage, string armor, string specialStat)
+    public CardsInformations(string id, string name, string damage, string armor, string damageElement, string armorElement)
     {
         this.id = id;
         this.name = name;
         this.damage = damage;
         this.armor = armor;
-        this.specialStat = specialStat;
+        this.damageElement = damageElement;
+        this.armorElement = armorElement;
     }
     public CardsInformations() { }
 }

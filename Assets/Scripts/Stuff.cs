@@ -9,4 +9,8 @@ public class Stuff : MonoBehaviour
     public RawImage stuffImage;
     public TMP_Text textValueAtk;
     public TMP_Text textValueDef;
+    public Element elementAtk;
+    public Element elementDef;
+    public Image imageElementAtk;
+    public Image imageElementDef;
 }

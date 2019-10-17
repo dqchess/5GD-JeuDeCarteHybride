@@ -17,16 +17,20 @@ public class Player : MonoBehaviour
     public GameObject equipmentGrid;
     public GameObject adventurersGrid;
 
-    [Header("Fight")]
-    public TMP_Text textHpPlayerFight;
-    public TMP_Text textAtkPlayerFight;
-    public TMP_Text textDefPlayerFight;
-
     [Header("Other")]
     public GameObject model;
 
-    [HideInInspector] public int playerATK = 0;
-    [HideInInspector] public int playerDEF = 0;
+    public int playerATKTotal = 0;
+    public int playerATKNoElement = 0;
+    public int playerFireATK = 0;
+    public int playerIceATK = 0;
+    public int playerElectricATK = 0;
+
+    public int playerDEFTotal = 0;
+    public int playerDEFNoElement = 0;
+    public int playerFireDEF = 0;
+    public int playerIceDEF = 0;
+    public int playerElectricDEF = 0;
 
     public Dictionary<string, Adventurer> adventurersDictionnary = new Dictionary<string, Adventurer>();
     private Dictionary<string, GameObject> equipmentDictionnary = new Dictionary<string, GameObject>();
@@ -54,14 +58,14 @@ public class Player : MonoBehaviour
         b = int.TryParse(ATKInputPlayer.text, out tmpInt);
         if (b)
         {
-            playerATK += tmpInt;           
+            playerATKNoElement += tmpInt;           
             ATKInputPlayer.text = "";
         }
         b = false;
         b = int.TryParse(DEFInputPlayer.text, out tmpInt);
         if (b)
         {
-            playerDEF += tmpInt;            
+            playerDEFNoElement += tmpInt;            
             DEFInputPlayer.text = "";
         }
         UpdateStatsUIPlayer();
@@ -71,8 +75,8 @@ public class Player : MonoBehaviour
     {
         if (GameManager.Instance.state == GameManager.State.STATS)
         {
-            playerATK += atk;
-            playerDEF += def;
+            playerATKNoElement += atk;
+            playerDEFNoElement += def;
 
             UpdateStatsUIPlayer();
         }       
@@ -109,14 +113,10 @@ public class Player : MonoBehaviour
         currentAdventurer = adv;
     }
 
-    public void AddStatsPlayer(CardsInformations c)
+    public void AddEquipment(CardsInformations c)
     {
         if (GameManager.Instance.state == GameManager.State.STATS)
         {
-            playerATK += int.Parse(c.damage);
-            
-            playerDEF += int.Parse(c.armor);
-
             GameObject card;
 
             if (c.damage != "0" && c.armor != "0")
@@ -125,9 +125,6 @@ public class Player : MonoBehaviour
                 //card.GetComponent<Stuff>().stuffImage.texture = c.texture;
                 card.GetComponent<Stuff>().textValueAtk.text = c.damage;
                 card.GetComponent<Stuff>().textValueDef.text = c.armor;
-
-                card.transform.DOScale(Vector3.zero, 0.5f).From().SetEase(Ease.OutBounce);
-
                 equipmentDictionnary.Add(c.id, card);
             }
             else if (c.damage != "0")
@@ -135,32 +132,59 @@ public class Player : MonoBehaviour
                 card = Instantiate(GameManager.Instance.cardAtkPrefab, equipmentGrid.transform);
                 //card.GetComponent<Stuff>().stuffImage.texture = c.texture;
                 card.GetComponent<Stuff>().textValueAtk.text = c.damage;
-                card.transform.DOScale(Vector3.zero, 0.5f).From().SetEase(Ease.OutBounce);
                 equipmentDictionnary.Add(c.id, card);
             }
             else if (c.armor != "0")
             {
                 card = Instantiate(GameManager.Instance.cardDefPrefab, equipmentGrid.transform);
                 //card.GetComponent<Stuff>().stuffImage.texture = c.texture;
-                card.GetComponent<Stuff>().textValueDef.text = c.damage;
-                card.transform.DOScale(Vector3.zero, 0.5f).From().SetEase(Ease.OutBounce);
+                card.GetComponent<Stuff>().textValueDef.text = c.armor;               
                 equipmentDictionnary.Add(c.id, card);
             }
 
+            if (equipmentDictionnary.TryGetValue(c.id, out card)){
+                card.transform.DOScale(Vector3.zero, 0.5f).From().SetEase(Ease.OutBounce);
+            }
+
+            Stuff stuff = card.GetComponent<Stuff>();
+
+            if (c.damageElement != "")
+            {
+                switch (c.damageElement)
+                {
+                    case "fire": playerFireATK += int.Parse(c.damage); stuff.imageElementAtk.sprite = GameManager.Instance.fireSprite; stuff.elementAtk = Element.FIRE;  break;
+                    case "ice": playerIceATK += int.Parse(c.damage); stuff.imageElementAtk.sprite = GameManager.Instance.iceSprite; stuff.elementAtk = Element.ICE; break;
+                    case "electric": playerElectricATK += int.Parse(c.damage); stuff.imageElementAtk.sprite = GameManager.Instance.electricSprite; stuff.elementAtk = Element.ELECTRIC; break;
+                }
+            }
+            else 
+            {
+                playerATKNoElement += int.Parse(c.damage);
+            }
+            if (c.armorElement != "")
+            {
+                switch (c.armorElement)
+                {
+                    case "fire": playerFireDEF += int.Parse(c.armor); stuff.imageElementDef.sprite = GameManager.Instance.fireSprite; stuff.elementDef = Element.FIRE; break;
+                    case "ice": playerIceDEF += int.Parse(c.armor); stuff.imageElementDef.sprite = GameManager.Instance.iceSprite; stuff.elementDef = Element.ICE; break;
+                    case "electric": playerElectricDEF += int.Parse(c.armor); stuff.imageElementDef.sprite = GameManager.Instance.electricSprite; stuff.elementDef = Element.ELECTRIC; break;
+                }
+            }
+            else
+            {
+                playerDEFNoElement += int.Parse(c.damage);
+            }
+            UpdateStatsPlayer();
             UpdateStatsUIPlayer();
         }
     }
 
-    public void RemoveStatsPlayer(CardsInformations c)
+    public void RemoveEquipment(CardsInformations c)
     {
         GameObject g;
         bool b = equipmentDictionnary.TryGetValue(c.id, out g);
         if (b)
         {
-            playerATK -= int.Parse(c.damage);
-            
-
-            playerDEF -= int.Parse(c.armor);
             equipmentDictionnary.Remove(c.id);
 
             for (int i = 0; i < equipmentGrid.transform.childCount; i++)
@@ -171,8 +195,27 @@ public class Player : MonoBehaviour
                     u.transform.DOScale(Vector3.zero, 0.5f).SetEase(Ease.OutSine).OnComplete(() => Destroy(u.gameObject));                    
                 }                    
             }
-        }
 
+            if (c.damageElement != "")
+            {
+                switch (c.damageElement)
+                {
+                    case "fire": playerFireATK -= int.Parse(c.damage); break;
+                    case "ice": playerIceATK -= int.Parse(c.damage); break;
+                    case "electric": playerElectricATK -= int.Parse(c.damage); break;
+                }
+            }
+            if (c.armorElement != "")
+            {
+                switch (c.armorElement)
+                {
+                    case "fire": playerFireDEF -= int.Parse(c.armor); break;
+                    case "ice": playerIceDEF -= int.Parse(c.armor); break;
+                    case "electric": playerElectricDEF -= int.Parse(c.armor); break;
+                }
+            }
+        }
+        UpdateStatsPlayer();
         UpdateStatsUIPlayer();
     }
 
@@ -204,35 +247,36 @@ public class Player : MonoBehaviour
         Destroy(model);
     }
 
-    public void UpdateStatsUIPlayer()
+    public void UpdateStatsPlayer()
     {
-        //STATS
-        textAtkPlayerStats.text = playerATK.ToString();
-        textDefPlayerStats.text = playerDEF.ToString();
-
-        //FIGHT
-        textAtkPlayerFight.text = playerATK.ToString();
-        textDefPlayerFight.text = playerDEF.ToString();
+        Element elementMonsterAtk = GameManager.Instance.monsterManager.elementAtk;
+        switch (elementMonsterAtk)
+        {
+            case Element.FIRE: playerDEFTotal = playerFireDEF*2 + playerIceDEF + playerElectricDEF; break;
+            case Element.ICE: playerDEFTotal = playerFireDEF + playerIceDEF*2 + playerElectricDEF; break;
+            case Element.ELECTRIC: playerDEFTotal = playerFireDEF + playerIceDEF + playerElectricDEF*2; break;
+            case Element.NULL: playerDEFTotal = playerFireDEF + playerIceDEF + playerElectricDEF; break;
+        }
+        Element elementMonsterDef = GameManager.Instance.monsterManager.elementDef;
+        switch (elementMonsterDef)
+        {
+            case Element.FIRE: playerATKTotal = playerFireATK * 2 + playerIceATK + playerElectricATK; break;
+            case Element.ICE: playerATKTotal = playerFireATK + playerIceATK * 2 + playerElectricATK; break;
+            case Element.ELECTRIC: playerATKTotal = playerFireATK + playerIceATK + playerElectricATK * 2; break;
+            case Element.NULL: playerATKTotal = playerFireATK + playerIceATK + playerElectricATK; break;
+        }
     }
 
-    public void TakeDamagePlayer(int damage)
+    public void UpdateStatsUIPlayer()
     {
-        if (damage <= playerDEF)
-        {
-            playerDEF -= damage;
-        }
-        else if (damage > playerDEF)
-        {
-            int damageTmp = damage - playerDEF;
-            playerDEF = 0;
-        }
-        UpdateStatsUIPlayer();
+        textAtkPlayerStats.text = playerATKTotal.ToString();
+        textDefPlayerStats.text = playerDEFTotal.ToString();
     }
 
     public void ResetStats()
     {
-        playerATK = 0;
-        playerDEF = 0;
+        playerATKNoElement = 0;
+        playerDEFNoElement = 0;
         UpdateStatsUIPlayer();
     }
 
