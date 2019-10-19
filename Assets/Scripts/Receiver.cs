@@ -33,35 +33,50 @@ public class Receiver : MonoBehaviour
 
 
         string id = message.Values[0].StringValue;
-        CardsInformations c = ExcelManager.Instance.GetInfosOfTheCard(id);
-        if (ExcelManager.Instance.IsMyCardScanned(id) == true)
+        CardsInformations c = ExcelManager.Instance.GetInfosOfTheCard(id, 1);
+        if (message.Values[1].StringValue.Contains("Aventurer") == true)
         {
-            //GameManager.Instance.player1.RemoveStatsPlayer(int.Parse(c.damage), int.Parse(c.armor));
-            Debug.Log("Player One Scan Remove : " + message.Values[0].StringValue);
+            //Recuperer les infos de l'aventurier et mettre le joueur 1 en PRET
         }
         else
         {
-            GameManager.Instance.player1.AddStatsPlayer(int.Parse(c.damage), int.Parse(c.armor));
-            Debug.Log("Player One Scan Add : " + message.Values[0].StringValue);
+            if (ExcelManager.Instance.IsMyCardScannedPlayerOne(id) == true)
+            {
+                //GameManager.Instance.player1.RemoveStatsPlayer(int.Parse(c.damage), int.Parse(c.armor));
+                Debug.Log("Player One Scan Remove : " + message.Values[0].StringValue);
+            }
+            else
+            {
+                GameManager.Instance.player1.AddStatsPlayer(int.Parse(c.damage), int.Parse(c.armor));
+                Debug.Log("Player One Scan Add : " + message.Values[0].StringValue);
+            }
         }
     }
 
     public void ReceivePlayer2CardsInfos(OSCMessage message)
     {
+        Debug.Log("Player Two Scan : " + message.Values[0].StringValue);
+
+
         string id = message.Values[0].StringValue;
-        CardsInformations c = ExcelManager.Instance.GetInfosOfTheCard(id);
-        if (ExcelManager.Instance.IsMyCardScanned(id) == true)
+        CardsInformations c = ExcelManager.Instance.GetInfosOfTheCard(id, 2);
+        if (message.Values[1].StringValue.Contains("Aventurer") == true)
         {
-            //GameManager.Instance.player2.RemoveStatsPlayer(int.Parse(c.damage), int.Parse(c.armor));
-            Debug.Log("Player Two Scan Remove : " + message.Values[0].StringValue);
+            //Recuperer les infos de l'aventurier et mettre le joueur 2 en PRET
         }
         else
         {
-            GameManager.Instance.player2.AddStatsPlayer(int.Parse(c.damage), int.Parse(c.armor));
-            Debug.Log("Player Two Scan Add : " + message.Values[0].StringValue);
+            if (ExcelManager.Instance.IsMyCardScannedPlayerTwo(id) == true)
+            {
+                //GameManager.Instance.player2.RemoveStatsPlayer(int.Parse(c.damage), int.Parse(c.armor));
+                Debug.Log("Player Two Scan Remove : " + message.Values[0].StringValue);
+            }
+            else
+            {
+                GameManager.Instance.player2.AddStatsPlayer(int.Parse(c.damage), int.Parse(c.armor));
+                Debug.Log("Player Two Scan Add : " + message.Values[0].StringValue);
+            }
         }
-
-        
     }
 
     public void ReceivePlayer1NameInfos(OSCMessage message)

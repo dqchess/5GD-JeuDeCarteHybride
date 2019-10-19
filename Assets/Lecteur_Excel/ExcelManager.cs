@@ -6,12 +6,13 @@ public class ExcelManager : MonoBehaviour
 {
 
     int lengtOfTheArrayOfCard;
-
+    public int MaxStuff = 3;
     public string[] data;
     string[] row;
     [SerializeField]
     public List<CardsInformations> cardsInfos = new List<CardsInformations>();
-    public List<CardsInformations> cardsScanned = new List<CardsInformations>();
+    public List<CardsInformations> cardsScannedPlayerOne = new List<CardsInformations>();
+    public List<CardsInformations> cardsScannedPlayerTwo = new List<CardsInformations>();
     public List<int> positionOfCardsScanned = new List<int>();
 
     private static ExcelManager _instance;
@@ -63,10 +64,23 @@ public class ExcelManager : MonoBehaviour
 
     }
 
-    public bool IsMyCardScanned(string id)
+    public bool IsMyCardScannedPlayerOne(string id)
     {
         bool foundInCardsInfos = false;
 
+        for (int i = 0; i < cardsScannedPlayerOne.Count; i++)
+        {
+            if (id == cardsScannedPlayerOne[i].id)
+            {
+                if (cardsScannedPlayerOne.Count == MaxStuff)
+                {
+                    //TropDeCarteScanner
+                    print("ERROR 2 : Too many scanned cards for player 1");
+                }
+                foundInCardsInfos = false;
+                return foundInCardsInfos;
+            }
+        }
         for (int i =0; i< cardsInfos.Count; i++)
         {
             if (id == cardsInfos[i].id)
@@ -76,18 +90,42 @@ public class ExcelManager : MonoBehaviour
             }
         }
 
-        for (int i = 0; i < cardsScanned.Count; i++)
+        return foundInCardsInfos;
+    }
+
+    public bool IsMyCardScannedPlayerTwo(string id)
+    {
+        bool foundInCardsInfos = false;
+
+        for (int i = 0; i < cardsScannedPlayerTwo.Count; i++)
         {
-            if (id == cardsScanned[i].id)
+            if (id == cardsScannedPlayerTwo[i].id)
             {
+                if (cardsScannedPlayerTwo.Count == MaxStuff)
+                {
+                    //TropDeCarteScanner
+                    print("ERROR 3 : Too many scanned cards for player 2");
+                }
                 foundInCardsInfos = false;
                 return foundInCardsInfos;
             }
         }
+        for (int i = 0; i < cardsInfos.Count; i++)
+        {
+            if (id == cardsInfos[i].id)
+            {
+                foundInCardsInfos = true;
+                return foundInCardsInfos;
+            }
+        }
+
         return foundInCardsInfos;
     }
 
-    public CardsInformations GetInfosOfTheCard (string idOfTheScannedCard)
+
+
+
+    public CardsInformations GetInfosOfTheCard (string idOfTheScannedCard, int player)
     {
         CardsInformations c = new CardsInformations();
         bool cardAlreadyFound = false;
@@ -97,7 +135,14 @@ public class ExcelManager : MonoBehaviour
             {
                 c = cardsInfos[i];
                 cardAlreadyFound = true;
-                cardsScanned.Add(c);
+                if (player == 1)
+                {
+                    cardsScannedPlayerOne.Add(c);
+                }
+                else
+                {
+                    cardsScannedPlayerTwo.Add(c);
+                }
                 cardsInfos.RemoveAt(i);
 
                 break;
@@ -106,17 +151,38 @@ public class ExcelManager : MonoBehaviour
 
         if (cardAlreadyFound == false)
         {
-            for (int i = 0; i < cardsScanned.Count; i++)
+            if (player == 1)
             {
-                if (idOfTheScannedCard == cardsScanned[i].id)
+                for (int i = 0; i < cardsScannedPlayerOne.Count; i++)
                 {
-                    c = cardsScanned[i];
-                    cardsInfos.Add(c);
-                    cardsScanned.RemoveAt(i);
-
+                    if (idOfTheScannedCard == cardsScannedPlayerOne[i].id)
+                    {
+                        c = cardsScannedPlayerOne[i];
+                        cardsInfos.Add(c);
+                        cardsScannedPlayerOne.RemoveAt(i);
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < cardsScannedPlayerTwo.Count; i++)
+                {
+                    if (idOfTheScannedCard == cardsScannedPlayerTwo[i].id)
+                    {
+                        c = cardsScannedPlayerTwo[i];
+                        cardsInfos.Add(c);
+                        cardsScannedPlayerTwo.RemoveAt(i);
+                    }
                 }
             }
         }
         return c;  
+    }
+    
+    //A appeller lors de la fin du combat pour vider les nouvelles cartes
+    public void EmptyCardsAfterCombat()
+    {
+        cardsScannedPlayerOne.Clear();
+        cardsScannedPlayerTwo.Clear();
     }
 }
