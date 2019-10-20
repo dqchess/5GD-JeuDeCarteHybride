@@ -5,16 +5,16 @@ using UnityEngine;
 public class MonsterPreview : MonoBehaviour
 {
     public float rotationSpeed;
-    [HideInInspector] public GameObject model;
-
-
-    void Start()
-    {
-        
-    }
+    public GameObject model;
 
     void Update()
     {
-        transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime);
+        if (GameManager.Instance.state == GameManager.State.STATS)
+            transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime);
+    }
+
+    public void StartFight()
+    {
+        transform.LookAt(Camera.main.transform.position + Vector3.up * 90f);
     }
 }

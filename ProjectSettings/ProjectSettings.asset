@@ -143,9 +143,6 @@ PlayerSettings:
     oculus:
       sharedDepthBuffer: 0
       dashSupport: 0
-      lowOverheadMode: 0
-      protectedContext: 0
-      v2Signing: 0
     enable360StereoCapture: 0
   protectGraphicsMemory: 0
   enableFrameTimingStats: 0
@@ -592,7 +589,7 @@ PlayerSettings:
   webGLLinkerTarget: 1
   webGLThreadsSupport: 0
   scriptingDefineSymbols:
-    1: EXTOSC;UNITY_POST_PROCESSING_STACK_V2
+    1: EXTOSC;UNITY_POST_PROCESSING_STACK_V2;AURA_IN_SCENEVIEW;AURA_IN_PROJECT
     4: EXTOSC;UNITY_POST_PROCESSING_STACK_V2
     7: EXTOSC;UNITY_POST_PROCESSING_STACK_V2
     13: EXTOSC;UNITY_POST_PROCESSING_STACK_V2

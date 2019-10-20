@@ -37,12 +37,20 @@ public class MonsterManager : MonoBehaviour
     public void InstantiateMonster()
     {
         int randomMonster = Random.Range(0, monsters.Length);
-        GameObject monster = monsterPreview.GetComponent<MonsterPreview>().model = Instantiate(monsters[randomMonster], monsterPreview.transform);
 
-        DOTween.To(() => monster.transform.localScale, x => monster.transform.localScale = x, Vector3.zero, 0.5f).From();
+        monsterPreview.GetComponent<MonsterPreview>().model = Instantiate(monsters[randomMonster], monsterPreview.transform);
+        GameObject model = monsterPreview.GetComponent<MonsterPreview>().model;
+
+        DOTween.To(() => model.transform.localScale, x => model.transform.localScale = x, Vector3.zero, 0.5f).From();
 
         SetMonsterElements();
-        SetMonsterStats(monster.GetComponent<MonsterStats>());
+        SetMonsterStats(model.GetComponent<MonsterStats>());
+    }
+
+    public void DestroyMonster()
+    {
+        Debug.Log(monsterPreview.GetComponent<MonsterPreview>().model);
+        Destroy(monsterPreview.GetComponent<MonsterPreview>().model);
     }
 
     public void SetMonsterStats(MonsterStats monster)

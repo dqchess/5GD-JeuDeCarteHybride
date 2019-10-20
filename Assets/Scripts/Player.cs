@@ -16,6 +16,8 @@ public class Player : MonoBehaviour
 
     public GameObject equipmentGrid;
     public GameObject adventurersGrid;
+    public GameObject atkUI;
+    public GameObject defUI;
 
     [Header("Other")]
     public GameObject model;
@@ -109,7 +111,7 @@ public class Player : MonoBehaviour
         if (currentAdventurer != null)
             currentAdventurer.gameObject.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBounce);
 
-        adv.gameObject.transform.DOScale(Vector3.one * 1.2f, 0.5f).SetEase(Ease.OutBounce);
+        adv.gameObject.transform.DOScale(Vector3.one * 1.3f, 0.5f).SetEase(Ease.OutBounce);
         currentAdventurer = adv;
     }
 
@@ -117,37 +119,39 @@ public class Player : MonoBehaviour
     {
         if (GameManager.Instance.state == GameManager.State.STATS)
         {
-            GameObject card;
+            GameObject equipment;
 
+            //add the gameobject to the equipment grid
             if (c.damage != "0" && c.armor != "0")
             {
-                card = Instantiate(GameManager.Instance.cardMixtPrefab, equipmentGrid.transform);
+                equipment = Instantiate(GameManager.Instance.cardMixtPrefab, equipmentGrid.transform);
                 //card.GetComponent<Stuff>().stuffImage.texture = c.texture;
-                card.GetComponent<Stuff>().textValueAtk.text = c.damage;
-                card.GetComponent<Stuff>().textValueDef.text = c.armor;
-                equipmentDictionnary.Add(c.id, card);
+                equipment.GetComponent<Stuff>().textValueAtk.text = c.damage;
+                equipment.GetComponent<Stuff>().textValueDef.text = c.armor;
+                equipmentDictionnary.Add(c.id, equipment);
             }
             else if (c.damage != "0")
             {
-                card = Instantiate(GameManager.Instance.cardAtkPrefab, equipmentGrid.transform);
+                equipment = Instantiate(GameManager.Instance.cardAtkPrefab, equipmentGrid.transform);
                 //card.GetComponent<Stuff>().stuffImage.texture = c.texture;
-                card.GetComponent<Stuff>().textValueAtk.text = c.damage;
-                equipmentDictionnary.Add(c.id, card);
+                equipment.GetComponent<Stuff>().textValueAtk.text = c.damage;
+                equipmentDictionnary.Add(c.id, equipment);
             }
             else if (c.armor != "0")
             {
-                card = Instantiate(GameManager.Instance.cardDefPrefab, equipmentGrid.transform);
+                equipment = Instantiate(GameManager.Instance.cardDefPrefab, equipmentGrid.transform);
                 //card.GetComponent<Stuff>().stuffImage.texture = c.texture;
-                card.GetComponent<Stuff>().textValueDef.text = c.armor;               
-                equipmentDictionnary.Add(c.id, card);
+                equipment.GetComponent<Stuff>().textValueDef.text = c.armor;               
+                equipmentDictionnary.Add(c.id, equipment);
             }
 
-            if (equipmentDictionnary.TryGetValue(c.id, out card)){
-                card.transform.DOScale(Vector3.zero, 0.5f).From().SetEase(Ease.OutBounce);
+            if (equipmentDictionnary.TryGetValue(c.id, out equipment)){
+                equipment.transform.DOScale(Vector3.zero, 0.5f).From().SetEase(Ease.OutBounce);
             }
 
-            Stuff stuff = card.GetComponent<Stuff>();
+            Stuff stuff = equipment.GetComponent<Stuff>();
 
+            //calculate different type of atk and def
             if (c.damageElement != "")
             {
                 switch (c.damageElement)
@@ -158,9 +162,8 @@ public class Player : MonoBehaviour
                 }
             }
             else 
-            {
                 playerATKNoElement += int.Parse(c.damage);
-            }
+
             if (c.armorElement != "")
             {
                 switch (c.armorElement)
@@ -171,9 +174,18 @@ public class Player : MonoBehaviour
                 }
             }
             else
-            {
                 playerDEFNoElement += int.Parse(c.damage);
+
+            //feedback atk or def is double
+            if (stuff.elementAtk == GameManager.Instance.monsterManager.elementDef)
+            {
+                stuff.AtkIsDouble();
             }
+            if (stuff.elementDef == GameManager.Instance.monsterManager.elementAtk)
+            {
+                stuff.DefIsDouble();
+            }
+
             UpdateStatsPlayer();
             UpdateStatsUIPlayer();
         }
@@ -232,14 +244,31 @@ public class Player : MonoBehaviour
     {
         for (int i = 0; i < adventurersGrid.transform.childCount; i++)
         {
-            Destroy(adventurersGrid.transform.GetChild(i).gameObject);
+            if (adventurersGrid.transform.GetChild(i).GetComponent<Adventurer>() != null)
+                Destroy(adventurersGrid.transform.GetChild(i).gameObject);
         }
         adventurersDictionnary.Clear();
     }
 
-    public void StartFight()
+    public void DisplayUIFight(int xValue)
     {
-        //UpdateStatsUIPlayer();
+        equipmentGrid.transform.DOMoveX(equipmentGrid.transform.position.x - (xValue*250), 1f);
+        adventurersGrid.transform.DOMoveX(equipmentGrid.transform.position.x - (xValue*250), 1f);
+        atkUI.transform.DOMoveY(atkUI.transform.position.y - 230, 1f).SetEase(Ease.OutBounce);
+        defUI.transform.DOMoveY(defUI.transform.position.y - 230, 1f).SetEase(Ease.OutBounce);
+    }
+
+    public void DisplayUIStats(int xValue)
+    {
+        equipmentGrid.transform.DOMoveX(equipmentGrid.transform.position.x - (xValue*250), 1f);
+        adventurersGrid.transform.DOMoveX(equipmentGrid.transform.position.x - (xValue*250), 1f);
+        atkUI.transform.DOMoveY(atkUI.transform.position.y + 230, 1f).SetEase(Ease.OutBounce);
+        defUI.transform.DOMoveY(defUI.transform.position.y + 230, 1f).SetEase(Ease.OutBounce);
+    }
+
+    public void DisplayUIFight1V1()
+    {
+        
     }
 
     public void Die()

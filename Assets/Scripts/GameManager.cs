@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
     [Header("UI")]
     public GameObject panelStats;
     public GameObject panelFight;
-    public GameObject panelVictory;
+    public GameObject monsterUi;
     public TMP_Text textVictory;
     public TMP_Text textFight;
     public TMP_Text textEndFight;
@@ -65,6 +65,7 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector] public Vector3 cameraPositionFight;
     [HideInInspector] public Vector3 cameraRotationFight;
+    [HideInInspector] public int turn =0 ;
 
     private void Update()
     {
@@ -99,112 +100,121 @@ public class GameManager : MonoBehaviour
             player1.RemoveEquipment(c);
         }
 
+        if (Input.GetKeyDown(KeyCode.Keypad7))
+        {
+            player1.ScanAdventurer("1");
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad4))
+        {
+            player1.ScanAdventurer("2");
+        }
     }
 
     private void Start()
     {
         state = State.STATS;
 
-        cameraPositionFight = new Vector3(0, 7, -11);
-        cameraRotationFight = new Vector3(32, 0, 0);
+        cameraPositionFight = new Vector3(0, 3, -8);
+        cameraRotationFight = new Vector3(7, 0, 0);
 
         cameraPositionStats = new Vector3(0, 4.5f, -11);
         cameraRotationStats = new Vector3(7, 0, 0);
 
-        textFight.fontSize = 0;
-
-        DisplayStats();
+        Stats();
     }
 
 
-    public void DisplayStats()
+    public void Stats()
     {
-        StartCoroutine(Stats());
+        state = State.STATS;
+        StartCoroutine(_Stats());
     }
 
-    public void DisplayUIStats()
-    {
-        //faire revenir l'UI parti
-        DOTween.To(() => Camera.main.transform.position, x => Camera.main.transform.position = x, cameraPositionStats, 2);
-        DOTween.To(() => Camera.main.transform.rotation, x => Camera.main.transform.rotation = x, cameraRotationStats, 2);
-    }
+    public IEnumerator _Stats()
+    {   
+        if (turn != 0)
+        {
+            player1.DisplayUIStats(-1); //to the right
+            player2.DisplayUIStats(1);//to the left
+        }
 
-    private IEnumerator Stats()
-    {
-        DisplayUIStats();
+        Camera.main.transform.DOMove(cameraPositionStats, 1f);
+        monsterManager.monsterPreview.transform.DORotate(new Vector3(0, 0, 0), 1f);
 
         monsterManager.InstantiateMonster();
-        state = State.STATS;
-
+        
         player1.ResetStats();
         player2.ResetStats();
 
-        panelStats.SetActive(true);
-
-        plane.transform.DOScale(Vector3.one, 1f);
-
-        yield return new WaitForEndOfFrame();    
+        yield return new WaitForEndOfFrame();
     }
 
-    public void DisplayFight()
+    public void Fight()
     {
-        StartCoroutine(Fight());        
+        state = State.FIGHT;
+        StartCoroutine(_Fight());        
     }
 
-    public void DisplayUIFight()
+    public IEnumerator _Fight()
     {
-        DOTween.To(() => textFight.fontSize, x => textFight.fontSize = x, 150, 0.7f).SetEase(Ease.OutBounce);
-        //DOTween.To(() => Camera.main.transform.position, x => Camera.main.transform.position = x, cameraPositionFight, 2);
-        //DOTween.To(() => Camera.main.transform.rotation, x => Camera.main.transform.rotation = x, cameraRotationFight, 2);
-        //Instantiate(despawnMonster, monsterManager.monsterPreview.transform.position, Quaternion.identity);
-        //Instantiate(spawnMonster, monsterManager.monster1.transform.position, Quaternion.identity);
-        //Instantiate(spawnMonster, monsterManager.monster2.transform.position, Quaternion.identity);
-        plane.transform.DOScale(new Vector3(2.75f, 2.75f, 2.75f), 1f);
-    }
+        //START FIGHT
+        player1.DisplayUIFight(1); //to the left
+        player2.DisplayUIFight(-1);//to the right       
+        monsterUi.transform.DOMoveY(monsterUi.transform.position.y + 150, 0.5f);
+        monsterManager.monsterPreview.transform.DORotate(Quaternion.identity.eulerAngles + Vector3.up*90f, 1f);
+        textFight.gameObject.transform.DOLocalMoveY(textFight.gameObject.transform.position.y - 250f, 1).SetEase(Ease.OutBounce).SetLoops(2, LoopType.Yoyo).OnComplete(() =>
+        {
+            Camera.main.transform.DOLocalMoveY(cameraPositionFight.y, 0.5f).SetEase(Ease.OutExpo);
+            Camera.main.transform.DOLocalMoveZ(cameraPositionFight.z, 0.5f).SetEase(Ease.OutExpo);
+        });
 
-    private IEnumerator Fight()
-    {
-        DisplayUIFight();
-        
-        state = State.FIGHT;       
+        yield return new WaitForSeconds(3);
 
-        //anim monstre attaque
-
+        //PLAYER1 FIGHT
+        Camera.main.transform.DOLocalMoveX(cameraPositionFight.x - 4.5f, 1f);
+        monsterManager.monsterPreview.transform.DORotate(new Vector3(0, -240, 0), 1f);
+        monsterUi.transform.DOMoveY(monsterUi.transform.position.y - 150, 0.5f);
+        //yield return StartCoroutine(fightManager.StartFightPlayer1());
         yield return new WaitForSeconds(2);
 
-        player1.StartFight();
-        player2.StartFight();
+        //END FIGHT PLAYER 1
+        //RECAP FIGHT PLAYER 1
 
-        textFight.fontSize = 0;
+        yield return new WaitForSeconds(3);
 
-        fightManager.StartFight();
+        //PLAYER2 FIGHT
+        Camera.main.transform.DOLocalMoveX(cameraPositionFight.x + 4.5f, 1f);
+        monsterManager.monsterPreview.transform.DORotate(new Vector3(0, 60, 0), 1f);
+
+        //yield return StartCoroutine(fightManager.StartFightPlayer2());
+        yield return new WaitForSeconds(2);
+
+        //END FIGHT PLAYER 2
+        //RECAP FIGHT PLAYER 2
+
+        EndFight();
 
         yield return null;
     }
 
     public void EndFight()
     {
-        StartCoroutine(EndFightCoroutine());
+        turn += 1;
+        StartCoroutine(_EndFight());
     }
 
-    private void DisplayUIEndFight()
+    private IEnumerator _EndFight()
     {
+        monsterManager.DestroyMonster();
+
         textEndFightGold.text = " \r Get your " + monsterManager.loot + " golds !";
 
-        DOTween.To(() => textEndFight.fontSize, x => textEndFight.fontSize = x, 93, 0.7f).SetEase(Ease.OutBounce);
-        DOTween.To(() => textEndFight.fontSize, x => textEndFight.fontSize = x, 0, 0.7f).SetDelay(3f);
+        DOTween.To(() => textEndFightGold.fontSize, x => textEndFightGold.fontSize = x, 60, 1f).SetDelay(0.5f).SetEase(Ease.OutBounce).SetLoops(2, LoopType.Yoyo);
 
-        DOTween.To(() => textEndFightGold.fontSize, x => textEndFightGold.fontSize = x, 60, 0.7f).SetDelay(0.5f).SetEase(Ease.OutBounce);
-        DOTween.To(() => textEndFightGold.fontSize, x => textEndFightGold.fontSize = x, 0, 0.7f).SetDelay(3f);
-    }
-
-    private IEnumerator EndFightCoroutine()
-    {
-
-        DisplayUIEndFight();
         yield return new WaitForSeconds(3);
-        DisplayStats();
+        Stats();
     }
+
 }
 
 public enum Element
