@@ -6,11 +6,14 @@ public class ExcelManager : MonoBehaviour
 {
 
     int lengtOfTheArrayOfCard;
-
+    public int MaxStuff = 3;
     public string[] data;
     string[] row;
     [SerializeField]
     public List<CardsInformations> cardsInfos = new List<CardsInformations>();
+    public List<CardsInformations> cardsScannedPlayerOne = new List<CardsInformations>();
+    public List<CardsInformations> cardsScannedPlayerTwo = new List<CardsInformations>();
+    public List<int> positionOfCardsScanned = new List<int>();
 
     private static ExcelManager _instance;
     public static ExcelManager Instance
@@ -62,19 +65,125 @@ public class ExcelManager : MonoBehaviour
 
     }
 
-    public CardsInformations GetInfosOfTheCard (string idOfTheScannedCard)
+    public bool IsMyCardScannedPlayerOne(string id)
+    {
+        bool foundInCardsInfos = false;
+
+        for (int i = 0; i < cardsScannedPlayerOne.Count; i++)
+        {
+            if (id == cardsScannedPlayerOne[i].id)
+            {
+                if (cardsScannedPlayerOne.Count == MaxStuff)
+                {
+                    //TropDeCarteScanner
+                    print("ERROR 2 : Too many scanned cards for player 1");
+                }
+                foundInCardsInfos = false;
+                return foundInCardsInfos;
+            }
+        }
+        for (int i =0; i< cardsInfos.Count; i++)
+        {
+            if (id == cardsInfos[i].id)
+            {
+                foundInCardsInfos = true;
+                return foundInCardsInfos;
+            }
+        }
+
+        return foundInCardsInfos;
+    }
+
+    public bool IsMyCardScannedPlayerTwo(string id)
+    {
+        bool foundInCardsInfos = false;
+
+        for (int i = 0; i < cardsScannedPlayerTwo.Count; i++)
+        {
+            if (id == cardsScannedPlayerTwo[i].id)
+            {
+                if (cardsScannedPlayerTwo.Count == MaxStuff)
+                {
+                    //TropDeCarteScanner
+                    print("ERROR 3 : Too many scanned cards for player 2");
+                }
+                foundInCardsInfos = false;
+                return foundInCardsInfos;
+            }
+        }
+        for (int i = 0; i < cardsInfos.Count; i++)
+        {
+            if (id == cardsInfos[i].id)
+            {
+                foundInCardsInfos = true;
+                return foundInCardsInfos;
+            }
+        }
+
+        return foundInCardsInfos;
+    }
+
+
+
+
+    public CardsInformations GetInfosOfTheCard (string idOfTheScannedCard, int player)
     {
         CardsInformations c = new CardsInformations();
-        for (int i =0; i<cardsInfos.Count -1; i++)
+        bool cardAlreadyFound = false;
+        for (int i =0; i<cardsInfos.Count; i++)
         {
             if (idOfTheScannedCard == cardsInfos[i].id)
             {
-                //Envoyer CardsInformation (CarsInfos[i])
-                //print("ID : " + cardsInfos[i].id + "; Name : " + cardsInfos[i].name + "; Damage : " + cardsInfos[i].damage + "; Armor : " + cardsInfos[i].armor + ";");
                 c = cardsInfos[i];
+                cardAlreadyFound = true;
+                if (player == 1)
+                {
+                    cardsScannedPlayerOne.Add(c);
+                }
+                else
+                {
+                    cardsScannedPlayerTwo.Add(c);
+                }
+                cardsInfos.RemoveAt(i);
+
                 break;
             }           
         }
+
+        if (cardAlreadyFound == false)
+        {
+            if (player == 1)
+            {
+                for (int i = 0; i < cardsScannedPlayerOne.Count; i++)
+                {
+                    if (idOfTheScannedCard == cardsScannedPlayerOne[i].id)
+                    {
+                        c = cardsScannedPlayerOne[i];
+                        cardsInfos.Add(c);
+                        cardsScannedPlayerOne.RemoveAt(i);
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < cardsScannedPlayerTwo.Count; i++)
+                {
+                    if (idOfTheScannedCard == cardsScannedPlayerTwo[i].id)
+                    {
+                        c = cardsScannedPlayerTwo[i];
+                        cardsInfos.Add(c);
+                        cardsScannedPlayerTwo.RemoveAt(i);
+                    }
+                }
+            }
+        }
         return c;  
+    }
+    
+    //A appeller lors de la fin du combat pour vider les nouvelles cartes
+    public void EmptyCardsAfterCombat()
+    {
+        cardsScannedPlayerOne.Clear();
+        cardsScannedPlayerTwo.Clear();
     }
 }
