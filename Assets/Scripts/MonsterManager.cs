@@ -49,7 +49,6 @@ public class MonsterManager : MonoBehaviour
 
     public void DestroyMonster()
     {
-        Debug.Log(monsterPreview.GetComponent<MonsterPreview>().model);
         Destroy(monsterPreview.GetComponent<MonsterPreview>().model);
     }
 

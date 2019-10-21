@@ -40,10 +40,9 @@ public class Player : MonoBehaviour
     [HideInInspector] public Adventurer currentAdventurer = null;
 
     private void Start()
-    {
-        ResetEquipment();
-        ResetAdventurer();
+    {        
         ResetStats();
+        ResetAdventurer();
         UpdateStatsUIPlayer();        
     }
 
@@ -235,7 +234,8 @@ public class Player : MonoBehaviour
     {
         for (int i = 0; i < equipmentGrid.transform.childCount; i++)
         {
-            Destroy(equipmentGrid.transform.GetChild(i).gameObject);
+            if (equipmentGrid.transform.GetChild(i).GetComponent<Stuff>() != null)
+                Destroy(equipmentGrid.transform.GetChild(i).gameObject);
         }
         equipmentDictionnary.Clear();
     }
@@ -252,18 +252,18 @@ public class Player : MonoBehaviour
 
     public void DisplayUIFight(int xValue)
     {
-        equipmentGrid.transform.DOMoveX(equipmentGrid.transform.position.x - (xValue*250), 1f);
-        adventurersGrid.transform.DOMoveX(equipmentGrid.transform.position.x - (xValue*250), 1f);
-        atkUI.transform.DOMoveY(atkUI.transform.position.y - 230, 1f).SetEase(Ease.OutBounce);
-        defUI.transform.DOMoveY(defUI.transform.position.y - 230, 1f).SetEase(Ease.OutBounce);
+        equipmentGrid.transform.DOMoveX(equipmentGrid.transform.position.x - (xValue*10), 1f);
+        adventurersGrid.transform.DOMoveX(equipmentGrid.transform.position.x - (xValue*10), 1f);
+        atkUI.transform.DOMoveY(atkUI.transform.position.y - 8, 1f).SetEase(Ease.OutBounce);
+        defUI.transform.DOMoveY(defUI.transform.position.y - 8, 1f).SetEase(Ease.OutBounce);
     }
 
     public void DisplayUIStats(int xValue)
     {
-        equipmentGrid.transform.DOMoveX(equipmentGrid.transform.position.x - (xValue*250), 1f);
-        adventurersGrid.transform.DOMoveX(equipmentGrid.transform.position.x - (xValue*250), 1f);
-        atkUI.transform.DOMoveY(atkUI.transform.position.y + 230, 1f).SetEase(Ease.OutBounce);
-        defUI.transform.DOMoveY(defUI.transform.position.y + 230, 1f).SetEase(Ease.OutBounce);
+        equipmentGrid.transform.DOMoveX(equipmentGrid.transform.position.x - (xValue*10), 1f);
+        adventurersGrid.transform.DOMoveX(equipmentGrid.transform.position.x - (xValue*10), 1f);
+        atkUI.transform.DOMoveY(atkUI.transform.position.y + 8, 1f).SetEase(Ease.OutBounce);
+        defUI.transform.DOMoveY(defUI.transform.position.y + 8, 1f).SetEase(Ease.OutBounce);
     }
 
     public void DisplayUIFight1V1()
@@ -304,9 +304,20 @@ public class Player : MonoBehaviour
 
     public void ResetStats()
     {
+        playerATKTotal = 0;
         playerATKNoElement = 0;
+        playerFireATK = 0;
+        playerIceATK = 0;
+        playerElectricATK = 0;
+
+        playerDEFTotal = 0;
         playerDEFNoElement = 0;
+        playerFireDEF = 0;
+        playerIceDEF = 0;
+        playerElectricDEF = 0;
+
         UpdateStatsUIPlayer();
+        ResetEquipment();        
     }
 
 

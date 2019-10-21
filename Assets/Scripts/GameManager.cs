@@ -132,15 +132,16 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator _Stats()
     {   
-        if (turn != 0)
-        {
-            player1.DisplayUIStats(-1); //to the right
-            player2.DisplayUIStats(1);//to the left
-        }
+       
+        Camera.main.transform.DOMove(cameraPositionStats, 1f).OnComplete(() => {
+            if (turn != 0)
+            {
+                player1.DisplayUIStats(-1); //to the right
+                player2.DisplayUIStats(1);//to the left
+            }
+        });
 
-        Camera.main.transform.DOMove(cameraPositionStats, 1f);
         monsterManager.monsterPreview.transform.DORotate(new Vector3(0, 0, 0), 1f);
-
         monsterManager.InstantiateMonster();
         
         player1.ResetStats();
@@ -160,9 +161,9 @@ public class GameManager : MonoBehaviour
         //START FIGHT
         player1.DisplayUIFight(1); //to the left
         player2.DisplayUIFight(-1);//to the right       
-        monsterUi.transform.DOMoveY(monsterUi.transform.position.y + 150, 0.5f);
+        monsterUi.transform.DOMoveY(monsterUi.transform.position.y + 5, 0.5f);
         monsterManager.monsterPreview.transform.DORotate(Quaternion.identity.eulerAngles + Vector3.up*90f, 1f);
-        textFight.gameObject.transform.DOLocalMoveY(textFight.gameObject.transform.position.y - 250f, 1).SetEase(Ease.OutBounce).SetLoops(2, LoopType.Yoyo).OnComplete(() =>
+        textFight.gameObject.transform.DOLocalMoveY(textFight.transform.position.y - 5f, 1).SetEase(Ease.OutBounce).SetLoops(2, LoopType.Yoyo).OnComplete(() =>
         {
             Camera.main.transform.DOLocalMoveY(cameraPositionFight.y, 0.5f).SetEase(Ease.OutExpo);
             Camera.main.transform.DOLocalMoveZ(cameraPositionFight.z, 0.5f).SetEase(Ease.OutExpo);
@@ -172,8 +173,9 @@ public class GameManager : MonoBehaviour
 
         //PLAYER1 FIGHT
         Camera.main.transform.DOLocalMoveX(cameraPositionFight.x - 4.5f, 1f);
-        monsterManager.monsterPreview.transform.DORotate(new Vector3(0, -240, 0), 1f);
-        monsterUi.transform.DOMoveY(monsterUi.transform.position.y - 150, 0.5f);
+        monsterManager.monsterPreview.transform.DORotate(new Vector3(0, -5, 0), 1f);
+        monsterUi.transform.DOMoveY(monsterUi.transform.position.y - 5, 0.5f);
+
         //yield return StartCoroutine(fightManager.StartFightPlayer1());
         yield return new WaitForSeconds(2);
 
