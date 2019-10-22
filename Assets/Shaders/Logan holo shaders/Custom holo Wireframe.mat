@@ -89,7 +89,7 @@ Material:
     - _Surface: 0
     - _UVSec: 0
     - _WireSmoothness: 5.57
-    - _WireThickness: 0
+    - _WireThickness: 79
     - _WorkflowMode: 1
     - _ZWrite: 1
     - __dirty: 0
@@ -102,4 +102,4 @@ Material:
     - _FresnelColor: {r: 0, g: 1.2006853, b: 1.6048764, a: 0}
     - _PulseColor: {r: 2.680933, g: 2.79544, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _WireColor: {r: 0, g: 7.212459, b: 12.996035, a: 0.3764706}
+    - _WireColor: {r: 0, g: 1.3505688, b: 2.433572, a: 0.72156864}
