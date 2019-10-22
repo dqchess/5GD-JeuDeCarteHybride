@@ -32,6 +32,7 @@ public class ExcelManager : MonoBehaviour
 
     void Start()
     {
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
         TextAsset cardsData = Resources.Load<TextAsset>("cardsdata");
 
         data = cardsData.text.Split(new char[] { '\n' });
@@ -73,16 +74,11 @@ public class ExcelManager : MonoBehaviour
         {
             if (id == cardsScannedPlayerOne[i].id)
             {
-                if (cardsScannedPlayerOne.Count == MaxStuff)
-                {
-                    //TropDeCarteScanner
-                    print("ERROR 2 : Too many scanned cards for player 1");
-                }
                 foundInCardsInfos = false;
                 return foundInCardsInfos;
             }
         }
-        for (int i =0; i< cardsInfos.Count; i++)
+        for (int i = 0; i < cardsInfos.Count; i++)
         {
             if (id == cardsInfos[i].id)
             {
@@ -102,11 +98,6 @@ public class ExcelManager : MonoBehaviour
         {
             if (id == cardsScannedPlayerTwo[i].id)
             {
-                if (cardsScannedPlayerTwo.Count == MaxStuff)
-                {
-                    //TropDeCarteScanner
-                    print("ERROR 3 : Too many scanned cards for player 2");
-                }
                 foundInCardsInfos = false;
                 return foundInCardsInfos;
             }
@@ -123,14 +114,11 @@ public class ExcelManager : MonoBehaviour
         return foundInCardsInfos;
     }
 
-
-
-
-    public CardsInformations GetInfosOfTheCard (string idOfTheScannedCard, int player)
+    public CardsInformations GetInfosOfTheCard(string idOfTheScannedCard, int player)
     {
         CardsInformations c = new CardsInformations();
         bool cardAlreadyFound = false;
-        for (int i =0; i<cardsInfos.Count; i++)
+        for (int i = 0; i < cardsInfos.Count; i++)
         {
             if (idOfTheScannedCard == cardsInfos[i].id)
             {
@@ -138,16 +126,36 @@ public class ExcelManager : MonoBehaviour
                 cardAlreadyFound = true;
                 if (player == 1)
                 {
+                    if (c.name.Contains("aventurer"))
+                    {
+                        return c;
+                    }
+                    if (cardsScannedPlayerOne.Count == MaxStuff)
+                    {
+                        print("ERROR 4 : Too Many Scanned Card For Player 1");
+                        return null;
+                    }
+
                     cardsScannedPlayerOne.Add(c);
                 }
                 else
                 {
+                    if (c.name.Contains("aventurer"))
+                    {
+                        return c;
+                    }
+                    if (cardsScannedPlayerTwo.Count == MaxStuff)
+                    {
+                        print("ERROR 5 : Too Many Scanned Card For Player 2");
+                        return null;
+                    }
+
                     cardsScannedPlayerTwo.Add(c);
                 }
                 cardsInfos.RemoveAt(i);
 
                 break;
-            }           
+            }
         }
 
         if (cardAlreadyFound == false)
@@ -177,9 +185,9 @@ public class ExcelManager : MonoBehaviour
                 }
             }
         }
-        return c;  
+        return c;
     }
-    
+
     //A appeller lors de la fin du combat pour vider les nouvelles cartes
     public void EmptyCardsAfterCombat()
     {
