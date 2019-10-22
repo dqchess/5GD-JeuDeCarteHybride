@@ -217,6 +217,7 @@ public class GameManager : MonoBehaviour
                 b = true;
                 monsterManager.def -= player1.playerATKTotal;
                 monsterManager.UpdateUIMonster();
+                monsterManager.textDefMonsterStat.GetComponent<RectTransform>().DOScale(monsterManager.textDefMonsterStat.GetComponent<RectTransform>().transform.localScale * 1.5f, 0.2f).SetLoops(2, LoopType.Yoyo);
             }
         });
         yield return new WaitForSeconds(1f);
@@ -239,6 +240,7 @@ public class GameManager : MonoBehaviour
                 b = true;
                 player1.playerDEFTotal -= monsterManager.atk;
                 player1.UpdateStatsUIPlayer();
+                player1.textDefPlayerStats.GetComponent<RectTransform>().DOScale(player1.textDefPlayerStats.GetComponent<RectTransform>().transform.localScale * 1.5f, 0.2f).SetLoops(2, LoopType.Yoyo);
             }
         });
 

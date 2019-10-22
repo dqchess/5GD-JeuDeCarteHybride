@@ -272,7 +272,7 @@ public class Player : MonoBehaviour
         adventurerFight.GetComponent<Adventurer>().points = currentAdventurer.points;
         adventurerFight.GetComponent<Adventurer>().UpdateUIAdventurer();
 
-        adventurerFight.transform.DOMoveY(adventurerFight.transform.position.y + 4, 1f);
+        adventurerFight.transform.DOMoveY(adventurerFight.transform.position.y + 5, 1f);
     }
 
     public void DisplayUIStats(int xValue)

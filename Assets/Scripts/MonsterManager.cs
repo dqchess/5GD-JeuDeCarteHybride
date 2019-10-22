@@ -153,8 +153,8 @@ public class MonsterManager : MonoBehaviour
 
     public IEnumerator DisplayRandomAtk()
     {
-        RectTransform rectMin = textMinAtkMonsterStats.GetComponent<RectTransform>();
-        RectTransform rectMax = textMaxAtkMonsterStats.GetComponent<RectTransform>();
+        Vector3 rectMin = textMinAtkMonsterStats.GetComponent<RectTransform>().position;
+        Vector3 rectMax = textMaxAtkMonsterStats.GetComponent<RectTransform>().position;
 
         textMinAtkMonsterStats.GetComponent<RectTransform>().DOShakeAnchorPos(1, 15,100);
         textMaxAtkMonsterStats.GetComponent<RectTransform>().DOShakeAnchorPos(1, 15, 100);
@@ -164,8 +164,8 @@ public class MonsterManager : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
         textMinAtkMonsterStats.gameObject.SetActive(false);
         textMaxAtkMonsterStats.gameObject.SetActive(false);
-        textMinAtkMonsterStats.gameObject.GetComponent<RectTransform>().position = rectMin.position;
-        textMaxAtkMonsterStats.gameObject.GetComponent<RectTransform>().position = rectMax.position;
+        textMinAtkMonsterStats.gameObject.GetComponent<RectTransform>().position = rectMin;
+        textMaxAtkMonsterStats.gameObject.GetComponent<RectTransform>().position = rectMax;
 
         textAtkMonsterStats.gameObject.SetActive(true);
 
