@@ -19,6 +19,18 @@ public class Player : MonoBehaviour
     public GameObject atkUI;
     public GameObject defUI;
 
+    [Header("Reward")]
+    public GameObject reward;
+    public GameObject honorPlayer;
+    public GameObject honorMonster;
+    public GameObject honorPlayerTotal;
+    public TMP_Text textHonorPlayer;
+    public TMP_Text textHonorMonster;
+    public TMP_Text textHonorPlayerTotal;
+
+    [Header("Punishment")]
+    public GameObject punishment;
+
     [Header("Other")]
     public GameObject model;
     public GameObject adventurerFight;
@@ -35,10 +47,14 @@ public class Player : MonoBehaviour
     public int playerIceDEF = 0;
     public int playerElectricDEF = 0;
 
+
+
     public Dictionary<string, Adventurer> adventurersDictionnary = new Dictionary<string, Adventurer>();
     private Dictionary<string, GameObject> equipmentDictionnary = new Dictionary<string, GameObject>();
 
     [HideInInspector] public Adventurer currentAdventurer = null;
+    [HideInInspector] public bool rewardBool = false;
+    [HideInInspector] public bool punishmentBool = false;
 
     private void Start()
     {        
@@ -169,18 +185,16 @@ public class Player : MonoBehaviour
 
             if (c.armorElement != "")
             {
-                Debug.Log("c.armorElement : " + c.armorElement);
                 switch (c.armorElement.Trim())
                 {
-                    case "fire": Debug.Log("NTM1"); playerFireDEF += int.Parse(c.armor); stuff.imageElementDef.sprite = GameManager.Instance.fireSprite; stuff.elementDef = Element.FIRE; break;
-                    case "ice": Debug.Log("NTM2"); playerIceDEF += int.Parse(c.armor); stuff.imageElementDef.sprite = GameManager.Instance.iceSprite; stuff.elementDef = Element.ICE; break;
-                    case "electric": Debug.Log("NTM3"); playerElectricDEF += int.Parse(c.armor); stuff.imageElementDef.sprite = GameManager.Instance.electricSprite; stuff.elementDef = Element.ELECTRIC; break;
-                    default: Debug.Log("FDP"); break;
+                    case "fire":  playerFireDEF += int.Parse(c.armor); stuff.imageElementDef.sprite = GameManager.Instance.fireSprite; stuff.elementDef = Element.FIRE; break;
+                    case "ice":  playerIceDEF += int.Parse(c.armor); stuff.imageElementDef.sprite = GameManager.Instance.iceSprite; stuff.elementDef = Element.ICE; break;
+                    case "electric": playerElectricDEF += int.Parse(c.armor); stuff.imageElementDef.sprite = GameManager.Instance.electricSprite; stuff.elementDef = Element.ELECTRIC; break;
+                    default: break;
                 }
             }
             else
             {
-                Debug.Log("c.armorElement" + c.armorElement);
                 playerDEFNoElement += int.Parse(c.armor);
             }
 
@@ -284,18 +298,26 @@ public class Player : MonoBehaviour
         adventurerFight.transform.DOMoveY(adventurerFight.transform.position.y + 5, 1f);
     }
 
+    public void UnshowUIFight(int xValue)
+    {
+        atkUI.transform.DOMoveY(atkUI.transform.position.y - 4, 0.5f).SetEase(Ease.OutSine);
+        defUI.transform.DOMoveY(defUI.transform.position.y - 4, 0.5f).SetEase(Ease.OutSine);
+        adventurerFight.transform.DOMoveY(adventurerFight.transform.position.y - 5, 1f);     
+        if (rewardBool)
+            reward.transform.DOMoveX(reward.transform.position.x + (7.5f * xValue), 0.5f).SetEase(Ease.OutSine);
+        if (punishmentBool)
+            punishment.transform.DOMoveX(punishment.transform.position.x + (7.5f * xValue), 0.5f).SetEase(Ease.OutSine);
+
+        rewardBool = false;
+        punishmentBool = false;
+    }
+
     public void DisplayUIStats(int xValue)
     {
         equipmentGrid.transform.DOMoveX(equipmentGrid.transform.position.x - (xValue*10), 1f);
         adventurersGrid.transform.DOMoveX(equipmentGrid.transform.position.x - (xValue*10), 1f);
-        atkUI.transform.DOMoveY(atkUI.transform.position.y + 8, 1f).SetEase(Ease.OutBounce);
-        defUI.transform.DOMoveY(defUI.transform.position.y + 8, 1f).SetEase(Ease.OutBounce);
-        adventurerFight.transform.DOMoveY(adventurerFight.transform.position.y - 5, 1f);
-    }
-
-    public void DisplayUIFight1V1()
-    {
-        
+        atkUI.transform.DOMoveY(atkUI.transform.position.y + 12, 1f).SetEase(Ease.OutSine);
+        defUI.transform.DOMoveY(defUI.transform.position.y + 12, 1f).SetEase(Ease.OutSine);
     }
 
     public void Die()

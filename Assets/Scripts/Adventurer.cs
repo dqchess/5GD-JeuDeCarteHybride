@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -22,8 +23,20 @@ public class Adventurer : MonoBehaviour
 
     public void UpdateUIAdventurer()
     {
-        textHp.text = hp.ToString();
-        textLevel.text = level.ToString();
-        textpoints.text = points.ToString();
+        if (textHp.text != hp.ToString())
+        {
+            textHp.gameObject.GetComponent<RectTransform>().DOScale(textHp.gameObject.GetComponent<RectTransform>().transform.localScale * 1.5f, 0.2f).SetLoops(2, LoopType.Yoyo);
+            textHp.text = hp.ToString();
+        }
+        if (textLevel.text != level.ToString())
+        {
+            textLevel.gameObject.GetComponent<RectTransform>().DOScale(textLevel.gameObject.GetComponent<RectTransform>().transform.localScale * 1.5f, 0.2f).SetLoops(2, LoopType.Yoyo);
+            textLevel.text = level.ToString();
+        }
+        if (textpoints.text != points.ToString())
+        {
+            textpoints.gameObject.GetComponent<RectTransform>().DOScale(textpoints.gameObject.GetComponent<RectTransform>().transform.localScale * 1.5f, 0.2f).SetLoops(2, LoopType.Yoyo);
+            textpoints.text = points.ToString();
+        }
     }
 }

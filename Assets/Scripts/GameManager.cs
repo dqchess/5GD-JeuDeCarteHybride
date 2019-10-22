@@ -76,7 +76,7 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Keypad6))
         {
             CardsInformations c = new CardsInformations("1.1", "megamassue", "5", "0", "electric", "");
-            player1.RemoveEquipment(c);
+            player2.AddEquipment(c);
         }
         if (Input.GetKeyDown(KeyCode.Keypad8))
         {
@@ -86,7 +86,7 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Keypad9))
         {
             CardsInformations c = new CardsInformations("1.2", "megaboubou", "0", "5", "", "electric");
-            player1.RemoveEquipment(c);
+            player2.AddEquipment(c);
         }
         if (Input.GetKeyDown(KeyCode.Keypad2))
         {
@@ -96,7 +96,7 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Keypad3))
         {
             CardsInformations c = new CardsInformations("1.3", "megaboubou", "8", "8", "ice", "electric");
-            player1.RemoveEquipment(c);
+            player2.AddEquipment(c);
         }
 
         if (Input.GetKeyDown(KeyCode.Keypad7))
@@ -165,7 +165,7 @@ public class GameManager : MonoBehaviour
         player2.DisplayUIBeforeFight(-1);//to the right       
         monsterUi.transform.DOMoveY(monsterUi.transform.position.y + 5, 0.5f);
         monsterManager.monsterPreview.transform.DORotate(Quaternion.identity.eulerAngles + Vector3.up*90f, 1f);
-        textFight.gameObject.transform.DOLocalMoveY(textFight.transform.position.y - 2f, 1).SetEase(Ease.OutBounce).SetLoops(2, LoopType.Yoyo).OnComplete(() =>
+        textFight.gameObject.transform.DOMoveY(textFight.transform.position.y - 4f, 1).SetEase(Ease.OutBounce).SetLoops(2, LoopType.Yoyo).OnComplete(() =>
         {
             Camera.main.transform.DOLocalMoveY(cameraPositionFight.y, 0.5f).SetEase(Ease.OutExpo);
             Camera.main.transform.DOLocalMoveZ(cameraPositionFight.z, 0.5f).SetEase(Ease.OutExpo);
@@ -175,29 +175,36 @@ public class GameManager : MonoBehaviour
 
         monsterUi.transform.DOMoveY(monsterUi.transform.position.y - 5, 0.5f);
 
-        //PLAYER1 FIGHT
-        player1.DisplayUIFight();
-        Camera.main.transform.DOLocalMoveX(cameraPositionFight.x - 4.5f, 1f);
+        //PLAYER1 FIGHT       
         monsterManager.monsterPreview.transform.DORotate(new Vector3(0, -240, 0), 1f);
+        Camera.main.transform.DOLocalMoveX(cameraPositionFight.x - 4.5f, 1f);
+        player1.DisplayUIFight();
 
         yield return new WaitForSeconds(1.5f);
+
         yield return StartCoroutine(monsterManager.DisplayRandomAtk());
+
         yield return new WaitForSeconds(1.5f);
 
-        yield return StartCoroutine(StartFightPlayer1());
-
-        //player1.UnshowUIFight();
+        yield return StartCoroutine(StartFightPlayer(player1));
 
         yield return new WaitForSeconds(2);
         monsterManager.SetMonsterStats(monsterManager.monsterStats);
+        player1.UnshowUIFight(-1);
+        yield return new WaitForSeconds(0.5f);
+
         //PLAYER2 FIGHT
         player2.DisplayUIFight();
         Camera.main.transform.DOLocalMoveX(cameraPositionFight.x + 4.5f, 1f);
         monsterManager.monsterPreview.transform.DORotate(new Vector3(0, 60, 0), 1f);
 
-        yield return StartCoroutine(StartFightPlayer2());
+        yield return new WaitForSeconds(1.5f);
 
-        //player2.UnshowUIFight();
+        yield return StartCoroutine(StartFightPlayer(player2));
+
+        yield return new WaitForSeconds(2f);
+
+        player2.UnshowUIFight(1);
 
         yield return new WaitForSeconds(2);
 
@@ -206,51 +213,105 @@ public class GameManager : MonoBehaviour
         yield return null;
     }
 
-    public IEnumerator StartFightPlayer1()
+    public IEnumerator StartFightPlayer(Player p)
     {
+        //I ATTACK THE MONSTER
         bool b = false;
-        player1.atkUI.GetComponent<RectTransform>().DOShakeAnchorPos(2, 15, 100);
+        p.atkUI.GetComponent<RectTransform>().DOShakeAnchorPos(2, 15, 100);
         yield return new WaitForSeconds(1.8f);
-        player1.atkUI.GetComponent<RectTransform>().DOMove(monsterManager.textDefMonsterStat.transform.position, 0.5f).SetEase(Ease.InBack).SetLoops(2,LoopType.Yoyo).OnStepComplete(() => {
+        p.atkUI.GetComponent<RectTransform>().DOMove(monsterManager.textDefMonsterStat.transform.position, 0.5f).SetEase(Ease.InBack).SetLoops(2,LoopType.Yoyo).OnStepComplete(() => {
             if (!b)
             {
                 b = true;
-                monsterManager.def -= player1.playerATKTotal;
+                monsterManager.def -= p.playerATKTotal;
                 monsterManager.UpdateUIMonster();
                 monsterManager.textDefMonsterStat.GetComponent<RectTransform>().DOScale(monsterManager.textDefMonsterStat.GetComponent<RectTransform>().transform.localScale * 1.5f, 0.2f).SetLoops(2, LoopType.Yoyo);
             }
         });
         yield return new WaitForSeconds(1f);
 
-        if (monsterManager.def > 0)
+        if (monsterManager.def > 0) //le montre n'a pas été tué
         {
-            //CHANCE DE CRIT SA MERE SALLLLLLLEEEEEEEEEEEEEEEEEE
+            
         }
-        else if (monsterManager.def <= 0)
+        else if (monsterManager.def <= 0) //le monstre été tué
         {
-            //ATK NORMALE
+            if (p == player1)
+                yield return StartCoroutine(DisplayReward(p, 1));
+            else if(p == player2)
+                yield return StartCoroutine(DisplayReward(p, -1));
         }
+        yield return new WaitForSeconds(1f);
 
+        //THE MONSTER ATTACK ME
         b = false;
         monsterManager.atkUI.GetComponent<RectTransform>().DOShakeAnchorPos(2, 15, 100);
         yield return new WaitForSeconds(1.8f);
-        monsterManager.atkUI.GetComponent<RectTransform>().DOMove(player1.defUI.transform.position, 0.5f).SetEase(Ease.InBack).SetLoops(2, LoopType.Yoyo).OnStepComplete(() => {
+        monsterManager.atkUI.GetComponent<RectTransform>().DOMove(p.defUI.transform.position, 0.5f).SetEase(Ease.InBack).SetLoops(2, LoopType.Yoyo).OnStepComplete(() => {
             if (!b)
             {
                 b = true;
-                player1.playerDEFTotal -= monsterManager.atk;
-                player1.UpdateStatsUIPlayer();
-                player1.textDefPlayerStats.GetComponent<RectTransform>().DOScale(player1.textDefPlayerStats.GetComponent<RectTransform>().transform.localScale * 1.5f, 0.2f).SetLoops(2, LoopType.Yoyo);
+                p.playerDEFTotal -= monsterManager.atk;
+                p.UpdateStatsUIPlayer();
+                p.textDefPlayerStats.GetComponent<RectTransform>().DOScale(p.textDefPlayerStats.GetComponent<RectTransform>().transform.localScale * 1.5f, 0.2f).SetLoops(2, LoopType.Yoyo);
             }
         });
 
+        yield return new WaitForSeconds(1f);
+
+        if (p.playerDEFTotal > 0) //je n'ai pas été tué
+        {
+
+        }
+        else if (p.playerDEFTotal <= 0) //j'ai été tué 
+        {
+            if (p == player1)
+                yield return StartCoroutine(DisplayPunishment(p, 1));
+            else if (p == player2)
+                yield return StartCoroutine(DisplayPunishment(p, -1));
+        }
+
+
         yield return null;
     }
 
-    public IEnumerator StartFightPlayer2()
+    private IEnumerator DisplayReward(Player p, int xValue)
     {
+        p.rewardBool = true;
+        p.reward.transform.DOMoveX(p.reward.transform.position.x + (7.5f * xValue), 0.5f).SetEase(Ease.OutBounce);
+        p.textHonorPlayer.text = p.currentAdventurer.level.ToString();
+        p.textHonorMonster.text = monsterManager.honor.ToString();
+        p.textHonorPlayerTotal.text = (p.currentAdventurer.level * monsterManager.honor).ToString();
+
+        p.adventurerFight.GetComponent<Adventurer>().points += (p.currentAdventurer.level * monsterManager.honor);
+        p.adventurerFight.GetComponent<Adventurer>().level += 1;
+
+        p.currentAdventurer.points += (p.currentAdventurer.level * monsterManager.honor);
+        p.currentAdventurer.level += 1;
+
+        yield return new WaitForSeconds(1f);
+        p.currentAdventurer.UpdateUIAdventurer();
+        p.adventurerFight.GetComponent<Adventurer>().UpdateUIAdventurer();
+
         yield return null;
     }
+
+    private IEnumerator DisplayPunishment(Player p, int xValue)
+    {
+        p.punishmentBool = true;
+        p.punishment.transform.DOMoveX(p.reward.transform.position.x + (7.5f * xValue), 0.5f).SetEase(Ease.OutBounce);
+        
+        p.adventurerFight.GetComponent<Adventurer>().hp -= 1;
+
+        p.currentAdventurer.hp -= 1;
+
+        yield return new WaitForSeconds(1f);
+        p.currentAdventurer.UpdateUIAdventurer();
+        p.adventurerFight.GetComponent<Adventurer>().UpdateUIAdventurer();
+
+        yield return null;
+    }
+
 
     public void EndFight()
     {
