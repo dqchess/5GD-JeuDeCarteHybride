@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
 
     [Header("Other")]
     public GameObject model;
+    public GameObject adventurerFight;
 
     public int playerATKTotal = 0;
     public int playerATKNoElement = 0;
@@ -45,7 +46,6 @@ public class Player : MonoBehaviour
         ResetAdventurer();
         UpdateStatsUIPlayer();        
     }
-
 
     private void Update()
     {
@@ -250,12 +250,29 @@ public class Player : MonoBehaviour
         adventurersDictionnary.Clear();
     }
 
-    public void DisplayUIFight(int xValue)
+    public void DisplayUIBeforeFight(int xValue)
     {
         equipmentGrid.transform.DOMoveX(equipmentGrid.transform.position.x - (xValue*10), 1f);
         adventurersGrid.transform.DOMoveX(equipmentGrid.transform.position.x - (xValue*10), 1f);
-        atkUI.transform.DOMoveY(atkUI.transform.position.y - 8, 1f).SetEase(Ease.OutBounce);
-        defUI.transform.DOMoveY(defUI.transform.position.y - 8, 1f).SetEase(Ease.OutBounce);
+        atkUI.SetActive(false);
+        defUI.SetActive(false);
+        atkUI.transform.DOMoveY(atkUI.transform.position.y - 12, 1f);
+        defUI.transform.DOMoveY(defUI.transform.position.y - 12, 1f);
+    }
+
+    public void DisplayUIFight()
+    {
+        atkUI.SetActive(true);
+        defUI.SetActive(true);
+        atkUI.transform.DOMoveY(atkUI.transform.position.y +4, 1f).SetEase(Ease.OutSine);
+        defUI.transform.DOMoveY(defUI.transform.position.y +4, 1f).SetEase(Ease.OutSine);
+
+        adventurerFight.GetComponent<Adventurer>().hp = currentAdventurer.hp;
+        adventurerFight.GetComponent<Adventurer>().level = currentAdventurer.level;
+        adventurerFight.GetComponent<Adventurer>().points = currentAdventurer.points;
+        adventurerFight.GetComponent<Adventurer>().UpdateUIAdventurer();
+
+        adventurerFight.transform.DOMoveY(adventurerFight.transform.position.y + 4, 1f);
     }
 
     public void DisplayUIStats(int xValue)
@@ -264,6 +281,7 @@ public class Player : MonoBehaviour
         adventurersGrid.transform.DOMoveX(equipmentGrid.transform.position.x - (xValue*10), 1f);
         atkUI.transform.DOMoveY(atkUI.transform.position.y + 8, 1f).SetEase(Ease.OutBounce);
         defUI.transform.DOMoveY(defUI.transform.position.y + 8, 1f).SetEase(Ease.OutBounce);
+        adventurerFight.transform.DOMoveY(adventurerFight.transform.position.y - 5, 1f);
     }
 
     public void DisplayUIFight1V1()

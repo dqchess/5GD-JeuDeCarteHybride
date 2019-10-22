@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4704216721846944374}
   - component: {fileID: 1105903696764651187}
   m_Layer: 5
-  m_Name: SummaryHPValue
+  m_Name: HPValue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -169,7 +169,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5499465756965325158}
   m_Layer: 5
-  m_Name: HonorMultiplicator
+  m_Name: Points
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -245,7 +245,7 @@ GameObject:
   - component: {fileID: 4759344158021871356}
   - component: {fileID: 2247490227706748980}
   m_Layer: 5
-  m_Name: HonorValue
+  m_Name: LevelValue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -404,7 +404,7 @@ GameObject:
   - component: {fileID: 1661479780616398939}
   - component: {fileID: 7722013096912806259}
   m_Layer: 5
-  m_Name: HonorMultiplicatorImage
+  m_Name: PointsImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -476,7 +476,7 @@ GameObject:
   - component: {fileID: 2956417464241660439}
   - component: {fileID: 2555949615377311623}
   m_Layer: 5
-  m_Name: HonorImage
+  m_Name: LevelImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -646,7 +646,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: -1.43}
+  m_AnchoredPosition: {x: 0, y: -1.4299927}
   m_SizeDelta: {x: 51.47, y: 97.52}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2489287677913777956
@@ -674,6 +674,9 @@ MonoBehaviour:
   level: 1
   honorRatio: 1
   points: 0
+  textHp: {fileID: 1105903696764651187}
+  textLevel: {fileID: 2247490227706748980}
+  textpoints: {fileID: 3954766954777790582}
 --- !u!1 &7283212220699490514
 GameObject:
   m_ObjectHideFlags: 0
@@ -686,7 +689,7 @@ GameObject:
   - component: {fileID: 1425928705350949743}
   - component: {fileID: 3954766954777790582}
   m_Layer: 5
-  m_Name: HonorMultiplicatorValue
+  m_Name: PointsValue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -917,7 +920,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7536412881708586724}
   m_Layer: 5
-  m_Name: Honor
+  m_Name: Level
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

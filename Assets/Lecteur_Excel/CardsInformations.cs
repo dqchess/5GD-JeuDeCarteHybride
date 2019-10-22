@@ -20,6 +20,6 @@ public class CardsInformations
         this.armor = armor;
         this.damageElement = damageElement;
         this.armorElement = armorElement;
-    }
+    } 
     public CardsInformations() { }
 }

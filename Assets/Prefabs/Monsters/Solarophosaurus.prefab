@@ -210,8 +210,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterName: Solarophosaurus
-  monsterMinATK: 5
-  monsterMaxATK: 8
+  monsterMinATK: 2
+  monsterMaxATK: 25
   monsterHP: 12
   monsterLoot: 6
   monsterHonor: 800
