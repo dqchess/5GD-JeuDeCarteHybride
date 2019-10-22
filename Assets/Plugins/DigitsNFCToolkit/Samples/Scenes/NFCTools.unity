@@ -1342,7 +1342,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 206}
+  m_AnchoredPosition: {x: 0, y: 352}
   m_SizeDelta: {x: 320, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &111928935
@@ -6848,7 +6848,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -150}
+  m_AnchoredPosition: {x: 0, y: 154}
   m_SizeDelta: {x: 758.18, y: 307.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &962672243
@@ -11596,7 +11596,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1814761081
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12982,7 +12982,7 @@ PrefabInstance:
     - target: {fileID: 6912523055336758992, guid: 13cce2b07c9234541b412718edb36534,
         type: 3}
       propertyPath: remoteHost
-      value: 10.66.126.152
+      value: 102.125
       objectReference: {fileID: 0}
     - target: {fileID: 6912523055336758992, guid: 13cce2b07c9234541b412718edb36534,
         type: 3}

@@ -203,6 +203,7 @@ public class GameManager : MonoBehaviour
     {
         turn += 1;
         StartCoroutine(_EndFight());
+        ExcelManager.Instance.EmptyCardsAfterCombat();
     }
 
     private IEnumerator _EndFight()

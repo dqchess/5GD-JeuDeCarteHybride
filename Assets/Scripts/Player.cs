@@ -138,6 +138,7 @@ public class Player : MonoBehaviour
             }
             else if (c.armor != "0")
             {
+                Debug.Log("c.armor : " + c.armor);
                 equipment = Instantiate(GameManager.Instance.cardDefPrefab, equipmentGrid.transform);
                 //card.GetComponent<Stuff>().stuffImage.texture = c.texture;
                 equipment.GetComponent<Stuff>().textValueDef.text = c.armor;               
@@ -153,27 +154,35 @@ public class Player : MonoBehaviour
             //calculate different type of atk and def
             if (c.damageElement != "")
             {
-                switch (c.damageElement)
+                switch (c.damageElement.Trim())
                 {
                     case "fire": playerFireATK += int.Parse(c.damage); stuff.imageElementAtk.sprite = GameManager.Instance.fireSprite; stuff.elementAtk = Element.FIRE;  break;
                     case "ice": playerIceATK += int.Parse(c.damage); stuff.imageElementAtk.sprite = GameManager.Instance.iceSprite; stuff.elementAtk = Element.ICE; break;
                     case "electric": playerElectricATK += int.Parse(c.damage); stuff.imageElementAtk.sprite = GameManager.Instance.electricSprite; stuff.elementAtk = Element.ELECTRIC; break;
-                }
-            }
-            else 
-                playerATKNoElement += int.Parse(c.damage);
-
-            if (c.armorElement != "")
-            {
-                switch (c.armorElement)
-                {
-                    case "fire": playerFireDEF += int.Parse(c.armor); stuff.imageElementDef.sprite = GameManager.Instance.fireSprite; stuff.elementDef = Element.FIRE; break;
-                    case "ice": playerIceDEF += int.Parse(c.armor); stuff.imageElementDef.sprite = GameManager.Instance.iceSprite; stuff.elementDef = Element.ICE; break;
-                    case "electric": playerElectricDEF += int.Parse(c.armor); stuff.imageElementDef.sprite = GameManager.Instance.electricSprite; stuff.elementDef = Element.ELECTRIC; break;
+                    
                 }
             }
             else
-                playerDEFNoElement += int.Parse(c.damage);
+            {
+                playerATKNoElement += int.Parse(c.damage);
+            }
+
+            if (c.armorElement != "")
+            {
+                Debug.Log("c.armorElement : " + c.armorElement);
+                switch (c.armorElement.Trim())
+                {
+                    case "fire": Debug.Log("NTM1"); playerFireDEF += int.Parse(c.armor); stuff.imageElementDef.sprite = GameManager.Instance.fireSprite; stuff.elementDef = Element.FIRE; break;
+                    case "ice": Debug.Log("NTM2"); playerIceDEF += int.Parse(c.armor); stuff.imageElementDef.sprite = GameManager.Instance.iceSprite; stuff.elementDef = Element.ICE; break;
+                    case "electric": Debug.Log("NTM3"); playerElectricDEF += int.Parse(c.armor); stuff.imageElementDef.sprite = GameManager.Instance.electricSprite; stuff.elementDef = Element.ELECTRIC; break;
+                    default: Debug.Log("FDP"); break;
+                }
+            }
+            else
+            {
+                Debug.Log("c.armorElement" + c.armorElement);
+                playerDEFNoElement += int.Parse(c.armor);
+            }
 
             //feedback atk or def is double
             if (stuff.elementAtk == GameManager.Instance.monsterManager.elementDef)

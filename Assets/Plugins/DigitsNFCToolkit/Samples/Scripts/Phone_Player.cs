@@ -21,7 +21,7 @@ public class Phone_Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
     }
 
     // Update is called once per frame
@@ -42,7 +42,7 @@ public class Phone_Player : MonoBehaviour
 
     public void ValidateAllStats()
     {
-        if (userNameInputField.text == "" || iPInputField.text == "")
+        if (iPInputField.text == "")
         {
             errorLogText.text += " Error 01 : TextEmpty";
             return;
@@ -50,7 +50,6 @@ public class Phone_Player : MonoBehaviour
 
         oscManager.RemoteHost = iPInputField.text;
 
-        sender.SendPlayerName(userNameInputField.text);
 
     }
 
