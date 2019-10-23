@@ -10,88 +10,88 @@ public class SoundManager : MonoBehaviour
 {
     [Header("FMOD Evenement")]
 
+    /*[EventRef]
+    public string gameBegin;*/
     [EventRef]
-    public string debutDeJeu;
+    public string monsterAppearance;
     [EventRef]
-    public string apparitionMonstre;
-    [EventRef]
-    public string debutNegociation;
+    public string negotiationBegin;
     [EventRef]
     public string scanPositif;
     [EventRef]
     public string scanNegatif;
     [EventRef]
-    public string equipementMateriel;
+    public string attachStuff;
     [EventRef]
-    public string desequipementMateriel;
+    public string deattachStuff;
     [EventRef]
-    public string validationEquipement;
+    public string validationStuff;
     [EventRef]
-    public string finDeNegociation;
+    public string endOfNegotiation;
     [EventRef]
-    public string lancementCombat;
+    public string lanchFight;
     [EventRef]
-    public string fouleVivante;
+    public string livingCrowd;
     [EventRef]
-    public string rugissementMonstre;
+    public string monsterCry;
     [EventRef]
-    public string attaque;
+    public string attack;
     [EventRef]
-    public string degatsRecu;
+    public string damageRecieve;
     [EventRef]
-    public string degatDeFeu;
+    public string fireDamage;
     [EventRef]
-    public string degatDeGlace;
+    public string iceDamage;
     [EventRef]
-    public string degatElectrique;
+    public string electricDamage;
     [EventRef]
-    public string ronronnementMachine;
+    public string idleMonster;
     [EventRef]
-    public string rugissementMonstreMort;
+    public string deadMonsterCry;
     [EventRef]
-    public string criDeVictoire;
+    public string victoryCry;
     [EventRef]
-    public string recuperationDuButin;
+    public string collectGold;
     [EventRef]
-    public string augmentationDeNiveau;
+    public string levelUping;
     [EventRef]
-    public string rugissementTriomphant;
+    public string monsterVictoryCry;
     [EventRef]
-    public string disparitionPersonnage;
+    public string deathOfGladiator;
     [EventRef]
-    public string hueeDeDefaite;
+    public string losingCrowd;
     [EventRef]
-    public string finDuCombat;
-    [EventRef]
-    public string finDuJeu;
+    public string endOfFight;
+    /*[EventRef]
+    public string endOfGame;*/
 
-    private EventInstance debutDeJeuInstance;
-    private EventInstance apparitionMonstreInstance;
-    private EventInstance debutNegociationInstance;
+    //private EventInstance gameBeginInstance;
+    private EventInstance monsterAppearanceInstance;
+    private EventInstance negotiationBeginInstance;
     private EventInstance scanPositifInstance;
     private EventInstance scanNegatifInstance;
-    private EventInstance equipementMaterielInstance;
-    private EventInstance desequipementMaterielInstance;
-    private EventInstance validationEquipementInstance;
-    private EventInstance finDeNegociationInstance;
-    private EventInstance lancementCombatInstance;
-    private EventInstance fouleVivanteInstance;
-    private EventInstance rugissementMonstreInstance;
-    private EventInstance attaqueInstance;
-    private EventInstance degatsRecuInstance;
-    private EventInstance degatDeFeuInstance;
-    private EventInstance degatDeGlaceInstance;
-    private EventInstance degatElectriqueInstance;
-    private EventInstance ronronnementMachineInstance;
-    private EventInstance rugissementMonstreMortInstance;
-    private EventInstance criDeVictoireInstance;
-    private EventInstance recuperationDuButinInstance;
-    private EventInstance augmentatonDeNiveauInstance;
-    private EventInstance rugissementTriomphantInstance;
-    private EventInstance disparitionPersonnageInstance;
-    private EventInstance hueeDeDefaiteInstance;
-    private EventInstance finDuCombatInstance;
-    private EventInstance finDuJeuInstance;
+    private EventInstance attachStuffInstance;
+    private EventInstance deattachStuffInstance;
+    private EventInstance validationStuffInstance;
+    private EventInstance endOfNegotiationInstance;
+    private EventInstance lanchFightInstance;
+    private EventInstance livingCrowdInstance;
+    private EventInstance monsterCryInstance;
+    private EventInstance attackInstance;
+    private EventInstance damageRecieveInstance;
+    private EventInstance fireDamageInstance;
+    private EventInstance iceDamageInstance;
+    private EventInstance electricDamageInstance;
+    private EventInstance idleMonsterInstance;
+    private EventInstance deadMonsterCryInstance;
+    private EventInstance victoryCryInstance;
+    private EventInstance collectGoldInstance;
+    private EventInstance levelUpingInstance;
+    private EventInstance monsterVictoryCryInstance;
+    private EventInstance deathOfGladiatorInstance;
+    private EventInstance losingCrowdInstance;
+    private EventInstance endOfFightInstance;
+    //private EventInstance endOfGameInstance;
 
 
     public static SoundManager instance;
@@ -108,64 +108,75 @@ public class SoundManager : MonoBehaviour
             return;
         }
 
-        debutDeJeuInstance = RuntimeManager.CreateInstance(debutDeJeu);
-        apparitionMonstreInstance = RuntimeManager.CreateInstance(apparitionMonstre);
-        debutNegociationInstance = RuntimeManager.CreateInstance(debutNegociation);
+        //gameBeginInstance = RuntimeManager.CreateInstance(gameBegin);
+        monsterAppearanceInstance = RuntimeManager.CreateInstance(monsterAppearance);
+        negotiationBeginInstance = RuntimeManager.CreateInstance(negotiationBegin);
         scanPositifInstance = RuntimeManager.CreateInstance(scanPositif);
         scanNegatifInstance = RuntimeManager.CreateInstance(scanNegatif);
-        equipementMaterielInstance = RuntimeManager.CreateInstance(equipementMateriel);
-        desequipementMaterielInstance = RuntimeManager.CreateInstance(desequipementMateriel);
-        validationEquipementInstance = RuntimeManager.CreateInstance(validationEquipement);
-        finDeNegociationInstance = RuntimeManager.CreateInstance(finDeNegociation);
-        lancementCombatInstance = RuntimeManager.CreateInstance(lancementCombat);
-        fouleVivanteInstance = RuntimeManager.CreateInstance(fouleVivante);
-        rugissementMonstreInstance = RuntimeManager.CreateInstance(rugissementMonstre);
-        attaqueInstance = RuntimeManager.CreateInstance(attaque);
-        degatsRecuInstance = RuntimeManager.CreateInstance(degatsRecu);
-        degatDeFeuInstance = RuntimeManager.CreateInstance(degatDeFeu);
-        degatDeGlaceInstance = RuntimeManager.CreateInstance(degatDeGlace);
-        degatElectriqueInstance = RuntimeManager.CreateInstance(degatElectrique);
-        ronronnementMachineInstance = RuntimeManager.CreateInstance(ronronnementMachine);
-        rugissementMonstreMortInstance = RuntimeManager.CreateInstance(rugissementMonstreMort);
-        criDeVictoireInstance = RuntimeManager.CreateInstance(criDeVictoire);
-        recuperationDuButinInstance = RuntimeManager.CreateInstance(recuperationDuButin);
-        augmentatonDeNiveauInstance = RuntimeManager.CreateInstance(augmentationDeNiveau);
-        rugissementTriomphantInstance = RuntimeManager.CreateInstance(rugissementTriomphant);
-        disparitionPersonnageInstance = RuntimeManager.CreateInstance(disparitionPersonnage);
-        hueeDeDefaiteInstance = RuntimeManager.CreateInstance(hueeDeDefaite);
-        finDuCombatInstance = RuntimeManager.CreateInstance(finDuCombat);
-        finDuJeuInstance = RuntimeManager.CreateInstance(finDuJeu);
+        attachStuffInstance = RuntimeManager.CreateInstance(attachStuff);
+        deattachStuffInstance = RuntimeManager.CreateInstance(deattachStuff);
+        validationStuffInstance = RuntimeManager.CreateInstance(validationStuff);
+        endOfNegotiationInstance = RuntimeManager.CreateInstance(endOfNegotiation);
+        lanchFightInstance = RuntimeManager.CreateInstance(lanchFight);
+        livingCrowdInstance = RuntimeManager.CreateInstance(livingCrowd);
+        monsterCryInstance = RuntimeManager.CreateInstance(monsterCry);
+        attackInstance = RuntimeManager.CreateInstance(attack);
+        damageRecieveInstance = RuntimeManager.CreateInstance(damageRecieve);
+        fireDamageInstance = RuntimeManager.CreateInstance(fireDamage);
+        iceDamageInstance = RuntimeManager.CreateInstance(iceDamage);
+        electricDamageInstance = RuntimeManager.CreateInstance(electricDamage);
+        idleMonsterInstance = RuntimeManager.CreateInstance(idleMonster);
+        deadMonsterCryInstance = RuntimeManager.CreateInstance(deadMonsterCry);
+        victoryCryInstance = RuntimeManager.CreateInstance(victoryCry);
+        collectGoldInstance = RuntimeManager.CreateInstance(collectGold);
+        levelUpingInstance = RuntimeManager.CreateInstance(levelUping);
+        monsterVictoryCryInstance = RuntimeManager.CreateInstance(monsterVictoryCry);
+        deathOfGladiatorInstance = RuntimeManager.CreateInstance(deathOfGladiator);
+        losingCrowdInstance = RuntimeManager.CreateInstance(losingCrowd);
+        endOfFightInstance = RuntimeManager.CreateInstance(endOfFight);
+        //endOfGameInstance = RuntimeManager.CreateInstance(endOfGame);
 
 
 
     }
 
 
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            MonsterSpawn();
+        }
+    }
 
+    //TODO
     /// <summary>
     /// Call it at the beginning of the game
     /// </summary>
     public void StartGame()
     {
-        debutDeJeuInstance.start();
+        //gameBeginInstance.start();
     }
 
+    //TODO:
     /// <summary>
     /// Call it when you spawn a new monster
     /// </summary>
     public void MonsterSpawn()
     {
-        apparitionMonstreInstance.start();
+        monsterAppearanceInstance.start();
     }
 
+    //TODO: 
     /// <summary>
     /// Call it when the fight is over or when the game begin
     /// </summary>
     public void NegociationBegin()
     {
-        debutNegociationInstance.start();
+        negotiationBeginInstance.start();
     }
 
+    //DONE
     /// <summary>
     /// Call it when the player scan and there is not error like too many cards on the player
     /// </summary>
@@ -174,6 +185,7 @@ public class SoundManager : MonoBehaviour
         scanPositifInstance.start();
     }
 
+    //DONE
     /// <summary>
     /// Call it when the player scan and there is an error like when the player scan a stuff card and there is already the max stuff attached to the player
     /// </summary>
@@ -182,188 +194,212 @@ public class SoundManager : MonoBehaviour
         scanNegatifInstance.start();
     }
 
+    //DONE
     /// <summary>
     /// Call it when the player have scan a stuff card and there is no error
     /// </summary>
     public void AttachedStuffToPlayer()
     {
-        equipementMaterielInstance.start();
+        attachStuffInstance.start();
     }
 
+    //DONE
     /// <summary>
     /// Call it when the player have scan a stuff already attach to the player
     /// </summary>
     public void DeattachedStuffToPlayer()
     {
-        desequipementMaterielInstance.start();
+        deattachStuffInstance.start();
     }
 
+    //DONE
     /// <summary>
     /// Call it when the player have scan the READY card
     /// </summary>
     public void ValidationStuff()
     {
-        validationEquipementInstance.start();
+        validationStuffInstance.start();
     }
 
+    //DONE
     /// <summary>
     /// Call it when both of the player are ready
     /// </summary>
     public void EndOfNegociation()
     {
-        finDeNegociationInstance.start();
+        endOfNegotiationInstance.start();
     }
 
+    //TODO: Gaby
     /// <summary>
     /// Call it just after the end of negociation sound
     /// </summary>
     public void LaunchFight()
     {
-        lancementCombatInstance.start();
+        lanchFightInstance.start();
     }
 
+    //TODO: Gaby
     /// <summary>
     /// Call it just after the end of launchFight sound
     /// </summary>
     public void BeginningOfTheFight()
     {
-        fouleVivanteInstance.start();
+        livingCrowdInstance.start();
     }
 
+    //TODO: Gaby
     /// <summary>
     /// Call it the animation of fight begin
     /// </summary>
     public void MonsterSoundBase()
     {
-        rugissementMonstreInstance.start();
+        monsterCryInstance.start();
     }
 
+    //TODO: Gaby
     /// <summary>
     /// Call it when in the animation, the both player and monster touch each other
     /// </summary>
     public void Attack()
     {
-        attaqueInstance.start();
+        attackInstance.start();
     }
 
+    //TODO:Gaby
     /// <summary>
     /// Call it when the player or the monster recieve neutral damage
     /// </summary>
     public void DamageDeal()
     {
-        degatsRecuInstance.start();
+        damageRecieveInstance.start();
     }
 
+
+    //TODO:Gaby
     /// <summary>
     /// Call it when the player or the monster recieve fire damage
     /// </summary>
     public void DamageFireDeal()
     {
-        degatDeFeuInstance.start();
+        fireDamageInstance.start();
     }
 
+    //TODO: Gaby
     /// <summary>
     /// Call it when the player or the monster recieve ice damage
     /// </summary>
     public void DamageIceDeal()
     {
-        degatDeGlaceInstance.start();
+        iceDamageInstance.start();
     }
 
+    //TODO: Gaby
     /// <summary>
     /// Call it when the player or the monster recieve electrical damage
     /// </summary>
     public void DamageElecDeal()
     {
-        degatElectriqueInstance.start();
+        electricDamageInstance.start();
     }
 
+    //TODO: Gaby
     /// <summary>
     /// Call it when the monster spawn
     /// </summary>
     public void IdleMonster()
     {
-        ronronnementMachineInstance.start();
+        idleMonsterInstance.start();
     }
 
+    //TODO : Gaby
     /// <summary>
     /// Call it when the monster die
     /// </summary>
     public void StopIdleMonster()
     {
-        ronronnementMachineInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        idleMonsterInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
     }
 
+    //TODO: Gaby
     /// <summary>
     /// Call it when the monster die
     /// </summary>
     public void MonsterScream()
     {
-        rugissementMonstreMortInstance.start();
+        deadMonsterCryInstance.start();
     }
 
+    //TODO: Gaby
     /// <summary>
     /// Call it when the monster die
     /// </summary>
     public void VictoryCry()
     {
-        criDeVictoireInstance.start();
+        victoryCryInstance.start();
     }
 
+    //TODO: Gaby
     /// <summary>
     /// Call il when the gold appears on the screen
     /// </summary>
     public void GetTheGold()
     {
-        recuperationDuButinInstance.start();
+        collectGoldInstance.start();
     }
 
+    //TODO: Gaby
     /// <summary>
     /// Call it when the gladiator level up
     /// </summary>
     public void LevelUping()
     {
-        augmentatonDeNiveauInstance.start();
+        levelUpingInstance.start();
     }
 
+    //TODO: Gaby
     /// <summary>
     /// Call it when the monster win the fight
     /// </summary>
     public void TriumphantCry()
     {
-        rugissementTriomphantInstance.start();
+        monsterVictoryCryInstance.start();
     }
 
+    //TODO: Gaby
     /// <summary>
     /// Call it when a gladiator die
     /// </summary>
     public void DeathOfTheGladiator()
     {
-        disparitionPersonnageInstance.start();
+        deathOfGladiatorInstance.start();
     }
 
+    //TODO: Gaby
     /// <summary>
     /// Call it the gladiator loose the fight
     /// </summary>
     public void LoosingTheFight()
     {
-        hueeDeDefaiteInstance.start();
+        losingCrowdInstance.start();
     }
 
+    //TODO: Gaby
     /// <summary>
     /// Call it when a fight finish
     /// </summary>
     public void EndOfTheFight()
     {
-        finDuCombatInstance.start();
+        endOfFightInstance.start();
     }
 
+    //TODO
     /// <summary>
     /// Call it when the last monster got defeated
     /// </summary>
     public void EndOfTheGame()
     {
-        finDuJeuInstance.start();
+        //endOfGameInstance.start();
     }
 
 

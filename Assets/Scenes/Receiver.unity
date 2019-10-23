@@ -2786,6 +2786,7 @@ GameObject:
   - component: {fileID: 751810433}
   - component: {fileID: 751810432}
   - component: {fileID: 751810435}
+  - component: {fileID: 751810436}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2869,6 +2870,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdcd06815c47d30489f70df42db56a48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &751810436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 751810431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ListenerNumber: -1
 --- !u!1 &752918540
 GameObject:
   m_ObjectHideFlags: 0
@@ -6430,6 +6444,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 231d90e624f81cc41899f96befc35276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monsterAppearance: "event:/Phase n\xE9gociation/ApparitionMonstre"
+  negotiationBegin: "event:/Phase n\xE9gociation/LancementN\xE9gociation"
+  scanPositif: "event:/Phase n\xE9gociation/ActionPositive"
+  scanNegatif: "event:/Phase n\xE9gociation/ActionNegative"
+  attachStuff: "event:/Phase n\xE9gociation/EquiperObjet"
+  deattachStuff: "event:/Phase n\xE9gociation/EnleverObjet"
+  validationStuff: "event:/Phase n\xE9gociation/ValidationMateriel"
+  endOfNegotiation: "event:/Phase n\xE9gociation/FinNegociation"
+  lanchFight: event:/Phase de combat/LancementCombat
+  livingCrowd: event:/Phase de combat/FouleVictoire
+  monsterCry: event:/Phase de combat/RugissementMonstre
+  attack: "event:/Phase de combat/CoupDonn\xE9"
+  damageRecieve: event:/Phase de combat/CoupRecu
+  fireDamage: event:/Phase de combat/DegatFeu
+  iceDamage: event:/Phase de combat/DegatGlace
+  electricDamage: event:/Phase de combat/DegatGlace
+  idleMonster: event:/Phase de combat/IdleRobot
+  deadMonsterCry: event:/Phase de combat/MortMonstre
+  victoryCry: event:/Phase de combat/FouleVictoire
+  collectGold: event:/Phase de combat/ButinCombat
+  levelUping: event:/Phase de combat/GainNiveau
+  monsterVictoryCry: event:/Phase de combat/VictoireMonstre
+  deathOfGladiator: event:/Phase de combat/MortPersonnage
+  losingCrowd: event:/Phase de combat/FouleDefaite
+  endOfFight: event:/Phase de combat/FinCombat
 --- !u!4 &2114393924
 Transform:
   m_ObjectHideFlags: 0

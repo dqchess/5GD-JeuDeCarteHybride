@@ -32,6 +32,7 @@ public class Receiver : MonoBehaviour
             GameManager.Instance.Fight();
             playerOneReady = false;
             playerTwoReady = false;
+            SoundManager.instance.EndOfNegociation();
         }
     }
 
@@ -53,6 +54,7 @@ public class Receiver : MonoBehaviour
             {
                 //Met Le joueur pret/non pret
                 playerOneReady = !playerOneReady;
+                SoundManager.instance.ValidationStuff();
                 return;
             }
 
@@ -91,6 +93,7 @@ public class Receiver : MonoBehaviour
             if (id == "RDY")
             {
                 //Met Le joueur pret/non pret
+                SoundManager.instance.ValidationStuff();
                 playerTwoReady = !playerTwoReady;
                 return;
             }
