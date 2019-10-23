@@ -126,7 +126,7 @@ public class ExcelManager : MonoBehaviour
                 cardAlreadyFound = true;
                 if (player == 1)
                 {
-                    if (c.name.Contains("aventurer"))
+                    if (c.name.Contains("Aventurer"))
                     {
                         SoundManager.instance.PositifScan();
                         return c;
@@ -144,7 +144,7 @@ public class ExcelManager : MonoBehaviour
                 }
                 else
                 {
-                    if (c.name.Contains("aventurer"))
+                    if (c.name.Contains("Aventurer"))
                     {
                         SoundManager.instance.PositifScan();
                         return c;

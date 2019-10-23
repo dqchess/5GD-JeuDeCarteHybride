@@ -58,15 +58,16 @@ public class Receiver : MonoBehaviour
                 return;
             }
 
-            if (c.name.Contains("aventurer") == true)
+            if (c.name.Contains("Aventurer") == true)
             {
-                //Recuperer les infos de l'aventurier et mettre le joueur 1 en PRET
+                //Recuperer les infos de l'aventurier
                 GameManager.Instance.player1.ScanAdventurer(c.id);
                 print("Adventurer Scanned");
                 return;
             }
             else
             {
+                //Verifie la position de la carte scanné dans les listes et assigne la fonction correspondante
                 if (ExcelManager.Instance.IsMyCardScannedPlayerOne(id) == true)
                 {
                     GameManager.Instance.player1.RemoveEquipment(c);
@@ -102,13 +103,14 @@ public class Receiver : MonoBehaviour
 
             if (c.name.Contains("aventurer") == true)
             {
-                //Recuperer les infos de l'aventurier et mettre le joueur 2 en PRET
+                //Recuperer les infos de l'aventurier
                 GameManager.Instance.player2.ScanAdventurer(c.id);
                 print("Adventurer Scanned");
 
             }
             else
             {
+                //Verifie la position de la carte scanné dans les listes et assigne la fonction correspondante
                 if (ExcelManager.Instance.IsMyCardScannedPlayerTwo(id) == true)
                 {
                     GameManager.Instance.player2.RemoveEquipment(c);
