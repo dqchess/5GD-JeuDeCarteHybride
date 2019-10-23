@@ -1,51 +1,56 @@
 ﻿ID;NAME;DAMAGE;ARMOR;DAMAGE ELEMENT;ARMOR ELEMENT
-1.1;Saggaie;2;0;fire;ice
-2.1;Gourdin;2;0;fire;ice
-3.1;Baton affuté;2;0;fire;ice
-4.1;Marteau en silex;2;0;fire;ice
-5.1;épee primitive;2;0;fire;ice
-6.1;Lance sauvage;2;0;fire;ice
-7.1;Sarbacane;2;0;fire;ice
-8.1;Lance pierre;2;0;fire;ice
-9.1;Fouet en liane;2;0;fire;ice
-10.1;Arc simple;4;0;fire;ice
-11.1;Gourdin Ionique;4;0;fire;ice
-12.1;Arc laser;4;0;fire;ice
-13.1;Bazoolex/Pistolex;4;0;fire;ice
-14.1;Fusarbalète;6;0;fire;ice
-15.1;Lance foreuse;6;0;fire;ice
-16.1;Double Uzi;10;0;fire;ice
-17.1;AK-4000;?;0;fire;ice
-18.1;Tazer;?;0;fire;ice
-19.1;Gatling Maxell;?;0;fire;ice
-20.1;Tenue de cuir tannée;0;2;fire;electric
-21.1;Armure en cuir clouté;0;2;fire;electric
-22.1;Cage en fer;0;2;fire;electric
-23.1;Protection en fer rouillé;0;2;fire;electric
-24.1;Cuirasse en bois et liane;0;2;fire;electric
-25.1;Protection en fourrure;0;2;fire;electric
-26.1;Tenue en sac de terre;0;2;fire;electric
-27.1;Plaque de métal;0;2;fire;electric
-28.1;Plastron en peaux;0;2;fire;electric
-29.1;Tenue en os de monstre;0;2;fire;electric
-30.1;Cotte de maille;0;2;fire;electric
-31.1;Armure de métal poli;0;2;fire;electric
-32.1;Protection en pneu;0;2;fire;electric
-33.1;Tenue en cuir de monstre;0;2;fire;electric
-34.1;Uniforme avec écailles;0;2;fire;electric
-35.1;Gilet pare balle;0;2;fire;electric
-36.1;Tenue anti émeute;0;2;fire;electric
-37.1;Armure de combat;0;2;fire;electric
-38.1;Super armure énergétique;0;2;fire;electric
+1.1;Arc Primitif;1;0;;
+2.1;Gourdin;1;0;;
+3.1;Sarbacane;1;0;;
+4.1;Lance-pierre;1;0;;
+5.1;Arc laser;2;0;;
+6.1;Gourdin éléctrique;2;0;;
+7.1;Sarbacane éclair;2;0;;
+8.1;Lanceur énergétique;2;0;;
+9.1;Lance à impulsion;2;0;;
+10.1;Arc à plasma;4;0;;
+11.1;Massue radion;4;0;;
+12.1;Canon sarbacane;4;0;;
+13.1;Lance-atome;4;0;;
+14.1;Lance thermique;4;0;;
+15.1;Arc à impulsion quantique;8;0;;
+16.1;Marteau à phazon;8;0;;
+17.1;Sarbacane railgun;8;0;;
+18.1;Lanceur multi-spectre;8;0;;
+19.1;Lance turbo penetrateur;8;0;;
+20.1;Armure de fourrure;0;1;;
+21.1;Armure d'écorce et de liane;0;1;;
+22.1;Tenue en cuir;0;1;;
+23.1;Armure en os;0;1;;
+24.1;Tenue en morceaux de monstre;0;1;;
+25.1;Fourrure de gros monstres;0;2;;
+26.1;Armure de chêne métalisé;0;2;;
+27.1;Armure en crâne de monstre;0;2;;
+28.1;Tenue en morceau de robot;0;2;;
+29.1;Armure en fourrure énergétique;0;2;;
+30.1;Armure en cuir tesla;0;4;;
+31.1;Armure en os à ion;0;4;;
+32.1;Armure en morceaux plasmique;0;4;;
+33.1;Tenue en fourrure radioactive;0;4;;
+34.1;Armure en bois à fusion;0;4;;
+35.1;Tenue en cuir à radion;0;8;;
+36.1;Armure en os atomique;0;8;;
+37.1;Armure en partie d'uranium;0;8;;
+38.1;Fourrure de chat quantique;0;8;;
+39.1;Armure ionisé;0;8;;
 ;;;;;
-100;aventurer : Ludivine Graziani;0;0;0;0
-101;aventurer : Mike Tyson;0;0;0;0
-102;aventurer : Ronald McDonald;0;0;0;0
-103;aventurer : Sailor Moon;0;0;0;0
-104;aventurer : Patrick Balkany;0;0;0;0
-105;aventurer : ;;;;
-106;aventurer :;;;;
-107;aventurer :;;;;
-108;aventurer :;;;;
-109;aventurer :;;;;
-110;aventurer :;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+100;Aventurer: ;0;0;;
+101;Aventurer: ;0;0;;
+102;Aventurer: ;0;0;;
+103;Aventurer: ;0;0;;
+104;Aventurer: ;0;0;;
+105;Aventurer: ;0;0;;
+106;Aventurer: ;0;0;;
+107;Aventurer: ;0;0;;
+108;Aventurer: ;0;0;;
+109;Aventurer: ;0;0;;
+110;Aventurer: ;0;0;;
