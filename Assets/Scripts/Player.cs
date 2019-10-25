@@ -111,7 +111,7 @@ public class Player : MonoBehaviour
             if (c.damage != "0" && c.armor != "0")
             {
                 equipment = Instantiate(GameManager.Instance.cardMixtPrefab, equipmentGrid.transform);
-                equipment.GetComponent<Stuff>().stuffImage.sprite = GameManager.Instance.spriteStuff[int.Parse(c.id) - 1];
+                equipment.GetComponent<Stuff>().stuffImage.sprite = GameManager.Instance.spriteStuff[int.Parse((c.id).Split('.')[0]) - 1];
                 equipment.GetComponent<Stuff>().textValueAtk.text = c.damage;
                 equipment.GetComponent<Stuff>().textValueDef.text = c.armor;
                 equipmentDictionnary.Add(c.id, equipment);
@@ -119,14 +119,14 @@ public class Player : MonoBehaviour
             else if (c.damage != "0")
             {
                 equipment = Instantiate(GameManager.Instance.cardAtkPrefab, equipmentGrid.transform);
-                equipment.GetComponent<Stuff>().stuffImage.sprite = GameManager.Instance.spriteStuff[int.Parse(c.id) - 1];
+                equipment.GetComponent<Stuff>().stuffImage.sprite = GameManager.Instance.spriteStuff[int.Parse((c.id).Split('.')[0]) - 1];
                 equipment.GetComponent<Stuff>().textValueAtk.text = c.damage;
                 equipmentDictionnary.Add(c.id, equipment);
             }
             else if (c.armor != "0")
             {
                 equipment = Instantiate(GameManager.Instance.cardDefPrefab, equipmentGrid.transform);
-                equipment.GetComponent<Stuff>().stuffImage.sprite = GameManager.Instance.spriteStuff[int.Parse(c.id) - 1];
+                equipment.GetComponent<Stuff>().stuffImage.sprite = GameManager.Instance.spriteStuff[int.Parse((c.id).Split('.')[0]) - 1];
                 equipment.GetComponent<Stuff>().textValueDef.text = c.armor;               
                 equipmentDictionnary.Add(c.id, equipment);
             }
