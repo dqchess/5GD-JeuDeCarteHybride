@@ -127,9 +127,6 @@ public class GameManager : MonoBehaviour
         cameraPositionStats = new Vector3(0, 4.5f, -11);
         cameraRotationStats = new Vector3(7, 0, 0);
 
-        player1.ScanAdventurer("5");
-        player2.ScanAdventurer("6");
-
         Stats();
     }
 

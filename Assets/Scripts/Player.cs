@@ -140,9 +140,9 @@ public class Player : MonoBehaviour
 
             //calculate different type of atk and def
             Color co = new Color(stuff.imageElementAtk.color.r, stuff.imageElementAtk.color.g, stuff.imageElementAtk.color.b, 255);
-            if (c.damageElement != "")
+            if (c.damageElement.Trim().Replace("\r", "") != "")
             {               
-                switch (c.damageElement.Trim())
+                switch (c.damageElement.Replace("\r", ""))
                 {
                     case "fire": playerFireATK += int.Parse(c.damage); stuff.imageElementAtk.sprite = GameManager.Instance.fireSprite; stuff.imageElementAtk.color = co; stuff.elementAtk = Element.FIRE;  break;
                     case "ice": playerIceATK += int.Parse(c.damage); stuff.imageElementAtk.sprite = GameManager.Instance.iceSprite; stuff.imageElementAtk.color = co; stuff.elementAtk = Element.ICE; break;
@@ -153,14 +153,14 @@ public class Player : MonoBehaviour
             {
                 playerATKNoElement += int.Parse(c.damage);
             }
-
-            if (c.armorElement != "")
+            co = new Color(stuff.imageElementDef.color.r, stuff.imageElementDef.color.g, stuff.imageElementDef.color.b, 255);
+            if (c.armorElement.Trim().Replace("\r", "") != "")
             {
-                switch (c.armorElement.Trim())
+                switch (c.armorElement.Replace("\r", ""))
                 {
-                    case "fire":  playerFireDEF += int.Parse(c.armor); stuff.imageElementDef.sprite = GameManager.Instance.fireSprite; stuff.imageElementAtk.color = co; stuff.elementDef = Element.FIRE; break;
-                    case "ice":  playerIceDEF += int.Parse(c.armor); stuff.imageElementDef.sprite = GameManager.Instance.iceSprite; stuff.imageElementAtk.color = co; stuff.elementDef = Element.ICE; break;
-                    case "electric": playerElectricDEF += int.Parse(c.armor); stuff.imageElementDef.sprite = GameManager.Instance.electricSprite; stuff.imageElementAtk.color = co; stuff.elementDef = Element.ELECTRIC; break;
+                    case "fire":  playerFireDEF += int.Parse(c.armor); stuff.imageElementDef.sprite = GameManager.Instance.fireSprite; stuff.imageElementDef.color = co; stuff.elementDef = Element.FIRE; break;
+                    case "ice":  playerIceDEF += int.Parse(c.armor); stuff.imageElementDef.sprite = GameManager.Instance.iceSprite; stuff.imageElementDef.color = co; stuff.elementDef = Element.ICE; break;
+                    case "electric": playerElectricDEF += int.Parse(c.armor); stuff.imageElementDef.sprite = GameManager.Instance.electricSprite; stuff.imageElementDef.color = co; stuff.elementDef = Element.ELECTRIC; break;
                     default: break;
                 }
             }
