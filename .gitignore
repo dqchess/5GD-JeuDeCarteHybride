@@ -33,5 +33,3 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
-fmod_editor.log
-Assets/Plugins/FMOD/lib/win/x86_64/fmodstudiol.dll
