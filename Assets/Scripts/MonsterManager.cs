@@ -57,7 +57,9 @@ public class MonsterManager : MonoBehaviour
 
     public void DestroyMonster()
     {
-        Destroy(monsterPreview.GetComponent<MonsterPreview>().model);
+        monsterPreview.GetComponent<MonsterPreview>().model.transform.DOScale(Vector3.zero, 1.5f).SetEase(Ease.InSine).OnComplete(() => {
+            Destroy(monsterPreview.GetComponent<MonsterPreview>().model);
+        });       
     }
 
     public void SetMonsterElements()
@@ -67,7 +69,7 @@ public class MonsterManager : MonoBehaviour
         if (Random.Range(0, GameManager.Instance.randomElementMonster) == 2)
         {
             randomElement = Random.Range(0, 3);
-            atkElementImage.color = new Color(255, 255, 255, 255);//alpha 1
+            atkElementImage.color = new Color(0, 201, 255, 255);//alpha 1
             switch (randomElement)
             {
                 case 0:
@@ -94,7 +96,7 @@ public class MonsterManager : MonoBehaviour
         if (Random.Range(0, GameManager.Instance.randomElementMonster) == 2)
         {
             randomElement = Random.Range(0, 3);
-            defElementImage.color = new Color(255, 255, 255, 255);//alpha 1
+            defElementImage.color = new Color(0, 201, 255, 255);//alpha 1
             switch (randomElement)
             {
                 case 0:
@@ -124,6 +126,13 @@ public class MonsterManager : MonoBehaviour
         if (monster == null)
             return;
 
+        textMonsterName.text = monster.GetComponent<MonsterStats>().monsterName;
+        minAtk = monster.monsterMinATK;
+        maxAtk = monster.monsterMaxATK;
+        def = monster.monsterHP;
+        loot = monster.monsterLoot;
+        honor = monster.monsterHonor;
+
         if (elementAtk != Element.NULL)
         {
             minAtk *= 2; maxAtk *= 2;
@@ -132,13 +141,6 @@ public class MonsterManager : MonoBehaviour
         {
             def *= 2;
         }
-
-        textMonsterName.text = monster.GetComponent<MonsterStats>().monsterName;
-        minAtk = monster.monsterMinATK;
-        maxAtk = monster.monsterMaxATK;
-        def = monster.monsterHP;
-        loot = monster.monsterLoot;
-        honor = monster.monsterHonor;
 
         if (randomAtk == 0)            
         {

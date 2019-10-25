@@ -13,7 +13,6 @@ public class FightManager : MonoBehaviour
     public GameObject player1;
     public GameObject player2;
 
-    private int cptMonstersDead = 0;
     private string playerDeadName;
     private bool playerDead;
 

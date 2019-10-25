@@ -6,9 +6,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [Header("Stats")]
-    public TMP_InputField ATKInputPlayer;
-    public TMP_InputField DEFInputPlayer;
+    [Header("Stats UI")]
 
     public TMP_Text textAtkPlayerStats;
     public TMP_Text textDefPlayerStats;
@@ -19,29 +17,47 @@ public class Player : MonoBehaviour
     public GameObject atkUI;
     public GameObject defUI;
 
+    [Header("Reward")]
+    public GameObject reward;
+    public GameObject honorPlayer;
+    public GameObject honorMonster;
+    public GameObject honorPlayerTotal;
+    public TMP_Text textHonorPlayer;
+    public TMP_Text textHonorMonster;
+    public TMP_Text textHonorPlayerTotal;
+
+    [Header("Punishment")]
+    public GameObject punishment;
+
     [Header("Other")]
     public GameObject model;
     public GameObject adventurerFight;
 
+    [Header("Stats Atk")]
     public int playerATKTotal = 0;
     public int playerATKNoElement = 0;
     public int playerFireATK = 0;
     public int playerIceATK = 0;
     public int playerElectricATK = 0;
 
+    [Header("Stats Def")]
     public int playerDEFTotal = 0;
     public int playerDEFNoElement = 0;
     public int playerFireDEF = 0;
     public int playerIceDEF = 0;
     public int playerElectricDEF = 0;
 
-    public Dictionary<string, Adventurer> adventurersDictionnary = new Dictionary<string, Adventurer>();
-    private Dictionary<string, GameObject> equipmentDictionnary = new Dictionary<string, GameObject>();
+    [HideInInspector] public Dictionary<string, Adventurer> adventurersDictionnary = new Dictionary<string, Adventurer>();
+    [HideInInspector] private Dictionary<string, GameObject> equipmentDictionnary = new Dictionary<string, GameObject>();
 
     [HideInInspector] public Adventurer currentAdventurer = null;
+    [HideInInspector] public bool rewardBool = false;
+    [HideInInspector] public bool punishmentBool = false;
 
     private void Start()
-    {        
+    {
+        textAtkPlayerStats.GetComponent<RectTransform>().DOScale(Vector3.one * 1.05f, 1f).SetLoops(-1, LoopType.Yoyo);
+        textDefPlayerStats.GetComponent<RectTransform>().DOScale(Vector3.one * 1.05f, 1f).SetLoops(-1, LoopType.Yoyo);
         ResetStats();
         ResetAdventurer();
         UpdateStatsUIPlayer();        
@@ -50,37 +66,6 @@ public class Player : MonoBehaviour
     private void Update()
     {
         
-    }
-
-    public void AddStatsPlayer()
-    {
-        bool b = false;
-        int tmpInt;
-        b = int.TryParse(ATKInputPlayer.text, out tmpInt);
-        if (b)
-        {
-            playerATKNoElement += tmpInt;           
-            ATKInputPlayer.text = "";
-        }
-        b = false;
-        b = int.TryParse(DEFInputPlayer.text, out tmpInt);
-        if (b)
-        {
-            playerDEFNoElement += tmpInt;            
-            DEFInputPlayer.text = "";
-        }
-        UpdateStatsUIPlayer();
-    }
-
-    public void AddStatsPlayer(int atk, int def)
-    {
-        if (GameManager.Instance.state == GameManager.State.STATS)
-        {
-            playerATKNoElement += atk;
-            playerDEFNoElement += def;
-
-            UpdateStatsUIPlayer();
-        }       
     }
 
     public void ScanAdventurer(string IdAdv)
@@ -100,7 +85,8 @@ public class Player : MonoBehaviour
             Adventurer tmpAdv;
             if (adventurersDictionnary.TryGetValue(IdAdv, out tmpAdv))
             {
-                ChangeCurrentAdventurer(tmpAdv);
+                if (!tmpAdv.isDead)
+                    ChangeCurrentAdventurer(tmpAdv);
             }
         }
     }
@@ -110,7 +96,8 @@ public class Player : MonoBehaviour
         if (currentAdventurer != null)
             currentAdventurer.gameObject.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBounce);
 
-        adv.gameObject.transform.DOScale(Vector3.one * 1.3f, 0.5f).SetEase(Ease.OutBounce);
+        adv.gameObject.transform.DOScale(Vector3.one * 1.2f, 0.5f).SetEase(Ease.OutBounce);
+        //adv.gameObject.transform.DOMoveY(adv.gameObject.transform.position.y + 0.2f, 0.5f).SetEase(Ease.OutBounce);
         currentAdventurer = adv;
     }
 
@@ -124,7 +111,7 @@ public class Player : MonoBehaviour
             if (c.damage != "0" && c.armor != "0")
             {
                 equipment = Instantiate(GameManager.Instance.cardMixtPrefab, equipmentGrid.transform);
-                //card.GetComponent<Stuff>().stuffImage.texture = c.texture;
+                equipment.GetComponent<Stuff>().stuffImage.sprite = GameManager.Instance.spriteStuff[int.Parse(c.id) - 1];
                 equipment.GetComponent<Stuff>().textValueAtk.text = c.damage;
                 equipment.GetComponent<Stuff>().textValueDef.text = c.armor;
                 equipmentDictionnary.Add(c.id, equipment);
@@ -132,15 +119,14 @@ public class Player : MonoBehaviour
             else if (c.damage != "0")
             {
                 equipment = Instantiate(GameManager.Instance.cardAtkPrefab, equipmentGrid.transform);
-                //card.GetComponent<Stuff>().stuffImage.texture = c.texture;
+                equipment.GetComponent<Stuff>().stuffImage.sprite = GameManager.Instance.spriteStuff[int.Parse(c.id) - 1];
                 equipment.GetComponent<Stuff>().textValueAtk.text = c.damage;
                 equipmentDictionnary.Add(c.id, equipment);
             }
             else if (c.armor != "0")
             {
-                Debug.Log("c.armor : " + c.armor);
                 equipment = Instantiate(GameManager.Instance.cardDefPrefab, equipmentGrid.transform);
-                //card.GetComponent<Stuff>().stuffImage.texture = c.texture;
+                equipment.GetComponent<Stuff>().stuffImage.sprite = GameManager.Instance.spriteStuff[int.Parse(c.id) - 1];
                 equipment.GetComponent<Stuff>().textValueDef.text = c.armor;               
                 equipmentDictionnary.Add(c.id, equipment);
             }
@@ -169,18 +155,16 @@ public class Player : MonoBehaviour
 
             if (c.armorElement != "")
             {
-                Debug.Log("c.armorElement : " + c.armorElement);
                 switch (c.armorElement.Trim())
                 {
-                    case "fire": Debug.Log("NTM1"); playerFireDEF += int.Parse(c.armor); stuff.imageElementDef.sprite = GameManager.Instance.fireSprite; stuff.elementDef = Element.FIRE; break;
-                    case "ice": Debug.Log("NTM2"); playerIceDEF += int.Parse(c.armor); stuff.imageElementDef.sprite = GameManager.Instance.iceSprite; stuff.elementDef = Element.ICE; break;
-                    case "electric": Debug.Log("NTM3"); playerElectricDEF += int.Parse(c.armor); stuff.imageElementDef.sprite = GameManager.Instance.electricSprite; stuff.elementDef = Element.ELECTRIC; break;
-                    default: Debug.Log("FDP"); break;
+                    case "fire":  playerFireDEF += int.Parse(c.armor); stuff.imageElementDef.sprite = GameManager.Instance.fireSprite; stuff.elementDef = Element.FIRE; break;
+                    case "ice":  playerIceDEF += int.Parse(c.armor); stuff.imageElementDef.sprite = GameManager.Instance.iceSprite; stuff.elementDef = Element.ICE; break;
+                    case "electric": playerElectricDEF += int.Parse(c.armor); stuff.imageElementDef.sprite = GameManager.Instance.electricSprite; stuff.elementDef = Element.ELECTRIC; break;
+                    default: break;
                 }
             }
             else
             {
-                Debug.Log("c.armorElement" + c.armorElement);
                 playerDEFNoElement += int.Parse(c.armor);
             }
 
@@ -262,7 +246,7 @@ public class Player : MonoBehaviour
     public void DisplayUIBeforeFight(int xValue)
     {
         equipmentGrid.transform.DOMoveX(equipmentGrid.transform.position.x - (xValue*10), 1f);
-        adventurersGrid.transform.DOMoveX(equipmentGrid.transform.position.x - (xValue*10), 1f);
+        adventurersGrid.transform.DOMoveX(equipmentGrid.transform.position.x - (xValue*9), 1f);
         atkUI.SetActive(false);
         defUI.SetActive(false);
         atkUI.transform.DOMoveY(atkUI.transform.position.y - 12, 1f);
@@ -284,18 +268,26 @@ public class Player : MonoBehaviour
         adventurerFight.transform.DOMoveY(adventurerFight.transform.position.y + 5, 1f);
     }
 
+    public void UnshowUIFight(int xValue)
+    {
+        atkUI.transform.DOMoveY(atkUI.transform.position.y - 4, 0.5f).SetEase(Ease.OutSine);
+        defUI.transform.DOMoveY(defUI.transform.position.y - 4, 0.5f).SetEase(Ease.OutSine);
+        adventurerFight.transform.DOMoveY(adventurerFight.transform.position.y - 5, 1f);     
+        if (rewardBool)
+            reward.transform.DOMoveX(reward.transform.position.x + (7.5f * xValue), 0.5f).SetEase(Ease.OutSine);
+        if (punishmentBool)
+            punishment.transform.DOMoveX(punishment.transform.position.x + (7.5f * xValue), 0.5f).SetEase(Ease.OutSine);
+
+        rewardBool = false;
+        punishmentBool = false;
+    }
+
     public void DisplayUIStats(int xValue)
     {
         equipmentGrid.transform.DOMoveX(equipmentGrid.transform.position.x - (xValue*10), 1f);
-        adventurersGrid.transform.DOMoveX(equipmentGrid.transform.position.x - (xValue*10), 1f);
-        atkUI.transform.DOMoveY(atkUI.transform.position.y + 8, 1f).SetEase(Ease.OutBounce);
-        defUI.transform.DOMoveY(defUI.transform.position.y + 8, 1f).SetEase(Ease.OutBounce);
-        adventurerFight.transform.DOMoveY(adventurerFight.transform.position.y - 5, 1f);
-    }
-
-    public void DisplayUIFight1V1()
-    {
-        
+        adventurersGrid.transform.DOMoveX(equipmentGrid.transform.position.x - (xValue*10.5f), 1f);
+        atkUI.transform.DOMoveY(atkUI.transform.position.y + 12, 1f).SetEase(Ease.OutSine);
+        defUI.transform.DOMoveY(defUI.transform.position.y + 12, 1f).SetEase(Ease.OutSine);
     }
 
     public void Die()
@@ -327,6 +319,24 @@ public class Player : MonoBehaviour
     {
         textAtkPlayerStats.text = playerATKTotal.ToString();
         textDefPlayerStats.text = playerDEFTotal.ToString();
+        
+        UpdateAdventurer();        
+    }
+
+    public void UpdateAdventurer()
+    {
+        float p = 0;
+        foreach (KeyValuePair<string, Adventurer> a in adventurersDictionnary)
+        {
+            if (a.Value.hp <= 0)
+            {
+                a.Value.isDead = true;
+                a.Value.isDeadPicture.SetActive(true);
+                return;
+            }               
+            p += a.Value.points;
+        }
+        textTotalPoints.text = p.ToString();
     }
 
     public void ResetStats()

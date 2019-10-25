@@ -126,30 +126,37 @@ public class ExcelManager : MonoBehaviour
                 cardAlreadyFound = true;
                 if (player == 1)
                 {
-                    if (c.name.Contains("aventurer"))
+                    if (c.name.Contains("Aventurer"))
                     {
+                        SoundManager.instance.PositifScan();
                         return c;
                     }
                     if (cardsScannedPlayerOne.Count == MaxStuff)
                     {
                         print("ERROR 4 : Too Many Scanned Card For Player 1");
+                        SoundManager.instance.NegatifScan();
                         return null;
                     }
 
                     cardsScannedPlayerOne.Add(c);
+                    SoundManager.instance.PositifScan();
+                    SoundManager.instance.AttachedStuffToPlayer();
                 }
                 else
                 {
-                    if (c.name.Contains("aventurer"))
+                    if (c.name.Contains("Aventurer"))
                     {
+                        SoundManager.instance.PositifScan();
                         return c;
                     }
                     if (cardsScannedPlayerTwo.Count == MaxStuff)
                     {
                         print("ERROR 5 : Too Many Scanned Card For Player 2");
+                        SoundManager.instance.NegatifScan();
                         return null;
                     }
-
+                    SoundManager.instance.PositifScan();
+                    SoundManager.instance.AttachedStuffToPlayer();
                     cardsScannedPlayerTwo.Add(c);
                 }
                 cardsInfos.RemoveAt(i);
@@ -169,6 +176,8 @@ public class ExcelManager : MonoBehaviour
                         c = cardsScannedPlayerOne[i];
                         cardsInfos.Add(c);
                         cardsScannedPlayerOne.RemoveAt(i);
+                        SoundManager.instance.PositifScan();
+                        SoundManager.instance.DeattachedStuffToPlayer();
                     }
                 }
             }
@@ -181,6 +190,8 @@ public class ExcelManager : MonoBehaviour
                         c = cardsScannedPlayerTwo[i];
                         cardsInfos.Add(c);
                         cardsScannedPlayerTwo.RemoveAt(i);
+                        SoundManager.instance.PositifScan();
+                        SoundManager.instance.DeattachedStuffToPlayer();
                     }
                 }
             }
