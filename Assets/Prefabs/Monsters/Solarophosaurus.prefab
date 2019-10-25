@@ -48,7 +48,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: eda3673788b05264f8dfad739ef6658e, type: 2}
+  - {fileID: 2100000, guid: 33120f50128f0a141b3d1065733b93ce, type: 2}
   - {fileID: 2100000, guid: 2324be38b5402d043bff0c42fd577290, type: 2}
   - {fileID: 2100000, guid: 002628f66a1d6d945871f1c76432f6c3, type: 2}
   - {fileID: 2100000, guid: aea5033f1ddd3c740bb0fae0dbc77af1, type: 2}
@@ -211,7 +211,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monsterName: Solarophosaurus
   monsterMinATK: 2
-  monsterMaxATK: 25
+  monsterMaxATK: 7
   monsterHP: 12
   monsterLoot: 6
   monsterHonor: 800

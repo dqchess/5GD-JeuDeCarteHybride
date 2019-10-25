@@ -117,20 +117,25 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 2629530883418912814, guid: 074bb1839a4d1cf4f9426a5521f71486,
+    - target: {fileID: 9194508864912175139, guid: 074bb1839a4d1cf4f9426a5521f71486,
         type: 3}
-      propertyPath: m_IsActive
-      value: 0
+      propertyPath: m_AnchoredPosition.x
+      value: -2.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9194508864912175139, guid: 074bb1839a4d1cf4f9426a5521f71486,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -28.8
       objectReference: {fileID: 0}
     - target: {fileID: 4466186757182583821, guid: 074bb1839a4d1cf4f9426a5521f71486,
         type: 3}
       propertyPath: m_Texture
       value: 
       objectReference: {fileID: 2800000, guid: 116d182c03779584c8f694c4325bf95d, type: 3}
-    - target: {fileID: 9194508864912175139, guid: 074bb1839a4d1cf4f9426a5521f71486,
+    - target: {fileID: 2629530883418912814, guid: 074bb1839a4d1cf4f9426a5521f71486,
         type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -9.6
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 074bb1839a4d1cf4f9426a5521f71486, type: 3}

@@ -11,10 +11,12 @@ public class Adventurer : MonoBehaviour
     public int level;
     public float honorRatio;
     public float points;
+    public bool isDead = false;
 
     public TMP_Text textHp;
     public TMP_Text textLevel;
     public TMP_Text textpoints;
+    public GameObject isDeadPicture;
 
     private void Start()
     {
