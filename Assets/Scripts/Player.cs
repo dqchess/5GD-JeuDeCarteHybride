@@ -126,7 +126,8 @@ public class Player : MonoBehaviour
             else if (c.armor != "0")
             {
                 equipment = Instantiate(GameManager.Instance.cardDefPrefab, equipmentGrid.transform);
-                equipment.GetComponent<Stuff>().stuffImage.sprite = GameManager.Instance.spriteStuff[int.Parse((c.id).Split('.')[0]) - 1];
+                //equipment.GetComponent<Stuff>().stuffImage.sprite = GameManager.Instance.spriteStuff[int.Parse((c.id).Split('.')[0]) - 1];
+                equipment.GetComponent<Stuff>().stuffImage.sprite = GameManager.Instance.spriteStuff[20];
                 equipment.GetComponent<Stuff>().textValueDef.text = c.armor;               
                 equipmentDictionnary.Add(c.id, equipment);
             }
@@ -138,14 +139,14 @@ public class Player : MonoBehaviour
             Stuff stuff = equipment.GetComponent<Stuff>();
 
             //calculate different type of atk and def
+            Color co = new Color(stuff.imageElementAtk.color.r, stuff.imageElementAtk.color.g, stuff.imageElementAtk.color.b, 255);
             if (c.damageElement != "")
-            {
+            {               
                 switch (c.damageElement.Trim())
                 {
-                    case "fire": playerFireATK += int.Parse(c.damage); stuff.imageElementAtk.sprite = GameManager.Instance.fireSprite; stuff.elementAtk = Element.FIRE;  break;
-                    case "ice": playerIceATK += int.Parse(c.damage); stuff.imageElementAtk.sprite = GameManager.Instance.iceSprite; stuff.elementAtk = Element.ICE; break;
-                    case "electric": playerElectricATK += int.Parse(c.damage); stuff.imageElementAtk.sprite = GameManager.Instance.electricSprite; stuff.elementAtk = Element.ELECTRIC; break;
-                    
+                    case "fire": playerFireATK += int.Parse(c.damage); stuff.imageElementAtk.sprite = GameManager.Instance.fireSprite; stuff.imageElementAtk.color = co; stuff.elementAtk = Element.FIRE;  break;
+                    case "ice": playerIceATK += int.Parse(c.damage); stuff.imageElementAtk.sprite = GameManager.Instance.iceSprite; stuff.imageElementAtk.color = co; stuff.elementAtk = Element.ICE; break;
+                    case "electric": playerElectricATK += int.Parse(c.damage); stuff.imageElementAtk.sprite = GameManager.Instance.electricSprite; stuff.imageElementAtk.color = co; stuff.elementAtk = Element.ELECTRIC; break;                    
                 }
             }
             else
@@ -157,9 +158,9 @@ public class Player : MonoBehaviour
             {
                 switch (c.armorElement.Trim())
                 {
-                    case "fire":  playerFireDEF += int.Parse(c.armor); stuff.imageElementDef.sprite = GameManager.Instance.fireSprite; stuff.elementDef = Element.FIRE; break;
-                    case "ice":  playerIceDEF += int.Parse(c.armor); stuff.imageElementDef.sprite = GameManager.Instance.iceSprite; stuff.elementDef = Element.ICE; break;
-                    case "electric": playerElectricDEF += int.Parse(c.armor); stuff.imageElementDef.sprite = GameManager.Instance.electricSprite; stuff.elementDef = Element.ELECTRIC; break;
+                    case "fire":  playerFireDEF += int.Parse(c.armor); stuff.imageElementDef.sprite = GameManager.Instance.fireSprite; stuff.imageElementAtk.color = co; stuff.elementDef = Element.FIRE; break;
+                    case "ice":  playerIceDEF += int.Parse(c.armor); stuff.imageElementDef.sprite = GameManager.Instance.iceSprite; stuff.imageElementAtk.color = co; stuff.elementDef = Element.ICE; break;
+                    case "electric": playerElectricDEF += int.Parse(c.armor); stuff.imageElementDef.sprite = GameManager.Instance.electricSprite; stuff.imageElementAtk.color = co; stuff.elementDef = Element.ELECTRIC; break;
                     default: break;
                 }
             }
@@ -169,11 +170,11 @@ public class Player : MonoBehaviour
             }
 
             //feedback atk or def is double
-            if (stuff.elementAtk == GameManager.Instance.monsterManager.elementDef)
+            if (stuff.elementAtk == GameManager.Instance.monsterManager.elementDef && stuff.elementAtk != Element.NULL)
             {
                 stuff.AtkIsDouble();
             }
-            if (stuff.elementDef == GameManager.Instance.monsterManager.elementAtk)
+            if (stuff.elementDef == GameManager.Instance.monsterManager.elementAtk && stuff.elementDef != Element.NULL)
             {
                 stuff.DefIsDouble();
             }
@@ -300,18 +301,18 @@ public class Player : MonoBehaviour
         Element elementMonsterAtk = GameManager.Instance.monsterManager.elementAtk;
         switch (elementMonsterAtk)
         {
-            case Element.FIRE: playerDEFTotal = playerFireDEF*2 + playerIceDEF + playerElectricDEF; break;
-            case Element.ICE: playerDEFTotal = playerFireDEF + playerIceDEF*2 + playerElectricDEF; break;
-            case Element.ELECTRIC: playerDEFTotal = playerFireDEF + playerIceDEF + playerElectricDEF*2; break;
-            case Element.NULL: playerDEFTotal = playerFireDEF + playerIceDEF + playerElectricDEF; break;
+            case Element.FIRE: playerDEFTotal = playerFireDEF*2 + playerIceDEF + playerElectricDEF + playerDEFNoElement; break;
+            case Element.ICE: playerDEFTotal = playerFireDEF + playerIceDEF*2 + playerElectricDEF + playerDEFNoElement; break;
+            case Element.ELECTRIC: playerDEFTotal = playerFireDEF + playerIceDEF + playerElectricDEF*2 + playerDEFNoElement; break;
+            case Element.NULL: playerDEFTotal = playerFireDEF + playerIceDEF + playerElectricDEF + playerDEFNoElement; break;
         }
         Element elementMonsterDef = GameManager.Instance.monsterManager.elementDef;
         switch (elementMonsterDef)
         {
-            case Element.FIRE: playerATKTotal = playerFireATK * 2 + playerIceATK + playerElectricATK; break;
-            case Element.ICE: playerATKTotal = playerFireATK + playerIceATK * 2 + playerElectricATK; break;
-            case Element.ELECTRIC: playerATKTotal = playerFireATK + playerIceATK + playerElectricATK * 2; break;
-            case Element.NULL: playerATKTotal = playerFireATK + playerIceATK + playerElectricATK; break;
+            case Element.FIRE: playerATKTotal = playerFireATK * 2 + playerIceATK + playerElectricATK + playerATKNoElement; break;
+            case Element.ICE: playerATKTotal = playerFireATK + playerIceATK * 2 + playerElectricATK + playerATKNoElement; break;
+            case Element.ELECTRIC: playerATKTotal = playerFireATK + playerIceATK + playerElectricATK * 2 + playerATKNoElement; break;
+            case Element.NULL: playerATKTotal = playerFireATK + playerIceATK + playerElectricATK + playerATKNoElement; break;
         }
     }
 

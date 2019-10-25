@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.7882353, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.7882353, b: 1, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300006, guid: 9938c1c5058caf34bbef591be7b44014, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -156,11 +156,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: -0.3
       objectReference: {fileID: 0}
-    - target: {fileID: 4466186757182583821, guid: 074bb1839a4d1cf4f9426a5521f71486,
-        type: 3}
-      propertyPath: m_Texture
-      value: 
-      objectReference: {fileID: 2800000, guid: 7273d7f4ba6d0814e9e150d22299fa10, type: 3}
     - target: {fileID: 9173880504563209088, guid: 074bb1839a4d1cf4f9426a5521f71486,
         type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -186,6 +181,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4466186757182583821, guid: 074bb1839a4d1cf4f9426a5521f71486,
+        type: 3}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 2800000, guid: 7273d7f4ba6d0814e9e150d22299fa10, type: 3}
     m_RemovedComponents:
     - {fileID: 303528868510407152, guid: 074bb1839a4d1cf4f9426a5521f71486, type: 3}
     - {fileID: 6529863683820053616, guid: 074bb1839a4d1cf4f9426a5521f71486, type: 3}

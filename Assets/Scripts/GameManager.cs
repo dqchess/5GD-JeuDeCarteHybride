@@ -429,8 +429,8 @@ public class GameManager : MonoBehaviour
 
 public enum Element
 {
+    NULL,
     FIRE,
     ICE,
     ELECTRIC,
-    NULL,
 }
