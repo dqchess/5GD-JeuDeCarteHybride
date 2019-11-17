@@ -101,12 +101,12 @@ public class Receiver : MonoBehaviour
 
 
 
-            if (c.name.Contains("aventurer") == true)
+            if (c.name.Contains("Aventurer") == true)
             {
                 //Recuperer les infos de l'aventurier
                 GameManager.Instance.player2.ScanAdventurer(c.id);
                 print("Adventurer Scanned");
-
+                return;
             }
             else
             {

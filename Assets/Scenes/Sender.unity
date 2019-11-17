@@ -247,12 +247,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1165097949 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3166051965008440006, guid: 95d7159ce78e963409383e343e713395,
-    type: 3}
-  m_PrefabInstance: {fileID: 3166051964017479963}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1362577598 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2414036467522369018, guid: c206d76a50e150f4c9479984c722b239,
@@ -338,8 +332,8 @@ Camera:
   m_GameObject: {fileID: 2019085899}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
@@ -399,8 +393,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   toggleJoueur1: {fileID: 1595705481}
   toggleJoueur2: {fileID: 1636130594}
-  canvasSettings: {fileID: 1165097949}
   player: 1
+  userNameInputField: {fileID: 0}
+  iPInputField: {fileID: 0}
+  validationButton: {fileID: 0}
+  oscManager: {fileID: 0}
+  errorLogText: {fileID: 0}
+  sender: {fileID: 0}
 --- !u!114 &2019085904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -649,6 +648,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Settings
+      objectReference: {fileID: 0}
+    - target: {fileID: 3166051965008440006, guid: 95d7159ce78e963409383e343e713395,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3166051964570835346, guid: 95d7159ce78e963409383e343e713395,
         type: 3}

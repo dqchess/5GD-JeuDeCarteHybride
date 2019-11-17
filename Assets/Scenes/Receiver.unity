@@ -1124,7 +1124,16 @@ MonoBehaviour:
   atkElementImage: {fileID: 7195795393922023493}
   defElementImage: {fileID: 4834800677708921054}
   monsters:
-  - {fileID: 1109424741136521372, guid: 48fbe7f41d3b2cf44a4660403ad99ae1, type: 3}
+  - {fileID: 1109424741136521372, guid: 9f0447711b77d03409c8869b3de08c6c, type: 3}
+  - {fileID: 1109424741136521372, guid: b5c99313759915e4d94ad6cf0f947fb1, type: 3}
+  - {fileID: 1109424741136521372, guid: 115c928b7898b2f489e9267c192eac21, type: 3}
+  - {fileID: 1109424741136521372, guid: 30fe96bfadc0e8447aff16f859dac8e5, type: 3}
+  - {fileID: 1109424741136521372, guid: edafdbae5b795f2458f3bbcfd6541188, type: 3}
+  - {fileID: 1109424741136521372, guid: 0dfc787ddfd3d8d439ce13af4a3ca5d9, type: 3}
+  - {fileID: 1109424741136521372, guid: fe96d5cb9016fd64eadf0199012f14ab, type: 3}
+  - {fileID: 1109424741136521372, guid: 41ff2c642a773ed48b3bdd708481faca, type: 3}
+  - {fileID: 1109424741136521372, guid: f7828075061b6de46a1878c04c9a328f, type: 3}
+  - {fileID: 1109424741136521372, guid: c958ad34c4651d740b3d955549c87e97, type: 3}
   monsterPreview: {fileID: 1747892422}
   atkUI: {fileID: 2264501134283399404}
   defUI: {fileID: 3545875374077033693}

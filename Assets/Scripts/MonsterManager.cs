@@ -22,6 +22,7 @@ public class MonsterManager : MonoBehaviour
 
     [Header("Stuff")]
     public GameObject[] monsters;
+    public bool randomizeMonsters = false;
     public GameObject monsterPreview;
     public GameObject atkUI;
     public GameObject defUI;
@@ -37,14 +38,19 @@ public class MonsterManager : MonoBehaviour
     public Element elementDef;
 
     private int randomAtk = 0;
+    private int monsterId = 0;
 
     public MonsterStats monsterStats;
 
     public void InstantiateMonster()
     {
-        int randomMonster = Random.Range(0, monsters.Length);
+        int monsterSelected = monsterId++;
+
+        if (randomizeMonsters)
+            monsterSelected = Random.Range(0, monsters.Length);
+
         randomAtk = 0;
-        monsterPreview.GetComponent<MonsterPreview>().model = Instantiate(monsters[randomMonster], monsterPreview.transform);
+        monsterPreview.GetComponent<MonsterPreview>().model = Instantiate(monsters[monsterSelected], monsterPreview.transform);
         GameObject model = monsterPreview.GetComponent<MonsterPreview>().model;
 
         DOTween.To(() => model.transform.localScale, x => model.transform.localScale = x, Vector3.zero, 0.5f).From();
