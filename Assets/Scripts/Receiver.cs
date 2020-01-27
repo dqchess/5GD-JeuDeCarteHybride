@@ -30,9 +30,9 @@ public class Receiver : MonoBehaviour
         if (playerOneReady == true && playerTwoReady == true)
         {
             GameManager.Instance.Fight();
-            playerOneReady = false;
-            playerTwoReady = false;
             SoundManager.instance.EndOfNegociation();
+            playerOneReady = false;
+            playerTwoReady = false;            
         }
     }
 

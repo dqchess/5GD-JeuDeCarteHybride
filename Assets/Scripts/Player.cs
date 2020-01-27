@@ -331,6 +331,7 @@ public class Player : MonoBehaviour
         {
             if (a.Value.hp <= 0)
             {
+                SoundManager.instance.DeathOfTheGladiator();
                 a.Value.isDead = true;
                 a.Value.isDeadPicture.SetActive(true);
                 return;

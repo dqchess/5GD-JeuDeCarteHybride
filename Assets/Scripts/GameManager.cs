@@ -72,46 +72,46 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Keypad5))
+        if (Input.GetKeyDown(KeyCode.A))
         {
             CardsInformations c = new CardsInformations("1.1","megamassue","5","0","electric", "");
             player1.AddEquipment(c);
         }
-        if (Input.GetKeyDown(KeyCode.Keypad6))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             CardsInformations c = new CardsInformations("1.1", "megamassue", "5", "0", "electric", "");
             player2.AddEquipment(c);
         }
-        if (Input.GetKeyDown(KeyCode.Keypad8))
+        if (Input.GetKeyDown(KeyCode.Z))
         {
             CardsInformations c = new CardsInformations("1.2", "megaboubou", "0", "5", "", "electric");
             player1.AddEquipment(c);
         }
-        if (Input.GetKeyDown(KeyCode.Keypad9))
+        if (Input.GetKeyDown(KeyCode.S))
         {
             CardsInformations c = new CardsInformations("1.2", "megaboubou", "0", "5", "", "electric");
             player2.AddEquipment(c);
         }
-        if (Input.GetKeyDown(KeyCode.Keypad2))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             CardsInformations c = new CardsInformations("1.3", "megaboubou", "8", "8", "ice", "electric");
             player1.AddEquipment(c);
         }
-        if (Input.GetKeyDown(KeyCode.Keypad3))
+        if (Input.GetKeyDown(KeyCode.D))
         {
             CardsInformations c = new CardsInformations("1.3", "megaboubou", "8", "8", "ice", "electric");
             player2.AddEquipment(c);
         }
 
-        if (Input.GetKeyDown(KeyCode.Keypad7))
+        if (Input.GetKeyDown(KeyCode.R))
         {
             player1.ScanAdventurer("1");
         }
-        if (Input.GetKeyDown(KeyCode.Keypad4))
+        if (Input.GetKeyDown(KeyCode.T))
         {
             player1.ScanAdventurer("2");
         }
-        if (Input.GetKeyDown(KeyCode.Keypad1))
+        if (Input.GetKeyDown(KeyCode.F))
         {
             player2.ScanAdventurer("3");
         }
@@ -133,6 +133,7 @@ public class GameManager : MonoBehaviour
     public void Stats()
     {
         state = State.STATS;
+        SoundManager.instance.NegociationBegin();
         StartCoroutine(_Stats());
     }
 
@@ -154,13 +155,21 @@ public class GameManager : MonoBehaviour
     }
 
     public void Fight()
-    {
-        state = State.FIGHT;
+    {        
+        SoundManager.instance.EndOfNegociation();
+        state = State.FIGHT;        
         StartCoroutine(_Fight());        
     }
 
     public IEnumerator _Fight()
     {
+        yield return new WaitForSeconds(1.5f);
+        SoundManager.instance.LaunchFight();
+        SoundManager.instance.IdleMonster();
+        yield return new WaitForSeconds(1.5f);
+        SoundManager.instance.BeginningOfTheFight();
+        
+        yield return new WaitForSeconds(1.5f);
         //START FIGHT
         player1.DisplayUIBeforeFight(1); //to the left
         player2.DisplayUIBeforeFight(-1);//to the right       
@@ -168,6 +177,7 @@ public class GameManager : MonoBehaviour
         monsterManager.monsterPreview.transform.DORotate(Quaternion.identity.eulerAngles + Vector3.up*90f, 1f);
         textFight.gameObject.transform.DOMoveY(textFight.transform.position.y - 4f, 1).SetEase(Ease.OutBounce).SetLoops(2, LoopType.Yoyo).OnComplete(() =>
         {
+            SoundManager.instance.MonsterSoundBase();
             Camera.main.transform.DOLocalMoveY(cameraPositionFight.y, 0.5f).SetEase(Ease.OutExpo);
             Camera.main.transform.DOLocalMoveZ(cameraPositionFight.z, 0.5f).SetEase(Ease.OutExpo);
         });
@@ -229,6 +239,13 @@ public class GameManager : MonoBehaviour
             {
                 b = true;
                 Instantiate(hitFight, monsterManager.textDefMonsterStat.transform.position, Quaternion.identity);
+                SoundManager.instance.Attack();
+                if (p.playerFireATK > 0)
+                    SoundManager.instance.DamageFireDeal();
+                if (p.playerIceATK > 0)
+                    SoundManager.instance.DamageIceDeal();
+                if (p.playerElectricATK > 0)
+                    SoundManager.instance.DamageElecDeal();
                 monsterManager.def -= p.playerATKTotal;
                 monsterManager.UpdateUIMonster();
                 monsterManager.textDefMonsterStat.GetComponent<RectTransform>().DOScale(monsterManager.textDefMonsterStat.GetComponent<RectTransform>().transform.localScale * 1.5f, 0.2f).SetLoops(2, LoopType.Yoyo);
@@ -240,7 +257,7 @@ public class GameManager : MonoBehaviour
         });
         yield return new WaitForSeconds(1f);
 
-        if (monsterManager.def <= 0) //le monstre été tué
+        if (monsterManager.def <= 0) //le monstre a été tué
         {
             monsterIsDead = true;
             if (p == player1)
@@ -259,6 +276,16 @@ public class GameManager : MonoBehaviour
             {
                 b = true;
                 Instantiate(hitFight, p.defUI.transform.position, Quaternion.identity);
+
+                if (monsterManager.elementAtk == Element.FIRE)
+                    SoundManager.instance.DamageFireDeal();
+                if (monsterManager.elementAtk == Element.ICE)
+                    SoundManager.instance.DamageIceDeal();
+                if (monsterManager.elementAtk == Element.ELECTRIC)
+                    SoundManager.instance.DamageElecDeal();
+                if(monsterManager.elementAtk == Element.NULL)
+                    SoundManager.instance.DamageDeal();
+
                 p.playerDEFTotal -= monsterManager.atk;
                 p.UpdateStatsUIPlayer();
                 p.textDefPlayerStats.GetComponent<RectTransform>().DOScale(p.textDefPlayerStats.GetComponent<RectTransform>().transform.localScale * 1.5f, 0.2f).SetLoops(2, LoopType.Yoyo);
@@ -319,6 +346,15 @@ public class GameManager : MonoBehaviour
                         Instantiate(hitFight, p.defUI.transform.position, Quaternion.identity);
                         p.textDefPlayerStats.text = "DEAD";
                         p.textDefPlayerStats.GetComponent<RectTransform>().DOScale(p.textDefPlayerStats.GetComponent<RectTransform>().transform.localScale * 1.5f, 0.2f).SetLoops(2, LoopType.Yoyo);
+
+                        if (monsterManager.elementAtk == Element.FIRE)
+                            SoundManager.instance.DamageFireDeal();
+                        if (monsterManager.elementAtk == Element.ICE)
+                            SoundManager.instance.DamageIceDeal();
+                        if (monsterManager.elementAtk == Element.ELECTRIC)
+                            SoundManager.instance.DamageElecDeal();
+                        if (monsterManager.elementAtk == Element.NULL)
+                            SoundManager.instance.DamageDeal();
                     }
                 });
                 yield return new WaitForSeconds(0.5f);
@@ -372,7 +408,7 @@ public class GameManager : MonoBehaviour
 
         p.adventurerFight.GetComponent<Adventurer>().points += (p.currentAdventurer.level * monsterManager.honor);
         p.adventurerFight.GetComponent<Adventurer>().level += 1;
-
+        SoundManager.instance.LevelUping();
         p.currentAdventurer.points += (p.currentAdventurer.level * monsterManager.honor);
         p.currentAdventurer.level += 1;
 
@@ -387,7 +423,8 @@ public class GameManager : MonoBehaviour
     {
         p.punishmentBool = true;
         p.punishment.transform.DOMoveX(p.reward.transform.position.x + (7.5f * xValue), 0.5f).SetEase(Ease.OutBounce);
-        
+        SoundManager.instance.TriumphantCry();
+        SoundManager.instance.LoosingTheFight();
         p.adventurerFight.GetComponent<Adventurer>().hp -= 1;
 
         p.currentAdventurer.hp -= 1;
@@ -404,13 +441,14 @@ public class GameManager : MonoBehaviour
     {
         turn += 1;
         StartCoroutine(_EndFight());
+        SoundManager.instance.EndOfTheFight();
         ExcelManager.Instance.EmptyCardsAfterCombat();
     }
 
     private IEnumerator _EndFight()
     {
         monsterManager.DestroyMonster();
-
+        SoundManager.instance.GetTheGold();
         textEndFightGold.text = " Both players take your " + monsterManager.loot + " golds !";
 
         DOTween.To(() => textEndFightGold.fontSize, x => textEndFightGold.fontSize = x, 40, 1f).SetEase(Ease.OutBounce);

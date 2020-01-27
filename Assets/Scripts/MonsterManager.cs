@@ -44,6 +44,9 @@ public class MonsterManager : MonoBehaviour
 
     public void InstantiateMonster()
     {
+        SoundManager.instance.MonsterSpawn();
+        
+
         int monsterSelected = monsterId++;
 
         if (randomizeMonsters)
@@ -65,6 +68,8 @@ public class MonsterManager : MonoBehaviour
     {
         monsterPreview.GetComponent<MonsterPreview>().model.transform.DOScale(Vector3.zero, 1.5f).SetEase(Ease.InSine).OnComplete(() => {
             Destroy(monsterPreview.GetComponent<MonsterPreview>().model);
+            SoundManager.instance.MonsterScream();
+            SoundManager.instance.StopIdleMonster();
         });       
     }
 

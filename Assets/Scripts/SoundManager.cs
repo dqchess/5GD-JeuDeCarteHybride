@@ -141,13 +141,6 @@ public class SoundManager : MonoBehaviour
     }
 
 
-    public void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            MonsterSpawn();
-        }
-    }
 
     //TODO
     /// <summary>
