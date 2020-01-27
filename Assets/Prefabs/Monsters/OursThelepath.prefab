@@ -105,5 +105,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterName: Ours Telepath
-  monsterATK: 15
+  monsterMinATK: 6
+  monsterMaxATK: 8
   monsterHP: 8

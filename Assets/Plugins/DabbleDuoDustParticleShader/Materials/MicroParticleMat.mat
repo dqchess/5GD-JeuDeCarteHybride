@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: MicroParticleMat
+  m_Shader: {fileID: 4800000, guid: 263c2599de8724f1898741202e2b16e7, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _Detail:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FadeTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Fbm:
+        m_Texture: {fileID: 2800000, guid: a6cf5547248d148fd8be27eafd0ba760, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 288658c6cd11186230001cfaec27b439, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Noise:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Shape:
+        m_Texture: {fileID: 2800000, guid: 3973c22f875c746e8b79e79b6ac47b9c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _Blur: 0
+    - _Contrast: 1
+    - _DoShape: 0.31730768
+    - _Emission: 0
+    - _FlashSpeed: 1
+    - _TileX: 1
+    - _TileY: 1
+    - _Transparency: 0.25
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _EmisColor: {r: 0.2, g: 0.2, b: 0.2, a: 0}
+    - _LightColor: {r: 1, g: 0.83137256, b: 0.6509804, a: 1}
+    - _ShadowColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Speckles: {r: 1, g: 0.98543286, b: 0.9632353, a: 1}
+    - _TintColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+--- !u!1002 &2100001
+EditorExtensionImpl:
+  serializedVersion: 6

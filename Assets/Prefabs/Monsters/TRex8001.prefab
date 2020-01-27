@@ -105,5 +105,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterName: TRex 8001
-  monsterATK: 22
+  monsterMinATK: 7
+  monsterMaxATK: 10
   monsterHP: 12

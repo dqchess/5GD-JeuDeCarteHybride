@@ -5,6 +5,9 @@ using UnityEngine;
 public class MonsterStats : MonoBehaviour
 {
     public string monsterName;
-    public int monsterATK;
+    public int monsterMinATK;
+    public int monsterMaxATK;
     public int monsterHP;
+    public int monsterLoot;
+    public float monsterHonor;
 }
