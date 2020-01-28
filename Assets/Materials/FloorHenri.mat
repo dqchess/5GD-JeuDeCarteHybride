@@ -7,12 +7,12 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Custom holo Wireframe
-  m_Shader: {fileID: 4800000, guid: d9c3681083a96bb4683f623da72dccbd, type: 3}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 1
-  m_EnableInstancingVariants: 1
-  m_DoubleSidedGI: 0
+  m_Name: FloorHenri
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: _GLOSSYREFLECTIONS_OFF
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 1
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
@@ -55,60 +55,23 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _SpecGlossMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_14F0A6F9: 1
-    - Vector1_7B1FC8C8: 10
-    - Vector1_848BCB66: 1.25
-    - Vector1_F2E8BD97: 0.19
-    - _AlphaClip: 0
-    - _Blend: 0
     - _BumpScale: 1
-    - _Cull: 2
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _EmissionMultiplier: 1
-    - _GlitchDensity: 0
-    - _GlitchPeriod: 0
-    - _GlitchStrength: 0
     - _GlossMapScale: 1
-    - _Glossiness: 0.5
-    - _GlossyReflections: 1
-    - _HoloDistance: 0.5
-    - _HoloValue: 1
-    - _MaxTriSize: 61.6
-    - _Metallic: 0
+    - _Glossiness: 0.29
+    - _GlossyReflections: 0
+    - _Metallic: 1
+    - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _PulseDirection: 1
-    - _Scanline1Amount: 5.98
-    - _Scanline1Speed: 3.67
-    - _Scanline2Speed: -0.52
-    - _Scnaline2Amount: 0.41
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _Surface: 0
     - _UVSec: 0
-    - _WireSmoothness: 5.57
-    - _WireThickness: 79
-    - _WorkflowMode: 1
     - _ZWrite: 1
-    - __dirty: 0
     m_Colors:
-    - Color_B98D6D5F: {r: 0.85882354, g: 0.3529412, b: 0, a: 1}
-    - Color_BEE651E4: {r: 0, g: 7.179145, b: 12.318657, a: 1}
-    - _BaseColor: {r: 1, g: 1, b: 1, a: 0}
-    - _Color: {r: 0, g: 0.8359375, b: 1, a: 1}
+    - _Color: {r: 0.5382699, g: 0.57294834, b: 0.6037736, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FresnelColor: {r: 0, g: 1.2006853, b: 1.6048764, a: 0}
-    - _GlitchDirection: {r: 0, g: 1, b: 0, a: 0}
-    - _HoloColor: {r: 1, g: 1, b: 1, a: 1}
-    - _HoloDirection: {r: 0, g: 1, b: 0, a: 0}
-    - _PulseColor: {r: 2.680933, g: 2.79544, b: 0, a: 1}
-    - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _WireColor: {r: 0, g: 1.3505688, b: 2.433572, a: 0.72156864}
