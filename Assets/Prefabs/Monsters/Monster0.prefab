@@ -213,10 +213,10 @@ MonoBehaviour:
   monsterName: Solarophosaurus
   monsterMinATK: 1
   monsterMaxATK: 2
-  monsterHP: 2
+  monsterHP: 6
   monsterLoot: 8
   monsterHonor: 40
-  forceAttackElement: 3
+  forceAttackElement: 0
   forceDefenseElement: 0
 --- !u!1 &1109424741136521408
 GameObject:

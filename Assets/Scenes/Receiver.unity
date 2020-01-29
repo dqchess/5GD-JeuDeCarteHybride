@@ -17536,6 +17536,31 @@ Transform:
   m_Father: {fileID: 1747892423}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1978520256 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: a122d30ad7f861d4985d1eb8233a382d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1458752486}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1978520258
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1978520256}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2313b461ad4f48e429e09dc978cf19dc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1993816353
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17944,6 +17969,31 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2028921850}
   m_CullTransparentMesh: 0
+--- !u!1 &2034226220 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 81f40896060290b49bada5c384805347,
+    type: 3}
+  m_PrefabInstance: {fileID: 488000945}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &2034226221
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2034226220}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e155c539c143d12479174de0ed9f3c7b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!4 &2035736912 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4896799807661455363, guid: 063573683c50dc945bcf97a6f80dc7a4,
