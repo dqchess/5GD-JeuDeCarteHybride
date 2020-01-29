@@ -453,7 +453,8 @@ public class GameManager : MonoBehaviour
 
         DOTween.To(() => textEndFightGold.fontSize, x => textEndFightGold.fontSize = x, 40, 1f).SetEase(Ease.OutBounce);
         DOTween.To(() => textEndFightGold.fontSize, x => textEndFightGold.fontSize = x, 0, 0.5f).SetEase(Ease.InSine).SetDelay(1.5f);
-
+        yield return new WaitForSeconds(1.5f);
+        
         Camera.main.transform.DOMove(cameraPositionStats, 1f);
 
         yield return new WaitForSeconds(3);
