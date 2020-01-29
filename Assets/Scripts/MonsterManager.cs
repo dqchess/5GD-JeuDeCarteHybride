@@ -60,7 +60,7 @@ public class MonsterManager : MonoBehaviour
 
         monsterStats = model.GetComponent<MonsterStats>();
 
-        SetMonsterElements(monsterStats);
+        //SetMonsterElements(monsterStats);
 
         SetMonsterStats(monsterStats);
     }
@@ -78,57 +78,121 @@ public class MonsterManager : MonoBehaviour
     {
         int randomElement;
         //atkElementImage.color = new Color(255, 255, 255, 0);//alpha 0
+        
+        
         //ATK Random
-        if (monsterStats.forceAttackElement != Element.NONE && Random.Range(0, GameManager.Instance.randomElementMonster) == 0 )
+        
+        if (monsterStats.forceAttackElement == Element.NULL) //random element
         {
-            randomElement = Random.Range(0, 3);
-            atkElementImage.color = new Color(255, 255, 255, 255);//alpha 1
-            switch (randomElement)
+            if (Random.Range(0, GameManager.Instance.randomElementMonster) == 0)
             {
-                case 0:
+                randomElement = Random.Range(0, 3);
+                atkElementImage.color = new Color(255, 255, 255, 255);//alpha 1
+                switch (randomElement)
+                {
+                    case 0:
+                        elementAtk = Element.FIRE;
+                        atkElementImage.sprite = GameManager.Instance.fireSprite;
+                        break;
+                    case 1:
+                        elementAtk = Element.ICE;
+                        atkElementImage.sprite = GameManager.Instance.iceSprite;
+                        break;
+                    case 2:
+                        elementAtk = Element.ELECTRIC;
+                        atkElementImage.sprite = GameManager.Instance.electricSprite;
+                        break;
+                }
+            }
+            
+            else
+            {
+                atkElementImage.color = new Color(255, 255, 255, 0);//alpha 0
+            }
+        }
+        
+        else if (monsterStats.forceAttackElement != Element.NONE) // defined element
+        {
+            atkElementImage.color = new Color(255, 255, 255, 255);//alpha 1
+            switch (monsterStats.forceAttackElement)
+            {
+                case Element.FIRE:
                     elementAtk = Element.FIRE;
                     atkElementImage.sprite = GameManager.Instance.fireSprite;
                     break;
-                case 1:
+                case Element.ICE:
                     elementAtk = Element.ICE;
                     atkElementImage.sprite = GameManager.Instance.iceSprite;
                     break;
-                case 2:
+                case Element.ELECTRIC:
                     elementAtk = Element.ELECTRIC;
                     atkElementImage.sprite = GameManager.Instance.electricSprite;
                     break;
             }
         }
-        else
+        
+        else // no element
         {
             elementAtk = Element.NULL;
             atkElementImage.sprite = null;
             atkElementImage.color = new Color(255, 255, 255, 0);//alpha 0
         }
         
-
+        
+      
+        
         //DEF Random
+        
         //defElementImage.color = new Color(255, 255, 255, 0);//alpha 0
-        if (monsterStats.forceDefenseElement != Element.NONE && Random.Range(0, GameManager.Instance.randomElementMonster) == 0)
+        if (monsterStats.forceDefenseElement == Element.NULL)
         {
-            randomElement = Random.Range(0, 3);
-            defElementImage.color = new Color(255, 255, 255, 255);//alpha 1
-            switch (randomElement)
+            if (Random.Range(0, GameManager.Instance.randomElementMonster) == 0)
             {
-                case 0:
+                randomElement = Random.Range(0, 3);
+                defElementImage.color = new Color(255, 255, 255, 255);//alpha 1
+                switch (randomElement)
+                {
+                    case 0:
+                        elementDef = Element.FIRE;
+                        defElementImage.sprite = GameManager.Instance.fireSprite;
+                        break;
+                    case 1:
+                        elementDef = Element.ICE;
+                        defElementImage.sprite = GameManager.Instance.iceSprite;
+                        break;
+                    case 2:
+                        elementDef = Element.ELECTRIC;
+                        defElementImage.sprite = GameManager.Instance.electricSprite;
+                        break;
+                }
+            }
+            
+            else
+            {
+                defElementImage.color = new Color(255, 255, 255, 0);//alpha 0
+            }
+        }
+        
+        else if (monsterStats.forceDefenseElement != Element.NONE)
+        {
+            defElementImage.color = new Color(255, 255, 255, 255);//alpha 1
+            switch (monsterStats.forceDefenseElement)
+            {
+                case Element.FIRE:
                     elementDef = Element.FIRE;
                     defElementImage.sprite = GameManager.Instance.fireSprite;
                     break;
-                case 1:
+                case Element.ICE:
                     elementDef = Element.ICE;
                     defElementImage.sprite = GameManager.Instance.iceSprite;
                     break;
-                case 2:
+                case Element.ELECTRIC:
                     elementDef = Element.ELECTRIC;
                     defElementImage.sprite = GameManager.Instance.electricSprite;
                     break;
             }
         }
+        
         else
         {
             elementDef = Element.NULL;
@@ -139,6 +203,8 @@ public class MonsterManager : MonoBehaviour
 
     public void SetMonsterStats(MonsterStats monster)
     {
+        SetMonsterElements(monster);
+        
         if (monster == null)
             return;
 
@@ -148,50 +214,7 @@ public class MonsterManager : MonoBehaviour
         def = monster.monsterHP;
         loot = monster.monsterLoot;
         honor = monster.monsterHonor;
-
-        if (monster.forceAttackElement != Element.NULL && monster.forceAttackElement != Element.NONE)
-        {
-            atkElementImage.color = new Color(255, 255, 255, 255);//alpha 1
-            switch (monster.forceAttackElement)
-            {
-                case Element.FIRE:
-                    elementAtk = Element.FIRE;
-                    atkElementImage.sprite = GameManager.Instance.fireSprite;
-                    break;
-                case Element.ICE:
-                    elementAtk = Element.ICE;
-                    atkElementImage.sprite = GameManager.Instance.iceSprite;
-                    break;
-                case Element.ELECTRIC:
-                    elementAtk = Element.ELECTRIC;
-                    atkElementImage.sprite = GameManager.Instance.electricSprite;
-                    break;
-            }
-        }
-        else
-        {
-            //TODO: add alpha 0 here and same for defense
-        }
         
-        if (monster.forceDefenseElement != Element.NULL && monster.forceDefenseElement != Element.NONE)
-        {
-            defElementImage.color = new Color(255, 255, 255, 255);//alpha 1
-            switch (monster.forceDefenseElement)
-            {
-                case Element.FIRE:
-                    elementDef = Element.FIRE;
-                    defElementImage.sprite = GameManager.Instance.fireSprite;
-                    break;
-                case Element.ICE:
-                    elementDef = Element.ICE;
-                    defElementImage.sprite = GameManager.Instance.iceSprite;
-                    break;
-                case Element.ELECTRIC:
-                    elementDef = Element.ELECTRIC;
-                    defElementImage.sprite = GameManager.Instance.electricSprite;
-                    break;
-            }
-        }
 
         if (elementAtk != Element.NULL)
         {
