@@ -77,11 +77,12 @@ public class MonsterManager : MonoBehaviour
     public void SetMonsterElements(MonsterStats monsterStats)
     {
         int randomElement;
+        //atkElementImage.color = new Color(255, 255, 255, 0);//alpha 0
         //ATK Random
-        if (Random.Range(0, GameManager.Instance.randomElementMonster) == 2 )
+        if (monsterStats.forceAttackElement != Element.NONE && Random.Range(0, GameManager.Instance.randomElementMonster) == 0 )
         {
             randomElement = Random.Range(0, 3);
-            atkElementImage.color = new Color(0, 201, 255, 255);//alpha 1
+            atkElementImage.color = new Color(255, 255, 255, 255);//alpha 1
             switch (randomElement)
             {
                 case 0:
@@ -104,11 +105,14 @@ public class MonsterManager : MonoBehaviour
             atkElementImage.sprite = null;
             atkElementImage.color = new Color(255, 255, 255, 0);//alpha 0
         }
+        
+
         //DEF Random
-        if (Random.Range(0, GameManager.Instance.randomElementMonster) == 2)
+        //defElementImage.color = new Color(255, 255, 255, 0);//alpha 0
+        if (monsterStats.forceDefenseElement != Element.NONE && Random.Range(0, GameManager.Instance.randomElementMonster) == 0)
         {
             randomElement = Random.Range(0, 3);
-            defElementImage.color = new Color(0, 201, 255, 255);//alpha 1
+            defElementImage.color = new Color(255, 255, 255, 255);//alpha 1
             switch (randomElement)
             {
                 case 0:
@@ -145,9 +149,9 @@ public class MonsterManager : MonoBehaviour
         loot = monster.monsterLoot;
         honor = monster.monsterHonor;
 
-        if (monster.forceAttackElement != Element.NULL)
+        if (monster.forceAttackElement != Element.NULL && monster.forceAttackElement != Element.NONE)
         {
-            atkElementImage.color = new Color(0, 201, 255, 255);//alpha 1
+            atkElementImage.color = new Color(255, 255, 255, 255);//alpha 1
             switch (monster.forceAttackElement)
             {
                 case Element.FIRE:
@@ -164,9 +168,14 @@ public class MonsterManager : MonoBehaviour
                     break;
             }
         }
-        if (monster.forceDefenseElement != Element.NULL)
+        else
         {
-            defElementImage.color = new Color(0, 201, 255, 255);//alpha 1
+            //TODO: add alpha 0 here and same for defense
+        }
+        
+        if (monster.forceDefenseElement != Element.NULL && monster.forceDefenseElement != Element.NONE)
+        {
+            defElementImage.color = new Color(255, 255, 255, 255);//alpha 1
             switch (monster.forceDefenseElement)
             {
                 case Element.FIRE:

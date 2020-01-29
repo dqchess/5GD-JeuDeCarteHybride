@@ -365,7 +365,7 @@ public class GameManager : MonoBehaviour
             }
             else //monster don't crit and i gain honor
             {
-                textDrawStats.text = "Monster critical fail";
+                textDrawStats.text = "Seconde chance réussie !";
                 textDrawStats.GetComponent<RectTransform>().DOScale(textDrawStats.GetComponent<RectTransform>().transform.localScale * 1.5f, 0.2f).SetLoops(2, LoopType.Yoyo);
                 yield return new WaitForSeconds(1f);
 
@@ -376,7 +376,7 @@ public class GameManager : MonoBehaviour
                     {
                         b = true;
                         Instantiate(hitFight, monsterManager.textDefMonsterStat.transform.position, Quaternion.identity);
-                        monsterManager.textDefMonsterStat.text = "DEAD";
+                        monsterManager.textDefMonsterStat.text = "MORT";
                         monsterManager.textDefMonsterStat.GetComponent<RectTransform>().DOScale(monsterManager.textDefMonsterStat.GetComponent<RectTransform>().transform.localScale * 1.5f, 0.2f).SetLoops(2, LoopType.Yoyo);                       
                     }
                 });
@@ -449,7 +449,7 @@ public class GameManager : MonoBehaviour
     {
         monsterManager.DestroyMonster();
         SoundManager.instance.GetTheGold();
-        textEndFightGold.text = " Both players take your " + monsterManager.loot + " golds !";
+        textEndFightGold.text = " Les deux Managers gagnent " + monsterManager.loot + " pièces d'or !";
 
         DOTween.To(() => textEndFightGold.fontSize, x => textEndFightGold.fontSize = x, 40, 1f).SetEase(Ease.OutBounce);
         DOTween.To(() => textEndFightGold.fontSize, x => textEndFightGold.fontSize = x, 0, 0.5f).SetEase(Ease.InSine).SetDelay(1.5f);
@@ -465,8 +465,9 @@ public class GameManager : MonoBehaviour
 
 public enum Element
 {
-    NULL,
+    NONE,
     FIRE,
     ICE,
     ELECTRIC,
+    NULL,
 }
