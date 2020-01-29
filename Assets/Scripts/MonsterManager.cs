@@ -228,8 +228,8 @@ public class MonsterManager : MonoBehaviour
 
     public void UpdateUIMonster()
     {
-        textMinAtkMonsterStats.text = minAtk.ToString();
-        textMaxAtkMonsterStats.text = maxAtk.ToString();
+        textMinAtkMonsterStats.text = "[" + minAtk.ToString() + " - " + maxAtk.ToString() + "]";
+        //textMaxAtkMonsterStats.text = maxAtk.ToString();
         textAtkMonsterStats.text = atk.ToString();
         textDefMonsterStat.text = def.ToString();
         textLootMonsterStats.text = loot.ToString();
