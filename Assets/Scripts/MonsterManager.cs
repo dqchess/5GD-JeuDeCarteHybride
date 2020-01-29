@@ -58,9 +58,10 @@ public class MonsterManager : MonoBehaviour
 
         DOTween.To(() => model.transform.localScale, x => model.transform.localScale = x, Vector3.zero, 0.5f).From();
 
-        SetMonsterElements();
-
         monsterStats = model.GetComponent<MonsterStats>();
+
+        SetMonsterElements(monsterStats);
+
         SetMonsterStats(monsterStats);
     }
 
@@ -73,11 +74,11 @@ public class MonsterManager : MonoBehaviour
         });       
     }
 
-    public void SetMonsterElements()
+    public void SetMonsterElements(MonsterStats monsterStats)
     {
         int randomElement;
         //ATK Random
-        if (Random.Range(0, GameManager.Instance.randomElementMonster) == 2)
+        if (Random.Range(0, GameManager.Instance.randomElementMonster) == 2 )
         {
             randomElement = Random.Range(0, 3);
             atkElementImage.color = new Color(0, 201, 255, 255);//alpha 1
@@ -143,6 +144,45 @@ public class MonsterManager : MonoBehaviour
         def = monster.monsterHP;
         loot = monster.monsterLoot;
         honor = monster.monsterHonor;
+
+        if (monster.forceAttackElement != Element.NULL)
+        {
+            atkElementImage.color = new Color(0, 201, 255, 255);//alpha 1
+            switch (monster.forceAttackElement)
+            {
+                case Element.FIRE:
+                    elementAtk = Element.FIRE;
+                    atkElementImage.sprite = GameManager.Instance.fireSprite;
+                    break;
+                case Element.ICE:
+                    elementAtk = Element.ICE;
+                    atkElementImage.sprite = GameManager.Instance.iceSprite;
+                    break;
+                case Element.ELECTRIC:
+                    elementAtk = Element.ELECTRIC;
+                    atkElementImage.sprite = GameManager.Instance.electricSprite;
+                    break;
+            }
+        }
+        if (monster.forceDefenseElement != Element.NULL)
+        {
+            defElementImage.color = new Color(0, 201, 255, 255);//alpha 1
+            switch (monster.forceDefenseElement)
+            {
+                case Element.FIRE:
+                    elementDef = Element.FIRE;
+                    defElementImage.sprite = GameManager.Instance.fireSprite;
+                    break;
+                case Element.ICE:
+                    elementDef = Element.ICE;
+                    defElementImage.sprite = GameManager.Instance.iceSprite;
+                    break;
+                case Element.ELECTRIC:
+                    elementDef = Element.ELECTRIC;
+                    defElementImage.sprite = GameManager.Instance.electricSprite;
+                    break;
+            }
+        }
 
         if (elementAtk != Element.NULL)
         {
