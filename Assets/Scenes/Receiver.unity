@@ -16496,9 +16496,12 @@ MonoBehaviour:
   textDrawStats: {fileID: 447009260}
   textEndFight: {fileID: 126963519}
   textEndFightGold: {fileID: 62080718}
-  fireSprite: {fileID: 21300002, guid: 9938c1c5058caf34bbef591be7b44014, type: 3}
-  iceSprite: {fileID: 21300006, guid: 9938c1c5058caf34bbef591be7b44014, type: 3}
-  electricSprite: {fileID: 21300000, guid: 9938c1c5058caf34bbef591be7b44014, type: 3}
+  fireSprite: {fileID: 3146932892628828526, guid: 9a091d76e668d204fa7a97b863ed1f9a,
+    type: 3}
+  iceSprite: {fileID: -2634201096690771477, guid: 9a091d76e668d204fa7a97b863ed1f9a,
+    type: 3}
+  electricSprite: {fileID: -643362390364438301, guid: 9a091d76e668d204fa7a97b863ed1f9a,
+    type: 3}
   hitFight: {fileID: 100000, guid: f06e78284f831ae469c74624ab5d513b, type: 3}
   spawnMonster: {fileID: 100000, guid: 77ec3c4e07a36814fb3169ecef41b50a, type: 3}
   plane: {fileID: 0}
@@ -20495,12 +20498,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.7890246, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9938c1c5058caf34bbef591be7b44014, type: 3}
+  m_Sprite: {fileID: -643362390364438301, guid: 9a091d76e668d204fa7a97b863ed1f9a,
+    type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -21629,12 +21633,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.7890246, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300006, guid: 9938c1c5058caf34bbef591be7b44014, type: 3}
+  m_Sprite: {fileID: 3146932892628828526, guid: 9a091d76e668d204fa7a97b863ed1f9a,
+    type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
