@@ -46,6 +46,98 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 757
+--- !u!114 &-8219040708072590454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Phase de combat/IdleRobot
+  m_EditorClassIdentifier: 
+  Path: event:/Phase de combat/IdleRobot
+  guid: 8afbd6368c6e6640bab6be382aeaa7e6
+  Banks:
+  - {fileID: -418087421032779712}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1605
+--- !u!114 &-7844649171597728490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: "event:/Phase n\xE9gociation/ActionPositive"
+  m_EditorClassIdentifier: 
+  Path: "event:/Phase n\xE9gociation/ActionPositive"
+  guid: b4bf23722eae2041afa3593a2a033ce0
+  Banks:
+  - {fileID: -418087421032779712}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 250
+--- !u!114 &-7731993831836706148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: "event:/Phase de combat/CoupDonn\xE9"
+  m_EditorClassIdentifier: 
+  Path: "event:/Phase de combat/CoupDonn\xE9"
+  guid: 148fc5493f90b64b85f34af7f736d1f0
+  Banks:
+  - {fileID: -418087421032779712}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 703
+--- !u!114 &-7354337435759506235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: "event:/Phase n\xE9gociation/ValidationMateriel"
+  m_EditorClassIdentifier: 
+  Path: "event:/Phase n\xE9gociation/ValidationMateriel"
+  guid: 3b727376f39a5a4b899d210a6b2c2e87
+  Banks:
+  - {fileID: -418087421032779712}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 812
 --- !u!114 &-6429990742708694901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,6 +161,75 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 6096
+--- !u!114 &-6043725659239074188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Phase de combat/FouleDebut
+  m_EditorClassIdentifier: 
+  Path: event:/Phase de combat/FouleDebut
+  guid: 69a614c151b2654d98ae1a7436b70406
+  Banks:
+  - {fileID: -418087421032779712}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 8000
+--- !u!114 &-5427742842637959896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Phase de combat/GainNiveau
+  m_EditorClassIdentifier: 
+  Path: event:/Phase de combat/GainNiveau
+  guid: 76972df616f147439f9dc329cb22fd83
+  Banks:
+  - {fileID: -418087421032779712}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 808
+--- !u!114 &-5414489261597573123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Phase de combat/RugissementMonstre
+  m_EditorClassIdentifier: 
+  Path: event:/Phase de combat/RugissementMonstre
+  guid: 37563c549cc3654c8cb64ca477a35ef2
+  Banks:
+  - {fileID: -418087421032779712}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 2656
 --- !u!114 &-5218062782043249740
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,6 +276,75 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 703
+--- !u!114 &-4443063253888192716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: "event:/Phase n\xE9gociation/ApparitionMonstre"
+  m_EditorClassIdentifier: 
+  Path: "event:/Phase n\xE9gociation/ApparitionMonstre"
+  guid: bb7f31781642414fa43434105dddfcde
+  Banks:
+  - {fileID: -418087421032779712}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1718
+--- !u!114 &-4276284382528328037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Phase de combat/FouleDefaite
+  m_EditorClassIdentifier: 
+  Path: event:/Phase de combat/FouleDefaite
+  guid: 71e4c58f910f0a449fc413201ef803d1
+  Banks:
+  - {fileID: -418087421032779712}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 5928
+--- !u!114 &-4257062003127297216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Phase de combat/DegatFoudre
+  m_EditorClassIdentifier: 
+  Path: event:/Phase de combat/DegatFoudre
+  guid: 99d282f05a6e6041a74fdd69093e7d01
+  Banks:
+  - {fileID: -418087421032779712}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 757
 --- !u!114 &-4001281723223402309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,6 +391,52 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1500
+--- !u!114 &-3478562644721961010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Phase de combat/DegatFeu
+  m_EditorClassIdentifier: 
+  Path: event:/Phase de combat/DegatFeu
+  guid: e6ec0b061747a348b434365f53613ba6
+  Banks:
+  - {fileID: -418087421032779712}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 781
+--- !u!114 &-3337278164049229326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Phase de combat/DegatGlace
+  m_EditorClassIdentifier: 
+  Path: event:/Phase de combat/DegatGlace
+  guid: 79f9956ab8ccbd4aa0fea733dd28626f
+  Banks:
+  - {fileID: -418087421032779712}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1718
 --- !u!114 &-3155925041298282721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,6 +460,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 2656
+--- !u!114 &-2773935026721899803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Phase de combat/ButinCombat
+  m_EditorClassIdentifier: 
+  Path: event:/Phase de combat/ButinCombat
+  guid: 448de784c1446f489e14a55bfe639f1a
+  Banks:
+  - {fileID: -418087421032779712}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1445
 --- !u!114 &-2590961355292660076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,6 +506,93 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 808
+--- !u!114 &-2415760977410774391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Phase de combat/MortMonstre
+  m_EditorClassIdentifier: 
+  Path: event:/Phase de combat/MortMonstre
+  guid: 37e43c564d501c46bf6d78bc3c58d473
+  Banks:
+  - {fileID: -418087421032779712}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 2656
+--- !u!114 &-2321203610313095182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Phase de combat/MortPersonnage
+  m_EditorClassIdentifier: 
+  Path: event:/Phase de combat/MortPersonnage
+  guid: 45b6d817f238554fa0ee6f6f805b7d34
+  Banks:
+  - {fileID: -418087421032779712}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 750
+--- !u!114 &-676092236960881103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: "event:/Phase n\xE9gociation/FinNegociation"
+  m_EditorClassIdentifier: 
+  Path: "event:/Phase n\xE9gociation/FinNegociation"
+  guid: 9c111ebc20f56141a72fbde4d6d576f5
+  Banks:
+  - {fileID: -418087421032779712}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1500
+--- !u!114 &-418087421032779712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master Bank.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/BuildFMOD/Desktop/Master Bank.bank
+  SubDir: 
+  lastModified: 637158070747792041
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
 --- !u!114 &-233513379316977606
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -312,40 +698,40 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: 1408453846713689493}
-  - {fileID: 3279898997814251892}
+  - {fileID: 7624902020567436209}
+  - {fileID: -418087421032779712}
   EditorEvents:
-  - {fileID: -4709750992663655944}
-  - {fileID: -8357926632886763513}
-  - {fileID: -233143119973803592}
-  - {fileID: -5218062782043249740}
-  - {fileID: -4001281723223402309}
-  - {fileID: 1960436606648463377}
-  - {fileID: -84716915558903137}
-  - {fileID: 8021740250299674703}
-  - {fileID: 6340714595169774844}
-  - {fileID: -6429990742708694901}
-  - {fileID: 7593289417569713105}
-  - {fileID: -3155925041298282721}
-  - {fileID: 6767887761518159638}
-  - {fileID: -2590961355292660076}
-  - {fileID: 2956717018355835740}
-  - {fileID: -170627293068788895}
-  - {fileID: 2252805619235265792}
-  - {fileID: -8291555393439930521}
-  - {fileID: -3718084903061645583}
-  - {fileID: 1905516820599316780}
-  - {fileID: 1429531759201209667}
-  - {fileID: 4375305464767390517}
-  - {fileID: 5315366625504245236}
-  - {fileID: -233513379316977606}
-  - {fileID: 1071158332186910408}
+  - {fileID: -7731993831836706148}
+  - {fileID: 5771044071006641205}
+  - {fileID: 3835998302733437167}
+  - {fileID: -5414489261597573123}
+  - {fileID: -2415760977410774391}
+  - {fileID: -7354337435759506235}
+  - {fileID: -2773935026721899803}
+  - {fileID: -2321203610313095182}
+  - {fileID: 7325305358321198863}
+  - {fileID: 508653822713017812}
+  - {fileID: -6043725659239074188}
+  - {fileID: 2472929209348317193}
+  - {fileID: -4276284382528328037}
+  - {fileID: -5427742842637959896}
+  - {fileID: -3337278164049229326}
+  - {fileID: 8842140093827235150}
+  - {fileID: -8219040708072590454}
+  - {fileID: -4257062003127297216}
+  - {fileID: -676092236960881103}
+  - {fileID: 9094548629201493507}
+  - {fileID: -7844649171597728490}
+  - {fileID: -4443063253888192716}
+  - {fileID: 2541686127801935238}
+  - {fileID: -3478562644721961010}
+  - {fileID: 3732986150366178547}
   EditorParameters: []
   MasterBanks:
-  - {fileID: 3279898997814251892}
+  - {fileID: -418087421032779712}
   StringsBanks:
-  - {fileID: 1408453846713689493}
-  stringsBankWriteTime: 637074370144840191
+  - {fileID: 7624902020567436209}
+  stringsBankWriteTime: 637158070747822014
   cacheVersion: 3
 --- !u!114 &114005418419659746
 MonoBehaviour:
@@ -1573,6 +1959,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 757
+--- !u!114 &508653822713017812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Phase de combat/FouleVictoire
+  m_EditorClassIdentifier: 
+  Path: event:/Phase de combat/FouleVictoire
+  guid: 5a1d4f41a6cc0f4d89ce5637e1688432
+  Banks:
+  - {fileID: -418087421032779712}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 6096
 --- !u!114 &1071158332186910408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1708,6 +2117,52 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1605
+--- !u!114 &2472929209348317193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Phase de combat/VictoireMonstre
+  m_EditorClassIdentifier: 
+  Path: event:/Phase de combat/VictoireMonstre
+  guid: 6f1b0fd1db6e414f9d15c6d51f890054
+  Banks:
+  - {fileID: -418087421032779712}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 2656
+--- !u!114 &2541686127801935238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: "event:/Phase n\xE9gociation/ActionNegative"
+  m_EditorClassIdentifier: 
+  Path: "event:/Phase n\xE9gociation/ActionNegative"
+  guid: be4aab4bce6c064983fd1ae16c61d677
+  Banks:
+  - {fileID: -418087421032779712}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 858
 --- !u!114 &2956717018355835740
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1749,6 +2204,52 @@ MonoBehaviour:
   LoadResult: 0
   FileSizes: []
   Exists: 1
+--- !u!114 &3732986150366178547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: "event:/Phase n\xE9gociation/EquiperObjet"
+  m_EditorClassIdentifier: 
+  Path: "event:/Phase n\xE9gociation/EquiperObjet"
+  guid: f8ae36b0c157e447af04706bbb556eea
+  Banks:
+  - {fileID: -418087421032779712}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 492
+--- !u!114 &3835998302733437167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Phase de combat/LancementCombat
+  m_EditorClassIdentifier: 
+  Path: event:/Phase de combat/LancementCombat
+  guid: 1f58a183e349c94da0d71275ac76594d
+  Banks:
+  - {fileID: -418087421032779712}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 2218
 --- !u!114 &4375305464767390517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1795,6 +2296,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 858
+--- !u!114 &5771044071006641205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: "event:/Phase n\xE9gociation/LancementN\xE9gociation"
+  m_EditorClassIdentifier: 
+  Path: "event:/Phase n\xE9gociation/LancementN\xE9gociation"
+  guid: 1c9b1f93a2701746ac717a6dd5f83ed2
+  Banks:
+  - {fileID: -418087421032779712}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1781
 --- !u!114 &6340714595169774844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1841,6 +2365,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 5928
+--- !u!114 &7325305358321198863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Phase de combat/FinCombat
+  m_EditorClassIdentifier: 
+  Path: event:/Phase de combat/FinCombat
+  guid: 4a49f804ea1ee643a8a0af21c8fe7a10
+  Banks:
+  - {fileID: -418087421032779712}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1578
 --- !u!114 &7593289417569713105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1864,6 +2411,26 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 8000
+--- !u!114 &7624902020567436209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master Bank.strings.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/BuildFMOD/Desktop/Master Bank.strings.bank
+  SubDir: 
+  lastModified: 637158070747822014
+  LoadResult: 0
+  FileSizes:
+  - Name: 
+    Value: 1916
+  Exists: 1
 --- !u!114 &8021740250299674703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1887,3 +2454,49 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 750
+--- !u!114 &8842140093827235150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: "event:/Phase n\xE9gociation/EnleverObjet"
+  m_EditorClassIdentifier: 
+  Path: "event:/Phase n\xE9gociation/EnleverObjet"
+  guid: 801173730422f746a4ad9c5b2da7a0f0
+  Banks:
+  - {fileID: -418087421032779712}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 625
+--- !u!114 &9094548629201493507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Phase de combat/CoupRecu
+  m_EditorClassIdentifier: 
+  Path: event:/Phase de combat/CoupRecu
+  guid: af9fa95e5992a34e9eab6675eac7ecaa
+  Banks:
+  - {fileID: -418087421032779712}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 656
