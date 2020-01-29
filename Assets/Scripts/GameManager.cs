@@ -181,10 +181,18 @@ public class GameManager : MonoBehaviour
             Camera.main.transform.DOLocalMoveY(cameraPositionFight.y, 0.5f).SetEase(Ease.OutExpo);
             Camera.main.transform.DOLocalMoveZ(cameraPositionFight.z, 0.5f).SetEase(Ease.OutExpo);
         });
+        
 
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(2);
+        
+        monsterUi.transform.DOMoveY(monsterUi.transform.position.y - 6.5f, 0.5f);
+        
+        yield return new WaitForSeconds(1);
 
-        monsterUi.transform.DOMoveY(monsterUi.transform.position.y - 5, 0.5f);
+        yield return StartCoroutine(monsterManager.DisplayRandomAtk());
+
+        yield return new WaitForSeconds(1.5f);
+
 
         //PLAYER1 FIGHT       
         monsterManager.monsterPreview.transform.DORotate(new Vector3(0, -240, 0), 1f);
@@ -193,9 +201,7 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(1.5f);
 
-        yield return StartCoroutine(monsterManager.DisplayRandomAtk());
-
-        yield return new WaitForSeconds(1.5f);
+       
 
         yield return StartCoroutine(StartFightPlayer(player1));
 
@@ -228,45 +234,10 @@ public class GameManager : MonoBehaviour
     {
         int monsterMaxDef = monsterManager.def;
 
-        //I ATTACK THE MONSTER
         bool monsterIsDead = false;
         bool playerIsDead = false;
         bool b = false;
-        p.atkUI.GetComponent<RectTransform>().DOShakeAnchorPos(2, 15, 100);
-        yield return new WaitForSeconds(1.8f);
-        p.atkUI.GetComponent<RectTransform>().DOMove(monsterManager.textDefMonsterStat.transform.position, 0.5f).SetEase(Ease.InBack).SetLoops(2,LoopType.Yoyo).OnStepComplete(() => {
-            if (!b)
-            {
-                b = true;
-                Instantiate(hitFight, monsterManager.textDefMonsterStat.transform.position, Quaternion.identity);
-                SoundManager.instance.Attack();
-                if (p.playerFireATK > 0)
-                    SoundManager.instance.DamageFireDeal();
-                if (p.playerIceATK > 0)
-                    SoundManager.instance.DamageIceDeal();
-                if (p.playerElectricATK > 0)
-                    SoundManager.instance.DamageElecDeal();
-                monsterManager.def -= p.playerATKTotal;
-                monsterManager.UpdateUIMonster();
-                monsterManager.textDefMonsterStat.GetComponent<RectTransform>().DOScale(monsterManager.textDefMonsterStat.GetComponent<RectTransform>().transform.localScale * 1.5f, 0.2f).SetLoops(2, LoopType.Yoyo);
-                if (monsterManager.def <= 0) //le monstre été tué
-                {
-                    monsterManager.textDefMonsterStat.text = "DEAD";
-                }
-            }
-        });
-        yield return new WaitForSeconds(1f);
-
-        if (monsterManager.def <= 0) //le monstre a été tué
-        {
-            monsterIsDead = true;
-            if (p == player1)
-                yield return StartCoroutine(DisplayReward(p, 1));
-            else if(p == player2)
-                yield return StartCoroutine(DisplayReward(p, -1));
-        }
-        yield return new WaitForSeconds(1f);
-
+        
         //THE MONSTER ATTACK ME
         b = false;
         monsterManager.atkUI.GetComponent<RectTransform>().DOShakeAnchorPos(2, 15, 100);
@@ -291,7 +262,7 @@ public class GameManager : MonoBehaviour
                 p.textDefPlayerStats.GetComponent<RectTransform>().DOScale(p.textDefPlayerStats.GetComponent<RectTransform>().transform.localScale * 1.5f, 0.2f).SetLoops(2, LoopType.Yoyo);
                 if (p.playerDEFTotal <= 0) //j'ai été tué 
                 {
-                    p.textDefPlayerStats.text = "DEAD";
+                    p.textDefPlayerStats.text = "MORT";
                 }
             }
         });
@@ -306,32 +277,71 @@ public class GameManager : MonoBehaviour
             else if (p == player2)
                 yield return StartCoroutine(DisplayPunishment(p, -1));
         }
+        
+        //I ATTACK THE MONSTER 
+        b = false;
+        p.atkUI.GetComponent<RectTransform>().DOShakeAnchorPos(2, 15, 100);
+        yield return new WaitForSeconds(1.8f);
+        p.atkUI.GetComponent<RectTransform>().DOMove(monsterManager.textDefMonsterStat.transform.position, 0.5f).SetEase(Ease.InBack).SetLoops(2,LoopType.Yoyo).OnStepComplete(() => {
+            if (!b)
+            {
+                b = true;
+                Instantiate(hitFight, monsterManager.textDefMonsterStat.transform.position, Quaternion.identity);
+                SoundManager.instance.Attack();
+                if (p.playerFireATK > 0)
+                    SoundManager.instance.DamageFireDeal();
+                if (p.playerIceATK > 0)
+                    SoundManager.instance.DamageIceDeal();
+                if (p.playerElectricATK > 0)
+                    SoundManager.instance.DamageElecDeal();
+                monsterManager.def -= p.playerATKTotal;
+                monsterManager.UpdateUIMonster();
+                monsterManager.textDefMonsterStat.GetComponent<RectTransform>().DOScale(monsterManager.textDefMonsterStat.GetComponent<RectTransform>().transform.localScale * 1.5f, 0.2f).SetLoops(2, LoopType.Yoyo);
+                if (monsterManager.def <= 0) //le monstre été tué
+                {
+                    monsterManager.textDefMonsterStat.text = "MORT";
+                }
+            }
+        });
+        yield return new WaitForSeconds(1f);
+
+        if (monsterManager.def <= 0) //le monstre a été tué
+        {
+            monsterIsDead = true;
+            if (p == player1)
+                yield return StartCoroutine(DisplayReward(p, 1));
+            else if(p == player2)
+                yield return StartCoroutine(DisplayReward(p, -1));
+        }
+        yield return new WaitForSeconds(1f);
+
+        
 
         yield return new WaitForSeconds(1f);
 
-        if (!playerIsDead && !monsterIsDead) //draw
+        if (/*!playerIsDead &&*/ !monsterIsDead && monsterManager.def < monsterMaxDef) //draw
         {
             //display random def 
             DOTween.To(() => textDraw.fontSize, x => textDraw.fontSize = x, 90, 1f).SetEase(Ease.OutBounce).SetLoops(2, LoopType.Yoyo);
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(1.5f);
             monsterManager.textDefMonsterStat.text = monsterManager.def.ToString() + " / " + monsterMaxDef.ToString();
             monsterManager.textDefMonsterStat.GetComponent<RectTransform>().DOScale(monsterManager.textDefMonsterStat.GetComponent<RectTransform>().transform.localScale * 1.5f, 0.2f).SetLoops(2, LoopType.Yoyo);
             monsterManager.defUI.transform.DOMoveX(monsterManager.defUI.transform.position.x - 1.7f, 0.3f);
             monsterManager.defUI.transform.DOMoveY(monsterManager.defUI.transform.position.y - 4, 0.3f);
 
-            int pourcentageCrit = Mathf.CeilToInt(((float)monsterManager.def / (float)monsterMaxDef) * 100);
-            textDrawStats.text = pourcentageCrit.ToString() + " % chance to crit";
+            int pourcentageSecondeChance = Mathf.CeilToInt(((1 - (float)monsterManager.def / (float)monsterMaxDef)) * 100);
+            textDrawStats.text = pourcentageSecondeChance.ToString() + " % de seconde chance";
             DOTween.To(() => textDrawStats.fontSize, x => textDrawStats.fontSize = x, 25, 1f).SetEase(Ease.OutSine).SetDelay(0.5f);
-
-            yield return new WaitForSeconds(2.5f);
-
-            monsterManager.defUI.GetComponent<RectTransform>().DOShakeAnchorPos(1.5f, 15, 100);
 
             yield return new WaitForSeconds(1.5f);
 
-            if (Random.Range(0,100) <= pourcentageCrit) //monster crit and i lose hp
+            monsterManager.defUI.GetComponent<RectTransform>().DOShakeAnchorPos(0.75f, 15, 100);
+
+            yield return new WaitForSeconds(0.75f);
+
+            if (Random.Range(0,100) >= pourcentageSecondeChance) //monster crit and i lose hp
             {
-                textDrawStats.text = "Monster critical success";
+                textDrawStats.text = "Seconde chance ratée !";
                 textDrawStats.GetComponent<RectTransform>().DOScale(textDrawStats.GetComponent<RectTransform>().transform.localScale * 1.5f, 0.2f).SetLoops(2, LoopType.Yoyo);
                 yield return new WaitForSeconds(1f);
 
@@ -344,7 +354,7 @@ public class GameManager : MonoBehaviour
                     {
                         b = true;
                         Instantiate(hitFight, p.defUI.transform.position, Quaternion.identity);
-                        p.textDefPlayerStats.text = "DEAD";
+                        p.textDefPlayerStats.text = "MORT";
                         p.textDefPlayerStats.GetComponent<RectTransform>().DOScale(p.textDefPlayerStats.GetComponent<RectTransform>().transform.localScale * 1.5f, 0.2f).SetLoops(2, LoopType.Yoyo);
 
                         if (monsterManager.elementAtk == Element.FIRE)
@@ -433,7 +443,15 @@ public class GameManager : MonoBehaviour
         p.currentAdventurer.UpdateUIAdventurer();
         p.adventurerFight.GetComponent<Adventurer>().UpdateUIAdventurer();
 
+        StartCoroutine(HidePunishment(p, xValue));
+
         yield return null;
+    }
+
+    private IEnumerator HidePunishment(Player p, int xValue)
+    {
+        yield return new WaitForSeconds(2f);
+        p.punishment.transform.DOMoveX(p.reward.transform.position.x - (7.5f * xValue), 0.5f).SetEase(Ease.OutBounce);
     }
 
 
@@ -449,15 +467,20 @@ public class GameManager : MonoBehaviour
     {
         monsterManager.DestroyMonster();
         SoundManager.instance.GetTheGold();
+        
+        Camera.main.transform.DOLocalMoveX(cameraPositionFight.x, 1f);
+    
+        yield return new WaitForSeconds(1f);
+        
         textEndFightGold.text = " Les deux Managers gagnent " + monsterManager.loot + " pièces d'or !";
 
         DOTween.To(() => textEndFightGold.fontSize, x => textEndFightGold.fontSize = x, 40, 1f).SetEase(Ease.OutBounce);
-        DOTween.To(() => textEndFightGold.fontSize, x => textEndFightGold.fontSize = x, 0, 0.5f).SetEase(Ease.InSine).SetDelay(1.5f);
-        yield return new WaitForSeconds(1.5f);
+        DOTween.To(() => textEndFightGold.fontSize, x => textEndFightGold.fontSize = x, 0, 0.5f).SetEase(Ease.InSine).SetDelay(2.5f);
+        yield return new WaitForSeconds(2.5f);
         
         Camera.main.transform.DOMove(cameraPositionStats, 1f);
 
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(1);
         Stats();
     }
 
