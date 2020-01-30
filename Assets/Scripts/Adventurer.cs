@@ -27,7 +27,7 @@ public class Adventurer : MonoBehaviour
     {
         if (textHp.text != hp.ToString())
         {
-            textHp.gameObject.GetComponent<RectTransform>().DOScale(textHp.gameObject.GetComponent<RectTransform>().transform.localScale * 1.5f, 0.2f).SetLoops(2, LoopType.Yoyo);
+            //textHp.gameObject.GetComponent<RectTransform>().DOScale(textHp.gameObject.GetComponent<RectTransform>().transform.localScale * 1.5f, 0.2f).SetLoops(2, LoopType.Yoyo);
             textHp.text = hp.ToString();
         }
         if (textLevel.text != level.ToString())

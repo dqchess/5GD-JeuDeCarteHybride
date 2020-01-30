@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
     public GameObject cardDefPrefab;
     public GameObject cardMixtPrefab;
     public GameObject adventurer;
+    public AnimationCurve adventurerHonorRatio;
     
     [Header("UI")]
     public GameObject panelStats;
@@ -207,10 +208,10 @@ public class GameManager : MonoBehaviour
 
         yield return StartCoroutine(StartFightPlayer(player1));
 
-        //yield return new WaitForSeconds(2);
+        //yield return new WaitForSeconds(1);
         monsterManager.SetMonsterStats(monsterManager.monsterStats);
         player1.UnshowUIFight(-1);
-        //yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.5f);
 
         //PLAYER2 FIGHT
         player2.DisplayUIFight();
@@ -225,7 +226,7 @@ public class GameManager : MonoBehaviour
 
         player2.UnshowUIFight(1);
 
-        //yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(0.5f);
 
         EndFight();
 
@@ -269,7 +270,7 @@ public class GameManager : MonoBehaviour
             }
         });
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
 
         if (p.playerDEFTotal <= 0) //j'ai été tué 
         {
@@ -416,12 +417,12 @@ public class GameManager : MonoBehaviour
         p.reward.transform.DOMoveX(p.reward.transform.position.x + (7.5f * xValue), 0.5f).SetEase(Ease.OutBounce);
         p.textHonorPlayer.text = p.currentAdventurer.level.ToString();
         p.textHonorMonster.text = monsterManager.honor.ToString();
-        p.textHonorPlayerTotal.text = (p.currentAdventurer.level * monsterManager.honor).ToString();
+        p.textHonorPlayerTotal.text = (adventurerHonorRatio.Evaluate(p.currentAdventurer.level) * monsterManager.honor).ToString();
 
-        p.adventurerFight.GetComponent<Adventurer>().points += (p.currentAdventurer.level * monsterManager.honor);
+        p.adventurerFight.GetComponent<Adventurer>().points += adventurerHonorRatio.Evaluate(p.currentAdventurer.level) * monsterManager.honor;
         p.adventurerFight.GetComponent<Adventurer>().level += 1;
         SoundManager.instance.LevelUping();
-        p.currentAdventurer.points += (p.currentAdventurer.level * monsterManager.honor);
+        p.currentAdventurer.points += adventurerHonorRatio.Evaluate(p.currentAdventurer.level) * monsterManager.honor;
         p.currentAdventurer.level += 1;
 
         yield return new WaitForSeconds(1f);
@@ -434,16 +435,17 @@ public class GameManager : MonoBehaviour
     private IEnumerator DisplayPunishment(Player p, int xValue)
     {
         p.punishmentBool = true;
-        p.punishment.transform.DOMoveX(p.reward.transform.position.x + (7.5f * xValue), 0.5f).SetEase(Ease.OutBounce);
+        p.punishment.transform.DOMoveX(p.punishment.transform.position.x + (7.5f * xValue), 0.5f).SetEase(Ease.OutBounce);
+            
+        p.adventurerFight.transform.GetChild(1).DOPunchScale(new Vector3(1, 1, 1), 1f, 5, 0.5f);
         SoundManager.instance.TriumphantCry();
         SoundManager.instance.LoosingTheFight();
         p.adventurerFight.GetComponent<Adventurer>().hp -= 1;
 
         p.currentAdventurer.hp -= 1;
-
-        yield return new WaitForSeconds(1f);
         p.currentAdventurer.UpdateUIAdventurer();
         p.adventurerFight.GetComponent<Adventurer>().UpdateUIAdventurer();
+        yield return new WaitForSeconds(1f);
 
         StartCoroutine(HidePunishment(p, xValue));
 
@@ -453,7 +455,7 @@ public class GameManager : MonoBehaviour
     private IEnumerator HidePunishment(Player p, int xValue)
     {
         yield return new WaitForSeconds(2f);
-        p.punishment.transform.DOMoveX(p.reward.transform.position.x - (7.5f * xValue), 0.5f).SetEase(Ease.OutBounce);
+        p.punishment.transform.DOMoveX(p.punishment.transform.position.x - (7.5f * xValue), 0.5f).SetEase(Ease.OutBounce);
     }
 
 

@@ -276,8 +276,8 @@ public class Player : MonoBehaviour
         adventurerFight.transform.DOMoveY(adventurerFight.transform.position.y - 5, 1f);     
         if (rewardBool)
             reward.transform.DOMoveX(reward.transform.position.x + (7.5f * xValue), 0.5f).SetEase(Ease.OutSine);
-        if (punishmentBool)
-            punishment.transform.DOMoveX(punishment.transform.position.x + (7.5f * xValue), 0.5f).SetEase(Ease.OutSine);
+        //if (punishmentBool)
+            //punishment.transform.DOMoveX(punishment.transform.position.x + (7.5f * xValue), 0.5f).SetEase(Ease.OutSine);
 
         rewardBool = false;
         punishmentBool = false;
