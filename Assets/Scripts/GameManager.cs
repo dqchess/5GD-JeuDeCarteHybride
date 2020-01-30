@@ -69,6 +69,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public Vector3 cameraPositionFight;
     [HideInInspector] public Vector3 cameraRotationFight;
     [HideInInspector] public int turn = 0;
+    private Vector3 monsterUIPositionStats;
 
     private void Update()
     {
@@ -126,8 +127,9 @@ public class GameManager : MonoBehaviour
 
         cameraPositionStats = new Vector3(0, 4.5f, -11);
         cameraRotationStats = new Vector3(7, 0, 0);
-
+        monsterUIPositionStats = new Vector3(0, 3.292f, -1.074f);
         Stats();
+        
     }
 
     public void Stats()
@@ -150,7 +152,7 @@ public class GameManager : MonoBehaviour
         
         player1.ResetStats();
         player2.ResetStats();
-
+        monsterUi.transform.DOMove(monsterUIPositionStats, 0.5f);
         yield return new WaitForEndOfFrame();
     }
 
@@ -185,7 +187,7 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(2);
         
-        monsterUi.transform.DOMoveY(monsterUi.transform.position.y - 6.5f, 0.5f);
+        monsterUi.transform.DOMoveY(monsterUi.transform.position.y - 7f, 0.5f);
         
         yield return new WaitForSeconds(1);
 
@@ -205,10 +207,10 @@ public class GameManager : MonoBehaviour
 
         yield return StartCoroutine(StartFightPlayer(player1));
 
-        yield return new WaitForSeconds(2);
+        //yield return new WaitForSeconds(2);
         monsterManager.SetMonsterStats(monsterManager.monsterStats);
         player1.UnshowUIFight(-1);
-        yield return new WaitForSeconds(0.5f);
+        //yield return new WaitForSeconds(0.5f);
 
         //PLAYER2 FIGHT
         player2.DisplayUIFight();
@@ -219,11 +221,11 @@ public class GameManager : MonoBehaviour
 
         yield return StartCoroutine(StartFightPlayer(player2));
 
-        yield return new WaitForSeconds(2f);
+        //yield return new WaitForSeconds(2f);
 
         player2.UnshowUIFight(1);
 
-        yield return new WaitForSeconds(2);
+        //yield return new WaitForSeconds(2);
 
         EndFight();
 
@@ -317,7 +319,7 @@ public class GameManager : MonoBehaviour
 
         
 
-        yield return new WaitForSeconds(1f);
+        //yield return new WaitForSeconds(1f);
 
         if (/*!playerIsDead &&*/ !monsterIsDead && monsterManager.def < monsterMaxDef) //draw
         {
