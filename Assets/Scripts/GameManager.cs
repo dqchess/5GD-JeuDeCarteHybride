@@ -280,7 +280,8 @@ public class GameManager : MonoBehaviour
             else if (p == player2)
                 yield return StartCoroutine(DisplayPunishment(p, -1));
         }
-        
+        yield return new WaitForSeconds(0.5f);
+
         //I ATTACK THE MONSTER 
         b = false;
         p.atkUI.GetComponent<RectTransform>().DOShakeAnchorPos(2, 15, 100);
