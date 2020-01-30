@@ -2062,7 +2062,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'The dino kill you :'
+  m_text: 'Le dino vous frappe:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7ec4022216902494cb9c27874b660107, type: 2}
   m_sharedMaterial: {fileID: 21500578669188590, guid: 7ec4022216902494cb9c27874b660107,
@@ -2132,9 +2132,9 @@ MonoBehaviour:
   m_margin: {x: -76.94505, y: 0, z: -94.319824, w: 0}
   m_textInfo:
     textComponent: {fileID: 320847568}
-    characterCount: 19
+    characterCount: 20
     spriteCount: 0
-    spaceCount: 4
+    spaceCount: 3
     wordCount: 4
     linkCount: 0
     lineCount: 1
@@ -2868,7 +2868,7 @@ MonoBehaviour:
   m_material: {fileID: 0}
   m_sharedMaterial: {fileID: 0}
   m_isDefaultMaterial: 0
-  m_padding: 5.813
+  m_padding: 0
   m_canvasRenderer: {fileID: 422433836}
   m_TextComponent: {fileID: 1319700140}
   m_materialReferenceIndex: 1
@@ -6119,7 +6119,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'You kill the dino :'
+  m_text: 'Vous tuez le dino:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7ec4022216902494cb9c27874b660107, type: 2}
   m_sharedMaterial: {fileID: 21500578669188590, guid: 7ec4022216902494cb9c27874b660107,
@@ -6189,9 +6189,9 @@ MonoBehaviour:
   m_margin: {x: -76.94505, y: 0, z: -88.49743, w: 0}
   m_textInfo:
     textComponent: {fileID: 998992677}
-    characterCount: 19
+    characterCount: 18
     spriteCount: 0
-    spaceCount: 4
+    spaceCount: 3
     wordCount: 4
     linkCount: 0
     lineCount: 1
@@ -7094,22 +7094,22 @@ PrefabInstance:
     - target: {fileID: 7469336676203782910, guid: eeb0cc773458151458e3dcabee876626,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7469336676203782910, guid: eeb0cc773458151458e3dcabee876626,
         type: 3}
       propertyPath: m_textInfo.wordCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7469336676203782910, guid: eeb0cc773458151458e3dcabee876626,
         type: 3}
       propertyPath: m_textInfo.lineCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7469336676203782910, guid: eeb0cc773458151458e3dcabee876626,
         type: 3}
       propertyPath: m_textInfo.pageCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9173201903644550870, guid: eeb0cc773458151458e3dcabee876626,
         type: 3}
@@ -9435,7 +9435,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'The dino kill you :'
+  m_text: 'Le dino vous frappe:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7ec4022216902494cb9c27874b660107, type: 2}
   m_sharedMaterial: {fileID: 21500578669188590, guid: 7ec4022216902494cb9c27874b660107,
@@ -9505,9 +9505,9 @@ MonoBehaviour:
   m_margin: {x: -76.94505, y: 0, z: -94.319824, w: 0}
   m_textInfo:
     textComponent: {fileID: 1428310481}
-    characterCount: 19
+    characterCount: 20
     spriteCount: 0
-    spaceCount: 4
+    spaceCount: 3
     wordCount: 4
     linkCount: 0
     lineCount: 1
@@ -10958,7 +10958,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'You kill the dino :'
+  m_text: 'Vous tuez le dino:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7ec4022216902494cb9c27874b660107, type: 2}
   m_sharedMaterial: {fileID: 21500578669188590, guid: 7ec4022216902494cb9c27874b660107,
@@ -11028,9 +11028,9 @@ MonoBehaviour:
   m_margin: {x: -76.94505, y: 0, z: -94.319824, w: 0}
   m_textInfo:
     textComponent: {fileID: 1586658421}
-    characterCount: 19
+    characterCount: 18
     spriteCount: 0
-    spaceCount: 4
+    spaceCount: 3
     wordCount: 4
     linkCount: 0
     lineCount: 1
@@ -13096,38 +13096,38 @@ MonoBehaviour:
   spawnMonster: {fileID: 100000, guid: 77ec3c4e07a36814fb3169ecef41b50a, type: 3}
   plane: {fileID: 0}
   spriteStuff:
-  - {fileID: 21300006, guid: f571bdb1c7bcf3849869ae4edce73664, type: 3}
-  - {fileID: 21300000, guid: f571bdb1c7bcf3849869ae4edce73664, type: 3}
-  - {fileID: 21300000, guid: 95a2226ad12ccc84e988f7721c4476c2, type: 3}
-  - {fileID: 21300004, guid: f571bdb1c7bcf3849869ae4edce73664, type: 3}
-  - {fileID: 21300002, guid: f571bdb1c7bcf3849869ae4edce73664, type: 3}
-  - {fileID: 21300014, guid: f571bdb1c7bcf3849869ae4edce73664, type: 3}
-  - {fileID: 21300008, guid: f571bdb1c7bcf3849869ae4edce73664, type: 3}
-  - {fileID: 21300002, guid: 95a2226ad12ccc84e988f7721c4476c2, type: 3}
-  - {fileID: 21300012, guid: f571bdb1c7bcf3849869ae4edce73664, type: 3}
-  - {fileID: 21300010, guid: f571bdb1c7bcf3849869ae4edce73664, type: 3}
-  - {fileID: 21300022, guid: f571bdb1c7bcf3849869ae4edce73664, type: 3}
-  - {fileID: 21300016, guid: f571bdb1c7bcf3849869ae4edce73664, type: 3}
-  - {fileID: 21300004, guid: 95a2226ad12ccc84e988f7721c4476c2, type: 3}
-  - {fileID: 21300020, guid: f571bdb1c7bcf3849869ae4edce73664, type: 3}
-  - {fileID: 21300018, guid: f571bdb1c7bcf3849869ae4edce73664, type: 3}
-  - {fileID: 21300030, guid: f571bdb1c7bcf3849869ae4edce73664, type: 3}
-  - {fileID: 21300024, guid: f571bdb1c7bcf3849869ae4edce73664, type: 3}
-  - {fileID: 21300006, guid: 95a2226ad12ccc84e988f7721c4476c2, type: 3}
-  - {fileID: 21300026, guid: f571bdb1c7bcf3849869ae4edce73664, type: 3}
-  - {fileID: 21300028, guid: f571bdb1c7bcf3849869ae4edce73664, type: 3}
-  - {fileID: 21300000, guid: 116d182c03779584c8f694c4325bf95d, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 7409125763685599226, guid: ca5fcb97c3b7b014190b1aa574bb7c4f, type: 3}
+  - {fileID: 2237580174969229978, guid: c2f14e525bd74ca4bbfa7dc09b63974d, type: 3}
+  - {fileID: 991095320245865061, guid: c2f14e525bd74ca4bbfa7dc09b63974d, type: 3}
+  - {fileID: 738027134656676562, guid: ca5fcb97c3b7b014190b1aa574bb7c4f, type: 3}
+  - {fileID: 5628135655825579929, guid: c2f14e525bd74ca4bbfa7dc09b63974d, type: 3}
+  - {fileID: 8093596547606901066, guid: ca5fcb97c3b7b014190b1aa574bb7c4f, type: 3}
+  - {fileID: -4272293996847270541, guid: c2f14e525bd74ca4bbfa7dc09b63974d, type: 3}
+  - {fileID: -138340000435344869, guid: c2f14e525bd74ca4bbfa7dc09b63974d, type: 3}
+  - {fileID: 2134378946067843286, guid: ca5fcb97c3b7b014190b1aa574bb7c4f, type: 3}
+  - {fileID: -7524010592987645683, guid: c2f14e525bd74ca4bbfa7dc09b63974d, type: 3}
+  - {fileID: 80634534381655161, guid: c2f14e525bd74ca4bbfa7dc09b63974d, type: 3}
+  - {fileID: 2175559625030214147, guid: ca5fcb97c3b7b014190b1aa574bb7c4f, type: 3}
+  - {fileID: -3390928388552283813, guid: c2f14e525bd74ca4bbfa7dc09b63974d, type: 3}
+  - {fileID: -2918697387574654968, guid: c2f14e525bd74ca4bbfa7dc09b63974d, type: 3}
+  - {fileID: -5386536748867824859, guid: c2f14e525bd74ca4bbfa7dc09b63974d, type: 3}
+  - {fileID: 3838277267982128501, guid: ca5fcb97c3b7b014190b1aa574bb7c4f, type: 3}
+  - {fileID: -9006218705448523096, guid: c2f14e525bd74ca4bbfa7dc09b63974d, type: 3}
+  - {fileID: 2201105709779757810, guid: c2f14e525bd74ca4bbfa7dc09b63974d, type: 3}
+  - {fileID: 4429212167331727545, guid: c2f14e525bd74ca4bbfa7dc09b63974d, type: 3}
+  - {fileID: 2201105709779757810, guid: c2f14e525bd74ca4bbfa7dc09b63974d, type: 3}
+  - {fileID: -19707984203771877, guid: ca5fcb97c3b7b014190b1aa574bb7c4f, type: 3}
+  - {fileID: 8218734698706029767, guid: ca5fcb97c3b7b014190b1aa574bb7c4f, type: 3}
+  - {fileID: -455179098890850014, guid: ca5fcb97c3b7b014190b1aa574bb7c4f, type: 3}
+  - {fileID: -19707984203771877, guid: ca5fcb97c3b7b014190b1aa574bb7c4f, type: 3}
+  - {fileID: 8218734698706029767, guid: ca5fcb97c3b7b014190b1aa574bb7c4f, type: 3}
+  - {fileID: -455179098890850014, guid: ca5fcb97c3b7b014190b1aa574bb7c4f, type: 3}
+  - {fileID: -8704615157920039842, guid: ca5fcb97c3b7b014190b1aa574bb7c4f, type: 3}
+  - {fileID: 3786965026087328622, guid: ca5fcb97c3b7b014190b1aa574bb7c4f, type: 3}
+  - {fileID: -118130199332869670, guid: ca5fcb97c3b7b014190b1aa574bb7c4f, type: 3}
+  - {fileID: -8704615157920039842, guid: ca5fcb97c3b7b014190b1aa574bb7c4f, type: 3}
+  - {fileID: 3786965026087328622, guid: ca5fcb97c3b7b014190b1aa574bb7c4f, type: 3}
+  - {fileID: -118130199332869670, guid: ca5fcb97c3b7b014190b1aa574bb7c4f, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -14467,7 +14467,7 @@ MonoBehaviour:
   m_material: {fileID: 0}
   m_sharedMaterial: {fileID: 0}
   m_isDefaultMaterial: 0
-  m_padding: 5.813
+  m_padding: 0
   m_canvasRenderer: {fileID: 2053236266}
   m_TextComponent: {fileID: 1730682867}
   m_materialReferenceIndex: 1
@@ -15057,22 +15057,22 @@ PrefabInstance:
     - target: {fileID: 4531512878503324078, guid: 17e9cda676e1c554fb866358c1e3500b,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4531512878503324078, guid: 17e9cda676e1c554fb866358c1e3500b,
         type: 3}
       propertyPath: m_textInfo.wordCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4531512878503324078, guid: 17e9cda676e1c554fb866358c1e3500b,
         type: 3}
       propertyPath: m_textInfo.lineCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4531512878503324078, guid: 17e9cda676e1c554fb866358c1e3500b,
         type: 3}
       propertyPath: m_textInfo.pageCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 17e9cda676e1c554fb866358c1e3500b, type: 3}

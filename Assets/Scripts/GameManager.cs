@@ -345,7 +345,7 @@ public class GameManager : MonoBehaviour
 
             if (Random.Range(0,100) >= pourcentageSecondeChance) //monster crit and i lose hp
             {
-                textDrawStats.text = "Seconde chance ratée !";
+                textDrawStats.text = "Echec de Seconde chance !";
                 textDrawStats.GetComponent<RectTransform>().DOScale(textDrawStats.GetComponent<RectTransform>().transform.localScale * 1.5f, 0.2f).SetLoops(2, LoopType.Yoyo);
                 yield return new WaitForSeconds(1f);
 
@@ -379,7 +379,7 @@ public class GameManager : MonoBehaviour
             }
             else //monster don't crit and i gain honor
             {
-                textDrawStats.text = "Seconde chance réussie !";
+                textDrawStats.text = "Seconde chance reussie !";
                 textDrawStats.GetComponent<RectTransform>().DOScale(textDrawStats.GetComponent<RectTransform>().transform.localScale * 1.5f, 0.2f).SetLoops(2, LoopType.Yoyo);
                 yield return new WaitForSeconds(1f);
 
@@ -477,7 +477,7 @@ public class GameManager : MonoBehaviour
     
         yield return new WaitForSeconds(1f);
         
-        textEndFightGold.text = " Les deux Managers gagnent " + monsterManager.loot + " pièces d'or !";
+        textEndFightGold.text = " Les deux Managers gagnent " + monsterManager.loot + " pieces d'or !";
 
         DOTween.To(() => textEndFightGold.fontSize, x => textEndFightGold.fontSize = x, 40, 1f).SetEase(Ease.OutBounce);
         DOTween.To(() => textEndFightGold.fontSize, x => textEndFightGold.fontSize = x, 0, 0.5f).SetEase(Ease.InSine).SetDelay(2.5f);
