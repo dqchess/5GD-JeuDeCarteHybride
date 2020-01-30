@@ -7,11 +7,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7961908282653117626, guid: 074bb1839a4d1cf4f9426a5521f71486,
+    - target: {fileID: 2629530883418912814, guid: 074bb1839a4d1cf4f9426a5521f71486,
         type: 3}
-      propertyPath: m_Name
-      value: CardDef
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4466186757182583821, guid: 074bb1839a4d1cf4f9426a5521f71486,
+        type: 3}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 2800000, guid: 116d182c03779584c8f694c4325bf95d, type: 3}
     - target: {fileID: 6248669609435230138, guid: 074bb1839a4d1cf4f9426a5521f71486,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -117,6 +122,41 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 6529863683820053616, guid: 074bb1839a4d1cf4f9426a5521f71486,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6529863683820053616, guid: 074bb1839a4d1cf4f9426a5521f71486,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6529863683820053616, guid: 074bb1839a4d1cf4f9426a5521f71486,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6815809102521068978, guid: 074bb1839a4d1cf4f9426a5521f71486,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6815809102521068978, guid: 074bb1839a4d1cf4f9426a5521f71486,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6815809102521068978, guid: 074bb1839a4d1cf4f9426a5521f71486,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7961908282653117626, guid: 074bb1839a4d1cf4f9426a5521f71486,
+        type: 3}
+      propertyPath: m_Name
+      value: CardDef
+      objectReference: {fileID: 0}
     - target: {fileID: 9194508864912175139, guid: 074bb1839a4d1cf4f9426a5521f71486,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -126,16 +166,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -28.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 4466186757182583821, guid: 074bb1839a4d1cf4f9426a5521f71486,
-        type: 3}
-      propertyPath: m_Texture
-      value: 
-      objectReference: {fileID: 2800000, guid: 116d182c03779584c8f694c4325bf95d, type: 3}
-    - target: {fileID: 2629530883418912814, guid: 074bb1839a4d1cf4f9426a5521f71486,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 074bb1839a4d1cf4f9426a5521f71486, type: 3}

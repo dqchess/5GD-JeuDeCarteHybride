@@ -59,6 +59,7 @@ SkinnedMeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -211,10 +212,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monsterName: Solarophosaurus
   monsterMinATK: 1
-  monsterMaxATK: 3
+  monsterMaxATK: 4
   monsterHP: 1
-  monsterLoot: 7
-  monsterHonor: 30
+  monsterLoot: 8
+  monsterHonor: 40
+  forceAttackElement: 2
+  forceDefenseElement: 0
 --- !u!1 &1109424741136521408
 GameObject:
   m_ObjectHideFlags: 0
@@ -2753,6 +2756,7 @@ SkinnedMeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0

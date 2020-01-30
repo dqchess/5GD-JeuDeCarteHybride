@@ -10,4 +10,6 @@ public class MonsterStats : MonoBehaviour
     public int monsterHP;
     public int monsterLoot;
     public float monsterHonor;
+    public Element forceAttackElement = Element.NULL;
+    public Element forceDefenseElement = Element.NULL;
 }
